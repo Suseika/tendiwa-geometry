@@ -26,4 +26,3 @@ fun centeredGridRectangle(tile: Tile, size: GridDimension): GridRectangle {
     )
 }
 
-
