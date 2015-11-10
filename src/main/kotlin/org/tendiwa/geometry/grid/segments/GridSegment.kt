@@ -10,9 +10,9 @@ import java.util.*
  * A segment formed by tiles using
  * [Bresenham line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
  */
-class GridSegment(start: Tile, end: Tile) : BoundedGridMask {
-    override val hull: GridRectangle =
-        start rectangleTo end
+class GridSegment(val start: Tile, val end: Tile) : BoundedGridMask {
+    override val hull: GridRectangle
+        get() = start rectangleTo end
 
     override val tiles: Set<Tile> by lazy {
         tilesList.toSet()
