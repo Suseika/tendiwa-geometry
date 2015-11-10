@@ -1,8 +1,8 @@
 package org.tendiwa.geometry.grid.constructors
 
-import org.tendiwa.geometry.grid.gridSegments.GridSegment
-import org.tendiwa.geometry.grid.gridSegments.end
-import org.tendiwa.geometry.grid.gridSegments.start
+import org.tendiwa.geometry.grid.segments.GridSegment
+import org.tendiwa.geometry.grid.segments.end
+import org.tendiwa.geometry.grid.segments.start
 import org.tendiwa.geometry.grid.rectangles.GridRectangle
 import org.tendiwa.geometry.grid.tiles.Tile
 import org.tendiwa.math.integers.segmentLength

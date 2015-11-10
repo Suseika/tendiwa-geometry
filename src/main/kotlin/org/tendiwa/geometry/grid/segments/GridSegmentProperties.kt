@@ -1,4 +1,4 @@
-package org.tendiwa.geometry.grid.gridSegments
+package org.tendiwa.geometry.grid.segments
 
 import org.tendiwa.geometry.grid.tiles.Tile
 
