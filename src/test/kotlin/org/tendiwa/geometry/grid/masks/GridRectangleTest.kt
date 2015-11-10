@@ -1,11 +1,10 @@
 package org.tendiwa.geometry.grid.masks
 
 import org.junit.Test
-import org.tendiwa.geometry.grid.constructors.segmentTo
-import org.tendiwa.geometry.grid.directions.OrdinalDirection.*
+import org.tendiwa.geometry.grid.directions.CardinalDirection.*
 import org.tendiwa.geometry.grid.masks.borders.border
 import org.tendiwa.geometry.grid.rectangles.GridRectangle
-import org.tendiwa.geometry.grid.rectangles.corner
+import org.tendiwa.geometry.grid.rectangles.sides.side
 import org.tendiwa.geometry.grid.tiles.Tile
 import kotlin.test.assertEquals
 
@@ -35,26 +34,10 @@ class GridRectangleTest {
     @Test fun borderIteratesOverCorrectCells() {
         val rectangle = GridRectangle(0, 0, 3, 3)
         rectangle.border.tiles.apply {
-            assert(
-                containsAll(
-                    (rectangle.corner(NW) segmentTo rectangle.corner(NE)).tiles
-                )
-            )
-            assert(
-                containsAll(
-                    (rectangle.corner(NE) segmentTo rectangle.corner(SE)).tiles
-                )
-            )
-            assert(
-                containsAll(
-                    (rectangle.corner(SE) segmentTo rectangle.corner(SW)).tiles
-                )
-            )
-            assert(
-                containsAll(
-                    (rectangle.corner(SW) segmentTo rectangle.corner(NW)).tiles
-                )
-            )
+            assert(containsAll(rectangle.side(N).tiles))
+            assert(containsAll(rectangle.side(E).tiles))
+            assert(containsAll(rectangle.side(S).tiles))
+            assert(containsAll(rectangle.side(W).tiles))
         }
     }
 }
