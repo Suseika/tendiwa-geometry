@@ -2,7 +2,7 @@ package org.tendiwa.geometry.grid.rectangles
 
 import org.junit.Test
 import org.tendiwa.geometry.continuum.constructors.gridRectangleByTopLeftCorner
-import org.tendiwa.geometry.grid.by
+import org.tendiwa.geometry.grid.dimensions.by
 import org.tendiwa.geometry.grid.tiles.Tile
 import kotlin.test.assertFalse
 
