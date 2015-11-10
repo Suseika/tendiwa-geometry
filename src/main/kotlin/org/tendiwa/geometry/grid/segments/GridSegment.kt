@@ -1,5 +1,8 @@
 package org.tendiwa.geometry.grid.segments
 
+import org.tendiwa.geometry.grid.constructors.rectangleTo
+import org.tendiwa.geometry.grid.masks.BoundedGridMask
+import org.tendiwa.geometry.grid.rectangles.GridRectangle
 import org.tendiwa.geometry.grid.tiles.Tile
 import java.util.*
 
@@ -7,8 +10,19 @@ import java.util.*
  * A segment formed by tiles using
  * [Bresenham line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm)
  */
-class GridSegment(start: Tile, end: Tile) {
-    val tiles: List<Tile> = bresenhamLine(start, end)
+class GridSegment(start: Tile, end: Tile) : BoundedGridMask {
+    override val hull: GridRectangle =
+        start rectangleTo end
+
+    override val tiles: Set<Tile> by lazy {
+        tilesList.toSet()
+    }
+
+    val tilesList: List<Tile>
+        get() = bresenhamLine(start, end)
+
+    override fun contains(x: Int, y: Int): Boolean =
+        tiles.contains(Tile(x, y))
 
     /**
      * Implementation of
