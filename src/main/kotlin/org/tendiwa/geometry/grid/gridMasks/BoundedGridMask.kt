@@ -13,5 +13,17 @@ interface BoundedGridMask : FiniteGridMask {
     val hull: GridRectangle
 
     override val tiles: Set<Tile>
-        get() = RectangleGridMask(hull).tiles
+        get() =
+        hull.tiles
+            .filter { this@BoundedGridMask.contains(it.x, it.y) }
+            .toSet()
+
+    override fun forEachTile(operation: (Int, Int) -> Unit) {
+        hull.forEachTile {
+            x, y ->
+            if (this@BoundedGridMask.contains(x, y)) {
+                operation.invoke (x, y)
+            }
+        }
+    }
 }

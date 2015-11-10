@@ -1,5 +1,8 @@
 package org.tendiwa.geometry.grid.rectangles
 
+import org.tendiwa.geometry.grid.gridMasks.BoundedGridMask
+import org.tendiwa.geometry.grid.tiles.Tile
+
 /**
  * An axis-parallel rectangle over points in ℤ×ℤ.
  * @property x X coordinate of the top left corner.
@@ -12,4 +15,24 @@ data class GridRectangle(
     val y: Int,
     val width: Int,
     val height: Int
-)
+) : BoundedGridMask {
+    override val hull = this
+
+    override val tiles: Set<Tile>
+        get() {
+            val list: MutableList<Tile> = arrayListOf()
+            forEachTile { x, y -> list.add(Tile(x, y)) }
+            return list.toSet()
+        }
+
+    override fun contains(x: Int, y: Int): Boolean =
+        (x in this.xAxisRange) && (y in this.yAxisRange)
+
+    override fun forEachTile(operation: (Int, Int) -> Unit) {
+        for (i in x..maxX) {
+            for (j in y..maxY) {
+                operation.invoke(i, j)
+            }
+        }
+    }
+}
