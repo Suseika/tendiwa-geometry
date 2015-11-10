@@ -10,7 +10,7 @@ enum class CardinalDirection(
     N(0, -1),
     E(1, 0),
     S(0, 1),
-    W(0, -1);
+    W(-1, 0);
 
     val orientation: Orientation
         get() = when (this) {
