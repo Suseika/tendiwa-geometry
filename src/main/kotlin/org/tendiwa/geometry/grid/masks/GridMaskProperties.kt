@@ -1,4 +1,4 @@
-package org.tendiwa.geometry.grid.gridMasks
+package org.tendiwa.geometry.grid.masks
 
 val GridMask.inverse: GridMask
     get() =

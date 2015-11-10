@@ -1,4 +1,4 @@
-package org.tendiwa.geometry.grid.gridMasks
+package org.tendiwa.geometry.grid.masks
 
 class PredicateGridMask(
     val predicate: (Int, Int) -> Boolean

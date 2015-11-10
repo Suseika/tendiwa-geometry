@@ -1,6 +1,6 @@
 package org.tendiwa.geometry.grid.rectangles
 
-import org.tendiwa.geometry.grid.gridMasks.BoundedGridMask
+import org.tendiwa.geometry.grid.masks.BoundedGridMask
 import org.tendiwa.geometry.grid.tiles.Tile
 
 /**

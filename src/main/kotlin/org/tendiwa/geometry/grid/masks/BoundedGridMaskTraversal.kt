@@ -1,4 +1,4 @@
-package org.tendiwa.geometry.grid.gridMasks
+package org.tendiwa.geometry.grid.masks
 
 import org.tendiwa.geometry.grid.rectangles.xAxisRange
 import org.tendiwa.geometry.grid.rectangles.yAxisRange
