@@ -1,6 +1,6 @@
 package org.tendiwa.geometry.grid.constructors
 
-import org.tendiwa.geometry.grid.GridDimension
+import org.tendiwa.geometry.grid.dimensions.GridDimension
 import org.tendiwa.geometry.grid.rectangles.GridRectangle
 import org.tendiwa.geometry.grid.tiles.Tile
 import org.tendiwa.math.integers.even

@@ -1,4 +1,4 @@
-package org.tendiwa.geometry.grid
+package org.tendiwa.geometry.grid.metrics
 
 import org.tendiwa.geometry.grid.directions.CardinalDirection
 import org.tendiwa.geometry.grid.directions.Direction
