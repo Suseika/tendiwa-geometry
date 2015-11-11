@@ -28,4 +28,3 @@ val GridRectangle.border: BoundedGridMask
             }
         }
     }
-

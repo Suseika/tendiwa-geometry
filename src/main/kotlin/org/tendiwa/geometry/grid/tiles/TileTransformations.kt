@@ -1,5 +1,7 @@
 package org.tendiwa.geometry.grid.tiles
 
+import org.tendiwa.geometry.grid.directions.Direction
+
 /**
  * Moves a cell relative to its location.
  * @param dx Shift by x axis.
@@ -8,6 +10,9 @@ package org.tendiwa.geometry.grid.tiles
  */
 fun Tile.move(dx: Int, dy: Int): Tile =
     Tile(this.x + dx, this.y + dy)
+
+fun Tile.move(direction: Direction): Tile =
+    Tile(this.x + direction.dx, this.y + direction.dy)
 
 /**
  * Computes distance between two tiles.
