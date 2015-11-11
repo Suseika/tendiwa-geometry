@@ -29,15 +29,3 @@ val GridRectangle.xAxisRange: IntRange
  */
 val GridRectangle.yAxisRange: IntRange
     get() = (y..maxY)
-
-/**
- * Returns width or height of a rectangle, whichever is the greatest.
- */
-val GridRectangle.maxDimension: Int
-    get() = Math.max(width, height)
-
-/**
- * Returns width or height of a rectangle, whichever is the greatest.
- */
-val GridRectangle.minDimension: Int
-    get() = Math.min(width, height)
