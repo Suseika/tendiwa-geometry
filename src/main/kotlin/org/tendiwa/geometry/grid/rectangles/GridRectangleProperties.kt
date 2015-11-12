@@ -1,5 +1,8 @@
 package org.tendiwa.geometry.grid.rectangles
 
+import org.tendiwa.geometry.grid.dimensions.GridDimension
+import org.tendiwa.geometry.grid.dimensions.by
+
 /**
  * X coordinate of the right side of the rectangle.
  */
@@ -29,3 +32,6 @@ val GridRectangle.xAxisRange: IntRange
  */
 val GridRectangle.yAxisRange: IntRange
     get() = (y..maxY)
+
+val GridRectangle.size: GridDimension
+    get() = width by height
