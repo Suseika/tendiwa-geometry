@@ -35,3 +35,9 @@ val GridRectangle.yAxisRange: IntRange
 
 val GridRectangle.size: GridDimension
     get() = width by height
+
+/**
+ * Checks if this rectangle is a square.
+ */
+val GridRectangle.isSquare : Boolean
+    get() = width == height
