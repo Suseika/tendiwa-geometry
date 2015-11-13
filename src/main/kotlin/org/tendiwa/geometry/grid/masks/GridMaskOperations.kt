@@ -13,3 +13,10 @@ fun GridMask.boundedBy(rectangle: GridRectangle): BoundedGridMask =
         override fun contains(x: Int, y: Int): Boolean =
             this@boundedBy.contains(x, y)
     }
+
+fun GridMask.move(dx: Int, dy: Int): GridMask =
+    object : GridMask {
+        override fun contains(x: Int, y: Int): Boolean {
+            return this@move.contains(x - dx, y - dy)
+        }
+    }

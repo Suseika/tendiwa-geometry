@@ -15,5 +15,13 @@ class GridMaskTest {
     @Test fun createdFromPredicate() {
         assertTrue(GridMask { x, y -> (x + y) % 2 == 0 }.contains(4, 6))
     }
+
+    @Test fun move() {
+        assertTrue {
+            GridMask { x, y -> x == 1 && y == 2 }
+                .move(4, 3)
+                .contains(1 + 4, 2 + 3)
+        }
+    }
 }
 
