@@ -28,3 +28,6 @@ fun centeredGridRectangle(tile: Tile, size: GridDimension): GridRectangle {
 
 fun GridRectangle(topLeft: Tile, size: GridDimension): GridRectangle =
     GridRectangle(topLeft.x, topLeft.y, size.width, size.height)
+
+fun GridRectangle(size: GridDimension): GridRectangle =
+    GridRectangle(0, 0, size.width, size.height)
