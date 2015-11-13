@@ -6,7 +6,7 @@ import org.tendiwa.geometry.grid.tiles.Tile
 infix fun GridMask.union(another: GridMask): GridMask =
     object : GridMask {
         override fun contains(x: Int, y: Int) =
-            this@union.contains(x, y) && another.contains(x, y)
+            this@union.contains(x, y) || another.contains(x, y)
     }
 
 infix fun GridMask.difference(another: GridMask): GridMask =
