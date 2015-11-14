@@ -4,6 +4,7 @@ import org.tendiwa.geometry.continuum.EPSILON
 import org.tendiwa.geometry.continuum.points.Point
 import org.tendiwa.math.doubles.sqrt
 import org.tendiwa.math.doubles.square
+import org.tendiwa.math.matrices.determinant
 
 /**
  * Computes an intersection of this line with another line.
@@ -18,12 +19,6 @@ infix fun Line.intersectionWith(another: Line): Point? {
         -determinant(this.a, this.c, another.a, another.c)
     )
 }
-
-/**
- * Determinant of a 2×2 matrix.
- */
-private fun determinant(a: Double, b: Double, c: Double, d: Double): Double =
-    a * d - b * c
 
 fun Line.contains(point: Point): Boolean
     = this distanceTo point < EPSILON
