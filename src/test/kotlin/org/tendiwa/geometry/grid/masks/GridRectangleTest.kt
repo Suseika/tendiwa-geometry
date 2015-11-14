@@ -4,6 +4,7 @@ import org.junit.Test
 import org.tendiwa.geometry.grid.directions.CardinalDirection.*
 import org.tendiwa.geometry.grid.masks.borders.border
 import org.tendiwa.geometry.grid.rectangles.GridRectangle
+import org.tendiwa.geometry.grid.rectangles.shrink
 import org.tendiwa.geometry.grid.rectangles.sides.side
 import org.tendiwa.geometry.grid.tiles.Tile
 import kotlin.test.assertEquals
@@ -39,5 +40,17 @@ class GridRectangleTest {
             assert(containsAll(rectangle.side(S).tiles))
             assert(containsAll(rectangle.side(W).tiles))
         }
+    }
+
+    @Test fun shrink() {
+        assertEquals(
+            GridRectangle(3, 4, 5, 6),
+            GridRectangle(1, 2, 7, 8).shrink(2)
+        )
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun shrinkFailsWithTooSmallDimensions() {
+        GridRectangle(1,3,6,3).shrink(4)
     }
 }
