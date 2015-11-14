@@ -9,3 +9,4 @@ fun MutableGridMask.add(tile: Tile) {
 fun MutableGridMask.remove(tile: Tile) {
     this.remove(tile.x, tile.y)
 }
+
