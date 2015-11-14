@@ -11,8 +11,12 @@ import org.tendiwa.geometry.grid.directions.Direction
 fun Tile.move(dx: Int, dy: Int): Tile =
     Tile(this.x + dx, this.y + dy)
 
-fun Tile.move(direction: Direction): Tile =
-    Tile(this.x + direction.dx, this.y + direction.dy)
+fun Tile.move(direction: Direction, distance: Int = 1): Tile =
+    Tile(
+        this.x + direction.dx * distance,
+        this.y + direction.dy * distance
+    )
+
 
 /**
  * Computes distance between two tiles.
