@@ -1,17 +1,17 @@
 package org.tendiwa.geometry.rectangles
 
 import org.tendiwa.geometry.points.Point
-import org.tendiwa.geometry.shapes.Shape
+import org.tendiwa.geometry.polygons.Polygon
 
 /**
- * Axis-parallel rectangle or points in ℝ×ℝ.
+ * Axis-parallel rectangle of points in ℝ×ℝ.
  */
 data class Rectangle(
     val x: Double,
     val y: Double,
     val width: Double,
     val height: Double
-) : Shape {
+) : Polygon {
     override val points =
         listOf(
             Point(x, y),
