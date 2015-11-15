@@ -7,10 +7,10 @@ interface Shape {
     val points: List<Point>
     val hull: Rectangle
         get() {
-            var minX: Double = Double.MAX_VALUE
-            var minY: Double = Double.MAX_VALUE
-            var maxX: Double = Double.MIN_VALUE
-            var maxY: Double = Double.MIN_VALUE
+            var minX: Double = Double.POSITIVE_INFINITY
+            var minY: Double = Double.POSITIVE_INFINITY
+            var maxX: Double = Double.NEGATIVE_INFINITY
+            var maxY: Double = Double.NEGATIVE_INFINITY
             for (point in this.points) {
                 if (minX > point.x) {
                     minX = point.x
