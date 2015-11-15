@@ -1,9 +1,12 @@
 package org.tendiwa.geometry.continuum.segments
 
 import org.junit.Test
-import org.tendiwa.geometry.continuum.points.Point
-import org.tendiwa.geometry.continuum.points.move
-import org.tendiwa.geometry.continuum.points.reallyCloseTo
+import org.tendiwa.geometry.points.Point
+import org.tendiwa.geometry.points.move
+import org.tendiwa.geometry.points.reallyCloseTo
+import org.tendiwa.geometry.segments.Segment
+import org.tendiwa.geometry.segments.move
+import org.tendiwa.geometry.segments.parallel
 import org.tendiwa.math.doubles.sqrt
 
 class SegmentTest {

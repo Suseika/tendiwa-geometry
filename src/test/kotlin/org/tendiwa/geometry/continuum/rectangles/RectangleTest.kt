@@ -1,7 +1,8 @@
 package org.tendiwa.geometry.continuum.rectangles
 
 import org.junit.Test
-import org.tendiwa.geometry.continuum.points.Point
+import org.tendiwa.geometry.points.Point
+import org.tendiwa.geometry.rectangles.Rectangle
 import kotlin.test.assertEquals
 
 class RectangleTest {

@@ -1,8 +1,10 @@
 package org.tendiwa.geometry.continuum.polygons
 
 import org.junit.Test
-import org.tendiwa.geometry.continuum.constructors.segmentTo
-import org.tendiwa.geometry.continuum.points.Point
+import org.tendiwa.geometry.constructors.segmentTo
+import org.tendiwa.geometry.points.Point
+import org.tendiwa.geometry.polygons.Polygon
+import org.tendiwa.geometry.polygons.segments
 import kotlin.test.assertFalse
 
 class PolygonTest {
