@@ -12,12 +12,11 @@ data class Rectangle(
     val width: Double,
     val height: Double
 ) : Shape {
-    override fun iterator(): Iterator<Point> =
+    override val points =
         listOf(
             Point(x, y),
             Point(maxX, y),
             Point(maxX, maxY),
             Point(x, maxY)
         )
-            .iterator()
 }

@@ -6,9 +6,4 @@ import org.tendiwa.geometry.continuum.shapes.Shape
 /**
  * A polygon.
  */
-data class Polygon(
-    val points: List<Point>
-) : Shape {
-    override fun iterator(): Iterator<Point> =
-        points.iterator()
-}
+data class Polygon(override val points: List<Point>) : Shape

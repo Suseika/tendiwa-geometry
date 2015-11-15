@@ -10,7 +10,6 @@ data class Segment(
     val start: Point,
     val end: Point
 ) : Shape {
-    override fun iterator(): Iterator<Point> {
-        return listOf(start, end).iterator()
-    }
+    override val points: List<Point>
+        get() = listOf(start, end)
 }
