@@ -4,7 +4,7 @@ import org.tendiwa.geometry.points.Point
 import org.tendiwa.geometry.rectangles.Rectangle
 
 interface Shape {
-    val points: List<Point>
+    val points: Collection<Point>
     val hull: Rectangle
         get() {
             var minX: Double = Double.POSITIVE_INFINITY
