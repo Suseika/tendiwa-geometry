@@ -1,4 +1,4 @@
-package org.tendiwa.geometry.continuum.rectangles
+package org.tendiwa.geometry.rectangles
 
 import org.junit.Test
 import org.tendiwa.geometry.points.Point

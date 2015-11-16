@@ -1,4 +1,4 @@
-package org.tendiwa.geometry.continuum.polygons
+package org.tendiwa.geometry.polygons
 
 import org.junit.Test
 import org.tendiwa.geometry.constructors.segmentTo

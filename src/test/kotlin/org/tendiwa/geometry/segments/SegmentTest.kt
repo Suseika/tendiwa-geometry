@@ -1,4 +1,4 @@
-package org.tendiwa.geometry.continuum.segments
+package org.tendiwa.geometry.segments
 
 import org.junit.Test
 import org.tendiwa.geometry.points.Point
