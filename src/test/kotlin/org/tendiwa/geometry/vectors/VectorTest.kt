@@ -3,7 +3,7 @@ package org.tendiwa.geometry.vectors
 import org.junit.Assert
 import org.junit.Ignore
 import org.junit.Test
-import org.tendiwa.geometry.EPSILON
+import org.tendiwa.math.constants.EPSILON
 import kotlin.test.assertFalse
 
 class VectorTest {

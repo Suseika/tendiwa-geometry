@@ -1,6 +1,7 @@
 package org.tendiwa.geometry.vectors
 
-import org.tendiwa.geometry.EPSILON
+import org.tendiwa.math.constants.EPSILON
+
 
 /**
  * Dot product of two vectors.
