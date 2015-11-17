@@ -1,6 +1,9 @@
 package org.tendiwa.geometry.vectors
 
+import org.junit.Assert
+import org.junit.Ignore
 import org.junit.Test
+import org.tendiwa.geometry.EPSILON
 import kotlin.test.assertFalse
 
 class VectorTest {
@@ -14,6 +17,16 @@ class VectorTest {
         val a = Vector(1.0, 1.0)
         assertFalse(ZERO_VECTOR isCollinear a)
         assertFalse(a isCollinear ZERO_VECTOR)
+    }
+
+    @Ignore
+    // Wrong direction, need to investigate
+    @Test fun angleTo() {
+        Assert.assertEquals(
+            Math.PI/2,
+            Vector(1.0, 0.0).angleBetween(Vector(0.0, 1.0), true),
+            EPSILON
+        )
     }
 }
 
