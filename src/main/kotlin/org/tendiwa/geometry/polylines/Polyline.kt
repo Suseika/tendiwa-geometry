@@ -1,4 +1,4 @@
-package org.tendiwa.geometry
+package org.tendiwa.geometry.polylines
 
 import org.tendiwa.geometry.points.Point
 import org.tendiwa.geometry.shapes.Shape
