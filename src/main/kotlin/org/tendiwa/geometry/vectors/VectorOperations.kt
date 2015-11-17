@@ -1,7 +1,6 @@
 package org.tendiwa.geometry.vectors
 
-import org.tendiwa.math.constants.EPSILON
-
+import org.tendiwa.math.doubles.isCloseToZero
 
 /**
  * Dot product of two vectors.
@@ -63,11 +62,11 @@ infix fun Vector.isCollinear(other: Vector): Boolean {
     val a = this.normalize()
     val b = other.normalize()
     val sub = a - b
-    if (Math.abs(sub.x) < EPSILON && Math.abs(sub.y) < EPSILON) {
+    if (sub.x.isCloseToZero && sub.y.isCloseToZero) {
         return true
     }
     val subNeg = a + b
-    if (Math.abs(subNeg.x) < EPSILON && Math.abs(subNeg.y) < EPSILON) {
+    if (subNeg.x.isCloseToZero && subNeg.y.isCloseToZero) {
         return true
     }
     return false

@@ -2,6 +2,7 @@ package org.tendiwa.geometry.lines
 
 import org.tendiwa.geometry.points.Point
 import org.tendiwa.math.constants.EPSILON
+import org.tendiwa.math.doubles.isCloseToZero
 import org.tendiwa.math.doubles.sqrt
 import org.tendiwa.math.doubles.square
 import org.tendiwa.math.matrices.determinant
@@ -11,7 +12,7 @@ import org.tendiwa.math.matrices.determinant
  */
 infix fun Line.intersectionWith(another: Line): Point? {
     val zn = determinant(this.a, this.b, another.a, another.b)
-    if (Math.abs(zn) < EPSILON) {
+    if (zn.isCloseToZero) {
         return null
     }
     return Point(
