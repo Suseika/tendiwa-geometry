@@ -1,5 +1,7 @@
 package org.tendiwa.geometry.vectors
 
+import org.tendiwa.geometry.EPSILON
+
 /**
  * Dot product of two vectors.
  */
@@ -52,3 +54,20 @@ fun Vector.reverse(): Vector =
  */
 fun Vector.normalize(): Vector =
     this div magnitude
+
+infix fun Vector.isCollinear(other: Vector): Boolean {
+    if (this.isZero || other.isZero) {
+        return false
+    }
+    val a = this.normalize()
+    val b = other.normalize()
+    val sub = a - b
+    if (Math.abs(sub.x) < EPSILON && Math.abs(sub.y) < EPSILON) {
+        return true
+    }
+    val subNeg = a + b
+    if (Math.abs(subNeg.x) < EPSILON && Math.abs(subNeg.y) < EPSILON) {
+        return true
+    }
+    return false
+}
