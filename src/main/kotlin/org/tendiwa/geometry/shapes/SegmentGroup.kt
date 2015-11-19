@@ -1,6 +1,6 @@
 package org.tendiwa.geometry.shapes
 
-import org.tendiwa.collectioins.loopedLinks
+import org.tendiwa.collections.loopedLinks
 import org.tendiwa.geometry.points.Point
 import org.tendiwa.geometry.rectangles.Rectangle
 import org.tendiwa.geometry.segments.Segment
