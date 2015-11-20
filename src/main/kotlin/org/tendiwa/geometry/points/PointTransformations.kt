@@ -1,5 +1,7 @@
 package org.tendiwa.geometry.points
 
+import org.tendiwa.geometry.vectors.Vector
+
 /**
  * Creates a new point relative to the original point.
  * @param dx Shift by x axis.
@@ -8,6 +10,9 @@ package org.tendiwa.geometry.points
  */
 fun Point.move(dx: Double, dy: Double): Point =
     Point(x + dx, y + dy)
+
+fun Point.move(vector: Vector): Point =
+    Point(x + vector.x, y + vector.y)
 
 /**
  * Distance to another point.
