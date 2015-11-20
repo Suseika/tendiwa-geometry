@@ -1,6 +1,6 @@
 package org.tendiwa.geometry.constructors
 
-import org.tendiwa.geometry.Dimension
+import org.tendiwa.geometry.dimensions.Dimension
 import org.tendiwa.geometry.points.Point
 import org.tendiwa.geometry.rectangles.Rectangle
 

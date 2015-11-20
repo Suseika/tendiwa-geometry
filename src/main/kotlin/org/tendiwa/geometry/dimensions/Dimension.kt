@@ -1,4 +1,4 @@
-package org.tendiwa.geometry
+package org.tendiwa.geometry.dimensions
 
 /**
  * Size of a rectangular axis-parallel area in ℝ×ℝ space.

@@ -1,6 +1,6 @@
 package org.tendiwa.geometry.rectangles
 
-import org.tendiwa.geometry.Dimension
+import org.tendiwa.geometry.dimensions.Dimension
 import org.tendiwa.geometry.points.Point
 
 fun Rectangle(start: Point, size: Dimension): Rectangle =

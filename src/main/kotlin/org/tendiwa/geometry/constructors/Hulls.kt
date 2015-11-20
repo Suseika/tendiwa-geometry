@@ -1,7 +1,7 @@
 package org.tendiwa.geometry.constructors
 
-import org.tendiwa.geometry.Dimension
 import org.tendiwa.geometry.circles.Circle
+import org.tendiwa.geometry.dimensions.Dimension
 import org.tendiwa.geometry.rectangles.Rectangle
 
 val Circle.rectangularHull: Rectangle
