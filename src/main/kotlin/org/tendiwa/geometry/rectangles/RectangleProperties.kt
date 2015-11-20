@@ -18,3 +18,5 @@ fun Rectangle.corner(corner: OrdinalDirection): Point {
     }
 }
 
+val Rectangle.start: Point
+    get() = Point(x, y)
