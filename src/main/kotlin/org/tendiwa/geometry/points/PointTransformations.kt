@@ -19,3 +19,7 @@ infix fun Point.distanceTo(another: Point): Double {
     val dy = another.y - this.y
     return Math.sqrt(dx * dx + dy * dy)
 }
+
+infix fun Point.relativeTo(other: Point): Point {
+    return Point(this.x - other.x, this.y - other.y)
+}
