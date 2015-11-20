@@ -21,6 +21,10 @@ infix fun Vector.cross(another: Vector): Double =
 infix operator fun Vector.div(scalar: Double): Vector =
     Vector(x / scalar, y / scalar)
 
+infix operator fun Vector.div(scalar: Int): Vector =
+    Vector(x / scalar.toDouble(), y / scalar.toDouble())
+
+
 infix operator fun Vector.plus(another: Vector): Vector =
     Vector(x + another.x, y + another.y)
 
@@ -28,6 +32,9 @@ infix operator fun Vector.minus(another: Vector): Vector =
     Vector(x - another.x, y - another.y)
 
 infix operator fun Vector.times(scalar: Double): Vector =
+    Vector(x * scalar, y * scalar)
+
+infix operator fun Vector.times(scalar: Int): Vector =
     Vector(x * scalar, y * scalar)
 
 /**
