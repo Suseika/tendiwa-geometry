@@ -14,6 +14,12 @@ fun Point.move(dx: Double, dy: Double): Point =
 fun Point.move(vector: Vector): Point =
     Point(x + vector.x, y + vector.y)
 
+fun Point.moveHorizontally(dx: Double): Point =
+    Point(x + dx, y)
+
+fun Point.moveVertically(dy: Double): Point =
+    Point(x, y + dy)
+
 /**
  * Distance to another point.
  * @param another Another point.
@@ -25,6 +31,9 @@ infix fun Point.distanceTo(another: Point): Double {
     return Math.sqrt(dx * dx + dy * dy)
 }
 
-infix fun Point.relativeTo(other: Point): Point {
-    return Point(this.x - other.x, this.y - other.y)
-}
+/**
+ * Returns the position of this point if `other` was the beginning of
+ * coordinates.
+ */
+infix fun Point.relativeTo(other: Point): Point =
+    Point(this.x - other.x, this.y - other.y)
