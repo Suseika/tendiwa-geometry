@@ -1,5 +1,6 @@
 package org.tendiwa.geometry.segments
 
+import org.tendiwa.geometry.vectors.Vector
 import org.tendiwa.math.doubles.sqrt
 import org.tendiwa.math.doubles.square
 
@@ -11,3 +12,9 @@ val Segment.dx: Double
 
 val Segment.dy: Double
     get() = end.y - start.y
+
+/**
+ * Returns vector from start point of this Segment to the end point.
+ */
+val Segment.vector: Vector
+    get() = Vector(end.x - start.x, end.y - start.y)
