@@ -12,3 +12,6 @@ fun Segment.parallel(distance: Double, fromLeft: Boolean): Segment {
 
 fun Segment.move(dx: Double, dy: Double): Segment
     = Segment(start.move(dx, dy), end.move(dx, dy))
+
+fun Segment.isParallel(segment: Segment): Boolean =
+    this.dx * segment.dy - this.dy * segment.dx == 0.0
