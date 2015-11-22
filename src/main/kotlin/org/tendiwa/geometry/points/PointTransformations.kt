@@ -1,6 +1,7 @@
 package org.tendiwa.geometry.points
 
 import org.tendiwa.geometry.vectors.Vector
+import org.tendiwa.plane.directions.Direction
 
 /**
  * Creates a new point relative to the original point.
@@ -13,6 +14,12 @@ fun Point.move(dx: Double, dy: Double): Point =
 
 fun Point.move(vector: Vector): Point =
     Point(x + vector.x, y + vector.y)
+
+fun Point.move(direction: Direction, distance: Double): Point =
+    Point(
+        x + direction.dx * distance,
+        y + direction.dy * distance
+    )
 
 fun Point.moveHorizontally(dx: Double): Point =
     Point(x + dx, y)
