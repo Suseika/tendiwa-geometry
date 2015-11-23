@@ -18,3 +18,6 @@ val Segment.dy: Double
  */
 val Segment.vector: Vector
     get() = Vector(end.x - start.x, end.y - start.y)
+
+val Segment.reverse: Segment
+    get() = Segment(end, start)
