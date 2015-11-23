@@ -37,6 +37,9 @@ infix operator fun Vector.times(scalar: Double): Vector =
 infix operator fun Vector.times(scalar: Int): Vector =
     Vector(x * scalar, y * scalar)
 
+operator fun Vector.unaryMinus(): Vector =
+    Vector(-x, -y)
+
 /**
  * Rotates a vector by particular angle.
  * @param radians Angle in radians.
