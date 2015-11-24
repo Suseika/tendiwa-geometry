@@ -5,8 +5,8 @@ import org.tendiwa.geometry.points.move
 fun Segment.parallel(distance: Double, fromLeft: Boolean): Segment {
     val distanceSigned = if (fromLeft) -distance else distance
     return this.move(
-        -this.dx / this.length * distanceSigned,
-        this.dy / this.length * distanceSigned
+        -this.dy / this.length * distanceSigned,
+        this.dx / this.length * distanceSigned
     )
 }
 
