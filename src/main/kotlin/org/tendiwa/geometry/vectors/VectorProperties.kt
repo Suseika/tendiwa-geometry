@@ -13,3 +13,15 @@ val Vector.isZero: Boolean
 val Vector.point: Point
     get() = Point(x, y)
 
+/**
+ * Returns vector of the same magnitue pointing in the opposite direction.
+ */
+val Vector.reversed: Vector
+    get() = Vector(-x, -y)
+/**
+ * Creates a vector with the same direction of magnitude 1.
+ */
+val Vector.normalized: Vector
+    get() = this div magnitude
+val Vector.rotatedQuarterClockwise: Vector
+    get() = Vector(-y, x)

@@ -50,27 +50,12 @@ fun Vector.rotate(radians: Double): Vector {
     return Vector(ca * x - sa * y, sa * x + ca * y)
 }
 
-fun Vector.rotateQuarterClockwise(): Vector =
-    Vector(-y, x)
-
-/**
- * Returns vector of the same magnitue pointing in the opposite direction.
- */
-fun Vector.reverse(): Vector =
-    Vector(-x, -y)
-
-/**
- * Creates a vector with the same direction of magnitude 1.
- */
-fun Vector.normalize(): Vector =
-    this div magnitude
-
 infix fun Vector.isCollinear(other: Vector): Boolean {
     if (this.isZero || other.isZero) {
         return false
     }
-    val a = this.normalize()
-    val b = other.normalize()
+    val a = this.normalized
+    val b = other.normalized
     val sub = a - b
     if (sub.x.isCloseToZero && sub.y.isCloseToZero) {
         return true
