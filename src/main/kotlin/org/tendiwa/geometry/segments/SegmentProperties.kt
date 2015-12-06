@@ -21,3 +21,6 @@ val Segment.vector: Vector
 
 val Segment.reverse: Segment
     get() = Segment(end, start)
+
+val Segment.slope: Double
+    get() = dy / dx
