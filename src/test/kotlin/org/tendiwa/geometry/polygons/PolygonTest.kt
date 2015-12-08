@@ -3,6 +3,8 @@ package org.tendiwa.geometry.polygons
 import org.junit.Test
 import org.tendiwa.geometry.constructors.segmentTo
 import org.tendiwa.geometry.points.Point
+import org.tendiwa.geometry.rectangles.Rectangle
+import kotlin.test.assertEquals
 import kotlin.test.assertFails
 import kotlin.test.assertFalse
 
@@ -25,5 +27,12 @@ class PolygonTest {
         assertFails { Polygon(listOf()) }
         assertFails { Polygon(listOf(Point(0.0, 0.0))) }
         assertFails { Polygon(listOf(Point(0.0, 0.0), Point(0.0, 2.3))) }
+    }
+
+    @Test fun perimeter() {
+        assertEquals(
+            40.0,
+            Rectangle(0.0, 0.0, 10.0, 10.0).perimeter
+        )
     }
 }
