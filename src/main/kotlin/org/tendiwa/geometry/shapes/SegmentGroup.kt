@@ -1,6 +1,5 @@
 package org.tendiwa.geometry.shapes
 
-import org.tendiwa.collections.loopedLinks
 import org.tendiwa.geometry.points.Point
 import org.tendiwa.geometry.rectangles.Rectangle
 import org.tendiwa.geometry.segments.Segment
@@ -8,7 +7,6 @@ import org.tendiwa.geometry.segments.Segment
 interface SegmentGroup {
     val points: Collection<Point>
     val segments: Collection<Segment>
-        get() = points.loopedLinks.map { Segment(it.first, it.second) }
     val hull: Rectangle
         get() {
             var minX: Double = Double.POSITIVE_INFINITY
