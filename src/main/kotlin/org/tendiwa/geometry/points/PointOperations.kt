@@ -12,3 +12,21 @@ fun comparePointsLinewise(a: Point, b: Point): Int {
     }
     return signum;
 }
+
+/**
+ * Returns squared distance to some point.
+ *
+ * This method has better performance than [Point.distanceTo] because it
+ * doesn't have to compute a square root; see
+ * [Point-to-Point Distance](http://mathworld.wolfram.com/Point-PointDistance2-Dimensional.html).
+ *
+ * Optimizations come from the fact that:
+ *
+ * `(a squaredDistanceTo b).compareTo(a squaredDistanceTo c)`
+ *
+ * is equivalent to:
+ *
+ * `(a distanceTo b).compareTo(a distanceTo c)`
+ */
+infix fun Point.squaredDistanceTo(target: Point): Double =
+    (target.x - this.x) * (target.x - this.x) + (target.y - this.y) * (target.y - this.y)
