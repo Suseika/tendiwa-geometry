@@ -15,7 +15,7 @@ class SplitSegment(
     val middlePoint: Point
         get() = firstHalf.end
 
-    override fun partWithPoint(startingPoint: Point) {
+    override fun partWithPoint(point: Point) {
         throw UnsupportedOperationException()
     }
 
