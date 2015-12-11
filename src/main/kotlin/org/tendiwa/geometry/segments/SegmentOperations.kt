@@ -35,3 +35,9 @@ fun Segment.slider(position: Double): Point =
         start.x + dx * position,
         start.y + dy * position
     )
+
+/**
+ * Checks if a point is either [Segment.start] or [Segment.end]
+ */
+fun Segment.isEndpoint(point: Point): Boolean =
+    start == point || end == point
