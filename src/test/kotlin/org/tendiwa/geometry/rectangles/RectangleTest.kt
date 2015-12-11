@@ -1,8 +1,9 @@
 package org.tendiwa.geometry.rectangles
 
 import org.junit.Test
+import org.tendiwa.geometry.dimensions.by
+import org.tendiwa.geometry.points.AnyPoint
 import org.tendiwa.geometry.points.Point
-import org.tendiwa.geometry.rectangles.Rectangle
 import kotlin.test.assertEquals
 
 class RectangleTest {
@@ -21,5 +22,10 @@ class RectangleTest {
             ),
             Rectangle(1.0, 2.0, 3.0, 4.0).points
         )
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun failsIfConstructedWith0Dimension() {
+        Rectangle(AnyPoint(), 0.0 by 10.0)
     }
 }

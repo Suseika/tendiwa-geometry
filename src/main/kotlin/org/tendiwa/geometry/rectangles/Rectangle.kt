@@ -12,6 +12,16 @@ data class Rectangle(
     val width: Double,
     val height: Double
 ) : Polygon {
+
+    init {
+        if (width == 0.0 || height == 0.0) {
+            throw IllegalArgumentException(
+                "Rectangle can't have width or height == 0.0: rectangle " +
+                    "$width×$height"
+            )
+        }
+    }
+
     override val points =
         listOf(
             Point(x, y),
