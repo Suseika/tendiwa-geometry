@@ -68,16 +68,21 @@ infix fun Vector.isCollinear(other: Vector): Boolean {
 }
 
 fun Vector.angleBetween(b: Vector, clockwise: Boolean): Double {
-    val angleA: Double = Math.atan2(b.y, b.x);
-    val angleB: Double = Math.atan2(this.y, this.x);
-    var angle = angleA - angleB;
+    if (this == b) {
+        throw IllegalArgumentException(
+            "Can't compute angle between equal vectors $this and $b"
+        )
+    }
+    val angleA: Double = Math.atan2(this.y, this.x)
+    val angleB: Double = Math.atan2(b.y, b.x)
+    var angle = angleA - angleB
     if (clockwise) {
-        angle = -angle;
+        angle = -angle
     }
     if (angle < 0) {
-        angle += Math.PI * 2;
+        angle += Math.PI * 2
     }
-    return angle;
+    return angle
 }
 
 /**
