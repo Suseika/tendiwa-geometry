@@ -21,5 +21,5 @@ interface CutSegment {
 	val hasBeenCut: Boolean
         get() = !cuts.isEmpty()
 
-	fun partWithPoint(point: Point);
+	fun partWithPoint(point: Point): Segment;
 }
