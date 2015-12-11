@@ -10,6 +10,7 @@ data class Segment(
     val start: Point,
     val end: Point
 ) : SegmentGroup {
+    companion object {}
     init {
         if (start == end) {
             throw IllegalArgumentException(
