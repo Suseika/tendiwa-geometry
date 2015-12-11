@@ -2,9 +2,9 @@ package org.tendiwa.geometry.segments
 
 import org.junit.Assert
 import org.junit.Test
-import org.tendiwa.geometry.constructors.spanHorizontalSegment
-import org.tendiwa.geometry.constructors.spanSegment
-import org.tendiwa.geometry.constructors.spanVerticalSegment
+import org.tendiwa.geometry.points.spanHorizontalSegment
+import org.tendiwa.geometry.points.spanSegment
+import org.tendiwa.geometry.points.spanVerticalSegment
 import org.tendiwa.geometry.points.*
 import org.tendiwa.geometry.rectangles.contains
 import org.tendiwa.math.constants.EPSILON

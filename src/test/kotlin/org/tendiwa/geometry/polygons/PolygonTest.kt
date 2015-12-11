@@ -1,7 +1,7 @@
 package org.tendiwa.geometry.polygons
 
 import org.junit.Test
-import org.tendiwa.geometry.constructors.segmentTo
+import org.tendiwa.geometry.points.segmentTo
 import org.tendiwa.geometry.points.Point
 import org.tendiwa.geometry.rectangles.Rectangle
 import kotlin.test.assertEquals

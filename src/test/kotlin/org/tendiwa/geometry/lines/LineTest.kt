@@ -1,7 +1,7 @@
 package org.tendiwa.geometry.lines
 
 import org.junit.Test
-import org.tendiwa.geometry.constructors.lineThrough
+import org.tendiwa.geometry.points.lineThrough
 import org.tendiwa.geometry.points.Point
 
 class LineTest {
