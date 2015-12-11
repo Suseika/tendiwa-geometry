@@ -1,11 +1,13 @@
 package org.tendiwa.geometry.segments
 
+import org.junit.Assert
 import org.junit.Test
-import org.tendiwa.geometry.constructors.segmentTo
 import org.tendiwa.geometry.constructors.spanHorizontalSegment
 import org.tendiwa.geometry.constructors.spanSegment
 import org.tendiwa.geometry.constructors.spanVerticalSegment
 import org.tendiwa.geometry.points.*
+import org.tendiwa.geometry.rectangles.contains
+import org.tendiwa.math.constants.EPSILON
 import org.tendiwa.math.doubles.sqrt
 import org.tendiwa.plane.directions.CardinalDirection.N
 import org.tendiwa.plane.directions.OrdinalDirection.SE
@@ -74,15 +76,35 @@ class SegmentTest {
     }
 
     @Test fun middleIsEquidistantToBothEnds() {
-        val a = Point(1.2, 3.4)
-        val b = Point(5.6, 7.8)
-        (a segmentTo b)
+        Segment.ANY
             .apply {
-                assertEquals(
-                    a.distanceTo(middle()),
-                    b.distanceTo(middle())
+                Assert.assertEquals(
+                    start.distanceTo(middle()),
+                    end.distanceTo(middle()),
+                    EPSILON
                 )
             }
+    }
+
+    @Test
+    fun sliderCanBeOnSegmentEndpoints() {
+        Segment.ANY
+            .apply { assertEquals(start, slider(0.0)) }
+            .apply { assertEquals(end, slider(1.0)) }
+    }
+
+    @Test
+    fun sliderCanBeInsideSegment() {
+        Segment.ANY
+            .apply { assert(hull.contains(slider(0.4))) }
+    }
+
+    @Test
+    fun sliderCanBeOutsideSegment() {
+        Segment.ANY
+            .apply { assert(!hull.contains(slider(3.4))) }
+        Segment.ANY
+            .apply { assert(!hull.contains(slider(-0.5))) }
     }
 }
 
