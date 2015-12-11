@@ -1,6 +1,7 @@
 package org.tendiwa.geometry.segments
 
 import org.junit.Test
+import org.tendiwa.geometry.constructors.segmentTo
 import org.tendiwa.geometry.constructors.spanHorizontalSegment
 import org.tendiwa.geometry.constructors.spanSegment
 import org.tendiwa.geometry.constructors.spanVerticalSegment
@@ -8,6 +9,7 @@ import org.tendiwa.geometry.points.*
 import org.tendiwa.math.doubles.sqrt
 import org.tendiwa.plane.directions.CardinalDirection.N
 import org.tendiwa.plane.directions.OrdinalDirection.SE
+import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 
 class SegmentTest {
@@ -69,6 +71,18 @@ class SegmentTest {
                     .isParallel(this.spanSegment(N, 10.0))
             )
         }
+    }
+
+    @Test fun middleIsEquidistantToBothEnds() {
+        val a = Point(1.2, 3.4)
+        val b = Point(5.6, 7.8)
+        (a segmentTo b)
+            .apply {
+                assertEquals(
+                    a.distanceTo(middle()),
+                    b.distanceTo(middle())
+                )
+            }
     }
 }
 
