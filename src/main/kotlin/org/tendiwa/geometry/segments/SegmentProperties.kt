@@ -14,7 +14,7 @@ val Segment.dy: Double
     get() = end.y - start.y
 
 /**
- * Returns vector from start point of this Segment to the end point.
+ * Returns vector from [Segment.start] to [Segment.end].
  */
 val Segment.vector: Vector
     get() = Vector(end.x - start.x, end.y - start.y)
