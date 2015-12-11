@@ -3,8 +3,6 @@ package org.tendiwa.geometry.vectors
 import org.junit.Assert
 import org.junit.Ignore
 import org.junit.Test
-import org.tendiwa.geometry.constructors.vectorTo
-import org.tendiwa.geometry.points.AnyPoint
 import org.tendiwa.math.constants.EPSILON
 import kotlin.test.assertFalse
 
@@ -22,7 +20,7 @@ class VectorTest {
     }
 
     @Ignore
-    // Wrong direction, need to investigate
+    // TODO: Wrong direction, need to investigate
     @Test fun angleTo() {
         Assert.assertEquals(
             Math.PI / 2,
