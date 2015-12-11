@@ -21,7 +21,7 @@ class MutableShreddedSegment(
             add(originalSegment)
         }
 
-    constructor(
+    internal constructor(
         originalSegment: Segment,
         splitPoints: List<Point>
     ) : this(originalSegment, splitPoints.size + 1) {
