@@ -4,7 +4,9 @@ import org.junit.Test
 import org.tendiwa.geometry.dimensions.by
 import org.tendiwa.geometry.points.AnyPoint
 import org.tendiwa.geometry.points.Point
+import org.tendiwa.plane.directions.OrdinalDirection.SW
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 
 class RectangleTest {
     @Test fun hull() {
@@ -27,5 +29,25 @@ class RectangleTest {
     @Test(expected = IllegalArgumentException::class)
     fun failsIfConstructedWith0Dimension() {
         Rectangle(AnyPoint(), 0.0 by 10.0)
+    }
+
+    @Test
+    fun rectangleContainsInnerPoints() {
+        assert(
+            Rectangle(0.0, 0.0, 10.0, 10.0).contains(Point(3.4, 5.6))
+        )
+    }
+
+    @Test
+    fun rectangleDoesntContainOuterPoints() {
+        assertFalse(
+            Rectangle(0.0, 0.0, 10.0, 10.0).contains(Point(13.4, 5.6))
+        )
+    }
+
+    @Test
+    fun rectangleContainsPointOnBorder() {
+        Rectangle(0.0, 0.0, 10.0, 10.0)
+            .apply { assert(contains(corner(SW))) }
     }
 }
