@@ -9,24 +9,24 @@ class PointTest {
     @Test
     fun lessSquaredDistanceMeansLessDistance() {
         val a = AnyPoint()
-        val b = a.move(SW, 5.0)
-        val c = a.move(SW, 4.0)
+        val b = a.moveKing(SW, 5.0)
+        val c = a.moveKing(SW, 4.0)
         assertSquaredDistanceComparesSameAsDistance(a, b, c)
     }
 
     @Test
     fun moreSquaredDistanceMeansMoreDistance() {
         val a = AnyPoint()
-        val b = a.move(SE, 6.0)
-        val c = a.move(SE, 10.0)
+        val b = a.moveKing(SE, 6.0)
+        val c = a.moveKing(SE, 10.0)
         assertSquaredDistanceComparesSameAsDistance(a, b, c)
     }
 
     @Test
     fun sameSquaredDistanceMeansSameDistance() {
         val a = AnyPoint()
-        val b = a.move(SE, 5.1)
-        val c = a.move(SW, 5.1)
+        val b = a.moveKing(SE, 5.1)
+        val c = a.moveKing(SW, 5.1)
         assertSquaredDistanceComparesSameAsDistance(a, b, c)
     }
 

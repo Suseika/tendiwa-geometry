@@ -15,7 +15,10 @@ fun Point.move(dx: Double, dy: Double): Point =
 fun Point.move(vector: Vector): Point =
     Point(x + vector.x, y + vector.y)
 
-fun Point.move(direction: Direction, distance: Double): Point =
+/**
+ * Moves a point in direction in [GridMetric.KING] distance.
+ */
+fun Point.moveKing(direction: Direction, distance: Double): Point =
     Point(
         x + direction.dx * distance,
         y + direction.dy * distance

@@ -2,6 +2,7 @@ package org.tendiwa.geometry.constructors
 
 import org.tendiwa.geometry.points.Point
 import org.tendiwa.geometry.points.move
+import org.tendiwa.geometry.points.moveKing
 import org.tendiwa.geometry.segments.Segment
 import org.tendiwa.plane.directions.Direction
 
@@ -12,7 +13,7 @@ fun Point.spanSegment(dx: Double, dy: Double): Segment =
     Segment(this, this.move(dx, dy))
 
 fun Point.spanSegment(direction: Direction, distance: Double): Segment =
-    Segment(this, this.move(direction, distance))
+    Segment(this, this.moveKing(direction, distance))
 
 fun Point.spanHorizontalSegment(dx: Double): Segment =
     Segment(this, this.move(dx, 0.0))

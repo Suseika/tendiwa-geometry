@@ -2,7 +2,7 @@ package org.tendiwa.geometry.bends
 
 import org.junit.Test
 import org.tendiwa.geometry.points.AnyPoint
-import org.tendiwa.geometry.points.move
+import org.tendiwa.geometry.points.moveKing
 import org.tendiwa.geometry.points.moveHorizontally
 import org.tendiwa.geometry.points.moveVertically
 import org.tendiwa.plane.directions.OrdinalDirection.NE
@@ -32,8 +32,8 @@ class BendTest {
             assert(
                 Bend(
                     this,
-                    this.move(NE, 1.0),
-                    this.move(NE, 2.0)
+                    this.moveKing(NE, 1.0),
+                    this.moveKing(NE, 2.0)
                 ).isStraight
             )
         }
@@ -44,7 +44,7 @@ class BendTest {
             assertFalse(
                 Bend(
                     this,
-                    this.move(NE, 1.0),
+                    this.moveKing(NE, 1.0),
                     this.moveHorizontally(1.0)
                 ).isStraight
             )
