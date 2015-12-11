@@ -79,3 +79,34 @@ fun Vector.angleBetween(b: Vector, clockwise: Boolean): Double {
     }
     return angle;
 }
+
+/**
+ * Checks if a vector is in a sector between two vectors.
+ * @param cw Vector on the clockwise end of the sector.
+ * @param ccw Vector on the counter-clockwise end of the sector.
+ */
+fun Vector.isBetweenVectors(cw: Vector, ccw: Vector): Boolean =
+    if (cw.makesReflexAngle(ccw)) {
+        ccw.perpDotProduct(this) < 0 || this.perpDotProduct(cw) < 0;
+    } else {
+        cw.perpDotProduct(this) > 0 && this.perpDotProduct(ccw) > 0;
+    }
+
+/**
+ * Checks if clockwise angle between this vector and another vector is
+ * `>Math.PI`. Relative to angle's bisector, this vector is considered * counter-clockwise, and another is considered clockwise. *
+ * @param cw Another vector.
+ * @return true if the angle between vectors going clockwise from this vector to
+ * [cw] is reflex, false otherwise.
+ */
+infix fun Vector.makesReflexAngle(cw: Vector): Boolean =
+    cw dotPerp this > 0
+
+/**
+ * Same as `rotated90ccw dot vector` where `rotated90ccw` is this vector
+ * rotated 90 degrees counter-clockwise.
+ *
+ * [Perp dot product on WolframMathWorld](http://mathworld.wolfram.com/PerpDotProduct.html)
+ */
+infix fun Vector.perpDotProduct(vector: Vector): Double =
+    this.x * vector.y - this.y * vector.x

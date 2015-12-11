@@ -23,5 +23,6 @@ val Vector.reversed: Vector
  */
 val Vector.normalized: Vector
     get() = this div magnitude
+
 val Vector.rotatedQuarterClockwise: Vector
     get() = Vector(-y, x)
