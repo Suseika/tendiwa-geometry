@@ -16,7 +16,9 @@ fun Point.move(vector: Vector): Point =
     Point(x + vector.x, y + vector.y)
 
 /**
- * Moves a point in direction in [GridMetric.KING] distance.
+ * Moves a point in a direction in
+ * (Chebyshov distance)[https://en.wikipedia.org/wiki/Chebyshev_distance]
+ * (otherwise known as King distance)
  */
 fun Point.moveKing(direction: Direction, distance: Double): Point =
     Point(
