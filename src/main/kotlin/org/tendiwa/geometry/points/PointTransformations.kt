@@ -1,7 +1,9 @@
 package org.tendiwa.geometry.points
 
 import org.tendiwa.geometry.vectors.Vector
+import org.tendiwa.math.doubles.sqrt
 import org.tendiwa.plane.directions.Direction
+import org.tendiwa.plane.directions.OrdinalDirection
 
 /**
  * Creates a new point relative to the original point.
@@ -25,6 +27,20 @@ fun Point.moveKing(direction: Direction, distance: Double): Point =
         x + direction.dx * distance,
         y + direction.dy * distance
     )
+
+/**
+ * Moves a point in direction in Euclidean distance.
+ */
+fun Point.move(direction: Direction, distance: Double): Point =
+    if (direction is OrdinalDirection) {
+        val position = 2.0.sqrt / 2
+        Point(
+            x + direction.dx * distance * position,
+            y + direction.dy * distance * position
+        )
+    } else {
+        moveKing(direction, distance)
+    }
 
 fun Point.moveHorizontally(dx: Double): Point =
     Point(x + dx, y)

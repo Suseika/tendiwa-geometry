@@ -1,6 +1,8 @@
 package org.tendiwa.geometry.points
 
+import org.junit.Assert
 import org.junit.Test
+import org.tendiwa.math.constants.EPSILON
 import org.tendiwa.plane.directions.OrdinalDirection.SE
 import org.tendiwa.plane.directions.OrdinalDirection.SW
 import kotlin.test.assertEquals
@@ -38,6 +40,16 @@ class PointTest {
         assertEquals(
             a.distanceTo(b).compareTo(a.distanceTo(c)),
             a.squaredDistanceTo(b).compareTo(a.squaredDistanceTo(c))
+        )
+    }
+
+    @Test
+    fun moveInOrdinalDirectionMovesByCorrectDistance() {
+        val point = AnyPoint()
+        Assert.assertEquals(
+            1.0,
+            point.move(SE, 1.0).distanceTo(point),
+            EPSILON
         )
     }
 }
