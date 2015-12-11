@@ -11,7 +11,9 @@ class SplitSegment(
     splitPoint: Point
 ) : CutSegment {
     val firstHalf = Segment(originalSegment.start, splitPoint)
+
     val secondHalf = Segment(splitPoint, originalSegment.end)
+
     val middlePoint: Point
         get() = firstHalf.end
 
@@ -21,8 +23,10 @@ class SplitSegment(
 
     override val parts: List<Segment>
         get() = listOf(firstHalf, secondHalf)
+
     override val cuts: List<Point>
         get() = listOf(middlePoint)
+
     override val hasBeenCut: Boolean
         get() = true
 }
