@@ -1,11 +1,12 @@
 package org.tendiwa.plane.geometry.points
 
 import org.tendiwa.math.doubles.isCloseToZero
+import org.tendiwa.plane.geometry.segments.Segment
 
-infix fun org.tendiwa.plane.geometry.points.Point.reallyCloseTo(another: org.tendiwa.plane.geometry.points.Point): Boolean =
+infix fun Point.reallyCloseTo(another: Point): Boolean =
     (this.x - another.x).isCloseToZero && (this.y - another.y).isCloseToZero
 
-fun comparePointsLinewise(a: org.tendiwa.plane.geometry.points.Point, b: org.tendiwa.plane.geometry.points.Point): Int {
+fun comparePointsLinewise(a: Point, b: Point): Int {
     val signum = Math.signum(a.x - b.x).toInt();
     if (signum == 0) {
         return Math.signum(a.y - b.y).toInt();
@@ -28,33 +29,33 @@ fun comparePointsLinewise(a: org.tendiwa.plane.geometry.points.Point, b: org.ten
  *
  * `(a distanceTo b).compareTo(a distanceTo c)`
  */
-infix fun org.tendiwa.plane.geometry.points.Point.squaredDistanceTo(target: org.tendiwa.plane.geometry.points.Point): Double =
+infix fun Point.squaredDistanceTo(target: Point): Double =
     (target.x - this.x) * (target.x - this.x) + (target.y - this.y) * (target.y - this.y)
 
-infix fun org.tendiwa.plane.geometry.points.Point.segmentTo(target: org.tendiwa.plane.geometry.points.Point): org.tendiwa.plane.geometry.segments.Segment =
-    org.tendiwa.plane.geometry.segments.Segment(this, target)
+infix fun Point.segmentTo(target: Point): Segment =
+    Segment(this, target)
 
-infix fun org.tendiwa.plane.geometry.points.Point.lineThrough(target: org.tendiwa.plane.geometry.points.Point): org.tendiwa.plane.geometry.lines.Line =
+infix fun Point.lineThrough(target: Point): org.tendiwa.plane.geometry.lines.Line =
     org.tendiwa.plane.geometry.lines.Line(
         this.y - target.y,
         target.x - this.x,
         (this.x - target.x) * this.y + (target.y - this.y) * this.x
     )
 
-infix fun org.tendiwa.plane.geometry.points.Point.vectorTo(target: org.tendiwa.plane.geometry.points.Point): org.tendiwa.plane.geometry.vectors.Vector =
+infix fun Point.vectorTo(target: Point): org.tendiwa.plane.geometry.vectors.Vector =
     org.tendiwa.plane.geometry.vectors.Vector(target.x - this.x, target.y - this.y)
 
 /**
  * Creates a [Segment] by placing its another end *relative* to this point.
  */
-fun org.tendiwa.plane.geometry.points.Point.spanSegment(dx: Double, dy: Double): org.tendiwa.plane.geometry.segments.Segment =
-    org.tendiwa.plane.geometry.segments.Segment(this, this.move(dx, dy))
+fun Point.spanSegment(dx: Double, dy: Double): Segment =
+    Segment(this, this.move(dx, dy))
 
-fun org.tendiwa.plane.geometry.points.Point.spanSegment(direction: org.tendiwa.plane.directions.Direction, distance: Double): org.tendiwa.plane.geometry.segments.Segment =
-    org.tendiwa.plane.geometry.segments.Segment(this, this.moveKing(direction, distance))
+fun Point.spanSegment(direction: org.tendiwa.plane.directions.Direction, distance: Double): Segment =
+    Segment(this, this.moveKing(direction, distance))
 
-fun org.tendiwa.plane.geometry.points.Point.spanHorizontalSegment(dx: Double): org.tendiwa.plane.geometry.segments.Segment =
-    org.tendiwa.plane.geometry.segments.Segment(this, this.move(dx, 0.0))
+fun Point.spanHorizontalSegment(dx: Double): Segment =
+    Segment(this, this.move(dx, 0.0))
 
-fun org.tendiwa.plane.geometry.points.Point.spanVerticalSegment(dy: Double): org.tendiwa.plane.geometry.segments.Segment =
-    org.tendiwa.plane.geometry.segments.Segment(this, this.move(0.0, dy))
+fun Point.spanVerticalSegment(dy: Double): Segment =
+    Segment(this, this.move(0.0, dy))
