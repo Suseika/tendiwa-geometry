@@ -1,6 +1,7 @@
 package org.tendiwa.plane.geometry.points
 
 import org.tendiwa.math.doubles.isCloseToZero
+import org.tendiwa.plane.geometry.rectangles.Rectangle
 import org.tendiwa.plane.geometry.segments.Segment
 
 infix fun Point.reallyCloseTo(another: Point): Boolean =
@@ -59,3 +60,16 @@ fun Point.spanHorizontalSegment(dx: Double): Segment =
 
 fun Point.spanVerticalSegment(dy: Double): Segment =
     Segment(this, this.move(0.0, dy))
+
+infix fun Point.spanRectangle(other: Point): Rectangle {
+    val minX = Math.min(this.x, other.x)
+    val minY = Math.min(this.y, other.y)
+    val maxX = Math.max(this.x, other.x)
+    val maxY = Math.max(this.y, other.y)
+    return Rectangle(
+        minX,
+        minY,
+        maxX - minX,
+        maxY - minY
+    )
+}

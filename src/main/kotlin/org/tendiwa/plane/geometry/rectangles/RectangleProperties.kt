@@ -19,3 +19,6 @@ val Rectangle.size: Dimension
 
 val Rectangle.start: Point
     get() = Point(x, y)
+
+val Rectangle.area: Double
+    get() = width * height

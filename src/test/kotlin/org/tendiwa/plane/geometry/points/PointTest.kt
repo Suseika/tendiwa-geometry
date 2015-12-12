@@ -5,6 +5,7 @@ import org.junit.Test
 import org.tendiwa.math.constants.EPSILON
 import org.tendiwa.plane.directions.OrdinalDirection.SE
 import org.tendiwa.plane.directions.OrdinalDirection.SW
+import org.tendiwa.plane.geometry.rectangles.area
 import kotlin.test.assertEquals
 
 class PointTest {
@@ -51,5 +52,15 @@ class PointTest {
             point.move(SE, 1.0).distanceTo(point),
             EPSILON
         )
+    }
+
+    @Test
+    fun spanRectangle() {
+        AnyPoint()
+            .apply {
+                assertEquals(
+                    50.0, this.spanRectangle(this.move(25.0, 2.0)).area
+                )
+            }
     }
 }
