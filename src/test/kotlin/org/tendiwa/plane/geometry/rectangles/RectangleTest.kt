@@ -5,6 +5,7 @@ import org.tendiwa.plane.directions.OrdinalDirection.SW
 import org.tendiwa.plane.geometry.dimensions.by
 import org.tendiwa.plane.geometry.points.AnyPoint
 import org.tendiwa.plane.geometry.points.Point
+import org.tendiwa.plane.geometry.ranges2d.overlaps
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 
@@ -49,5 +50,31 @@ class RectangleTest {
     fun rectangleContainsPointOnBorder() {
         Rectangle(0.0, 0.0, 10.0, 10.0)
             .apply { assert(contains(corner(SW))) }
+    }
+
+    @Test
+    fun overlaps() {
+        assert(
+            Rectangle(0.0, 0.0, 10.0, 10.0)
+                .overlaps(Rectangle(5.0, 5.0, 10.0, 10.0))
+        )
+    }
+
+    @Test
+    fun canBeNotOverlapping() {
+        assertFalse(
+            Rectangle(0.0, 0.0, 10.0, 10.0)
+                .overlaps(Rectangle(15.0, 15.0, 10.0, 10.0))
+        )
+    }
+
+    @Test
+    fun adjacentRangesDontOverlap() {
+        Rectangle(0.0, 0.0, 10.0, 10.0)
+            .apply {
+                assertFalse(
+                    this.overlaps(this.moveByX(this.width))
+                )
+            }
     }
 }
