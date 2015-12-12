@@ -5,6 +5,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.ExpectedException
 import org.tendiwa.math.constants.EPSILON
+import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 
 class VectorTest {
@@ -42,6 +43,18 @@ class VectorTest {
                 EPSILON
             )
         }
+    }
+
+    @Test
+    fun direction() {
+        assertEquals(
+            Math.PI / 4,
+            Vector(2.0, 2.0).direction
+        )
+        assertEquals(
+            Math.PI * 7 / 4,
+            Vector(2.0, -2.0).direction
+        )
     }
 }
 

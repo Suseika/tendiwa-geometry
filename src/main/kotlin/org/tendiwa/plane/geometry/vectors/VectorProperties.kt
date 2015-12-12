@@ -26,3 +26,14 @@ val Vector.normalized: Vector
 
 val Vector.rotatedQuarterClockwise: Vector
     get() = Vector(-y, x)
+
+val Vector.direction: Double
+    get() =
+    Math.atan2(y, x)
+        .run {
+            if (this < 0) {
+                Math.PI * 2 + this;
+            } else {
+                this
+            }
+        }
