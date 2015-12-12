@@ -4,12 +4,6 @@ import org.tendiwa.plane.directions.OrdinalDirection
 import org.tendiwa.plane.geometry.dimensions.Dimension
 import org.tendiwa.plane.geometry.points.Point
 
-val Rectangle.maxX: Double
-    get() = x + width
-
-val Rectangle.maxY: Double
-    get() = y + height
-
 // TODO: Move to RectangleOperations.kt
 fun Rectangle.corner(corner: OrdinalDirection): Point {
     return when (corner) {

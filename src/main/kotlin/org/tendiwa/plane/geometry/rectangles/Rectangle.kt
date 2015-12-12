@@ -2,6 +2,7 @@ package org.tendiwa.plane.geometry.rectangles
 
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.polygons.Polygon
+import org.tendiwa.plane.geometry.ranges2d.Range2D
 
 /**
  * Axis-parallel rectangle of points in ℝ×ℝ.
@@ -11,7 +12,18 @@ data class Rectangle(
     val y: Double,
     val width: Double,
     val height: Double
-) : Polygon {
+) : Polygon, Range2D {
+    override val minX: Double
+        get() = x
+
+    override val minY: Double
+        get() = y
+
+    override val maxX: Double
+        get() = x + width
+
+    override val maxY: Double
+        get() = y + height
 
     init {
         if (width == 0.0 || height == 0.0) {
