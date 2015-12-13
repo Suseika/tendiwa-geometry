@@ -10,6 +10,11 @@ import org.tendiwa.plane.geometry.shapes.SegmentGroup
  */
 interface Polygon : SegmentGroup {
     override val points: List<Point>
+    /**
+     * Segments between consecutive points. For each segment, it must be true
+     * that `this.end == nextSegment.start`, assuming nextSegment for
+     * `segments.last()` is `segments[0]`
+     */
     override val segments: List<Segment>
         get() = points.loopedLinks.map { Segment(it.first, it.second) }
 }
