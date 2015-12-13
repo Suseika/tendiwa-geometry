@@ -1,6 +1,7 @@
 package org.tendiwa.plane.geometry.segments.cut
 
 import org.tendiwa.plane.geometry.points.Point
+import org.tendiwa.plane.geometry.points.distanceTo
 import org.tendiwa.plane.geometry.segments.Segment
 import java.util.*
 
@@ -12,21 +13,24 @@ import java.util.*
  * @param expectedNumberOfShreds Expected size of an internal [ArrayList]
  */
 class MutableShreddedSegment(
-    override val originalSegment: Segment,
-    expectedNumberOfShreds: Int = 10
+    override val originalSegment: Segment
 ) : CutSegment {
-
-    override val parts = ArrayList<Segment>(expectedNumberOfShreds)
-        .apply {
-            add(originalSegment)
-        }
+    private val segments = TreeSet<Segment>({
+        a, b ->
+        java.lang.Double.compare(
+            a.start.distanceTo(originalSegment.start),
+            b.start.distanceTo(originalSegment.start)
+        )
+    })
+        .apply { add(originalSegment) }
+    override val parts : List<Segment>
+        get() = segments.toList()
 
     internal constructor(
         originalSegment: Segment,
         splitPoints: List<Point>
-    ) : this(originalSegment, splitPoints.size + 1) {
-        splitPoints
-            .forEach { splitAt(it) }
+    ) : this(originalSegment) {
+        splitPoints.forEach { splitAt(it) }
     }
 
     fun splitAt(point: Point) {
@@ -49,11 +53,11 @@ class MutableShreddedSegment(
             || cuts.any { it == point }
 
     override fun partWithPoint(point: Point): Segment =
-        parts
+        segments
             .find { s -> isPointInBoundingRectangle(point, s) }
             ?:
             throw IllegalArgumentException(
-                "Point $point is not on segment $originalSegment"
+                "$point is not on the original segment $originalSegment"
             )
 
     private fun split(
@@ -61,12 +65,11 @@ class MutableShreddedSegment(
         onePart: Segment,
         anotherPart: Segment
     ) {
-        assert(parts.contains(segment))
-        parts.remove(segment);
-        parts.add(onePart);
-        parts.add(anotherPart);
+        assert(segments.contains(segment))
+        segments.remove(segment);
+        segments.add(onePart);
+        segments.add(anotherPart);
     }
-
 }
 
 private fun isPointInBoundingRectangle(
