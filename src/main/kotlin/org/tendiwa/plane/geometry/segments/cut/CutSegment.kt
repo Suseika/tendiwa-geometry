@@ -11,7 +11,7 @@ interface CutSegment {
 
     /**
      * Ordered parts into which the [originalSegment] is split. For each
-     * pair, if there is a next pair, then `next.start === current.end`.
+     * part, if there is a next part, then `next.start === current.end`.
      */
     val parts: List<Segment>
 
