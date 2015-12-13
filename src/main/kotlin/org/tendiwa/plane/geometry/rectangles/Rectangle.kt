@@ -13,6 +13,7 @@ data class Rectangle(
     val width: Double,
     val height: Double
 ) : Polygon, Range2D {
+    companion object {}
     override val minX: Double
         get() = x
 

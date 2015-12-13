@@ -19,3 +19,5 @@ fun rectangleFromRanges(
         maxY - minY
     )
 
+val Rectangle.Companion.ANY : Rectangle
+    get() = Rectangle(-40.2, -59.0, 89.1, 41.13)
