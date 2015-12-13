@@ -2,6 +2,7 @@ package org.tendiwa.plane.geometry.segments
 
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.points.move
+import org.tendiwa.plane.geometry.segments.cut.ShreddedSegment
 
 fun Segment.parallel(distance: Double, fromLeft: Boolean): Segment {
     val distanceSigned = if (fromLeft) -distance else distance
@@ -41,3 +42,39 @@ fun Segment.slider(position: Double): Point =
  */
 fun Segment.isEndpoint(point: Point): Boolean =
     start == point || end == point
+
+/**
+ * Returns [Segment.start] if [point] is [Segment.end], or returns
+ * [Segment.end] if [point] is [Segment.start].
+ * @throws IllegalArgumentException If [point] is neither [Segment.start] nor
+ * [Segment.end].
+ */
+fun Segment.otherEnd(point: Point): Point =
+    if (start == point) {
+        end
+    } else if (end == point) {
+        start
+    } else {
+        throw IllegalArgumentException(
+            "Argument must be one of the endpoints of segment $this; " +
+                "argument was $point"
+        )
+    }
+
+/**
+ * Cuts a segment into a [ShreddedSegment] by placing [slider]s on the
+ * segment.
+ * @param cutPositions [slider] positions to cut this segment at. Each
+ * one must be within *(0.0;1.0)* range, and their order doesn't matter.
+ */
+fun Segment.cut(vararg cutPositions: Double): ShreddedSegment =
+    cutPositions
+        .apply {
+            if (cutPositions.any { it <= 0.0 || it >= 1.0 }) {
+                throw IllegalArgumentException(
+                    "All cut positions must be within (0.0..1.0); they are " +
+                        "${cutPositions.toList()}"
+                )
+            }
+        }
+        .run { ShreddedSegment(this@cut, cutPositions.map { slider(it) }) }

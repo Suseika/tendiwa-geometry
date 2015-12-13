@@ -15,4 +15,3 @@ class ShreddedSegment(
     originalSegment: Segment,
     splitPoints: List<Point>
 ) : CutSegment by MutableShreddedSegment(originalSegment, splitPoints)
-

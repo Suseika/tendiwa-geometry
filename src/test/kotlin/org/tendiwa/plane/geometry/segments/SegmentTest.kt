@@ -1,7 +1,9 @@
 package org.tendiwa.plane.geometry.segments
 
 import org.junit.Assert
+import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.ExpectedException
 import org.tendiwa.math.constants.EPSILON
 import org.tendiwa.math.doubles.sqrt
 import org.tendiwa.plane.directions.CardinalDirection.N
@@ -12,6 +14,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 
 class SegmentTest {
+    @JvmField @Rule val expectRule = ExpectedException.none()
     @Test fun parallel() {
         val start = Point(3.0, 4.0)
         val original = Segment(start, start.move(4.0, 4.0))
@@ -102,6 +105,37 @@ class SegmentTest {
             .apply { assert(!hull.contains(slider(3.4))) }
         Segment.ANY
             .apply { assert(!hull.contains(slider(-0.5))) }
+    }
+
+    @Test
+    fun otherEnd() {
+        Segment.ANY
+            .apply { assertEquals(end, otherEnd(start)) }
+            .apply { assertEquals(start, otherEnd(end)) }
+    }
+
+    @Test
+    fun otherEndFailsIfArgumentIsNotEndpoint() {
+        expectRule.expect(IllegalArgumentException::class.java)
+        expectRule.expectMessage("Argument must be one of the endpoints")
+        Segment.ANY.apply {
+            otherEnd(start.move(12.13, 14.15))
+        }
+    }
+
+    @Test
+    fun cutsIntoPieces() {
+        assertEquals(
+            3,
+            Segment.ANY.cut(0.1, 0.5, 0.9).cuts.size
+        )
+    }
+
+    @Test
+    fun failsToCutIntoPiecesIfCutPositionIsOutsideAllowedRange() {
+        expectRule.expectMessage("All cut positions must be within (0.0..1.0)")
+        expectRule.expect(IllegalArgumentException::class.java)
+        Segment.ANY.cut(0.5, 0.8, 0.9, 1.3)
     }
 }
 
