@@ -43,8 +43,10 @@ class MutableShreddedSegment(
         split(segmentToSplit, onePart, anotherPart);
     }
 
-    private fun canSplitAtPoint(point: Point) = originalSegment.start == point || originalSegment.end == point
-        || cuts.any { it == point }
+    private fun canSplitAtPoint(point: Point) =
+        originalSegment.start == point
+            || originalSegment.end == point
+            || cuts.any { it == point }
 
     override fun partWithPoint(point: Point): Segment =
         parts
@@ -53,7 +55,6 @@ class MutableShreddedSegment(
             throw IllegalArgumentException(
                 "Point $point is not on segment $originalSegment"
             )
-
 
     private fun split(
         segment: Segment,
