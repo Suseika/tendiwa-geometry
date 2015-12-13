@@ -57,7 +57,7 @@ class MutableShreddedSegmentTest {
     @Test
     fun splitOutsideOriginalSegmentFails() {
         expectRule.expect(IllegalArgumentException::class.java)
-        expectRule.expectMessage("not on segment")
+        expectRule.expectMessage("not on the original segment")
         Segment.ANY
             .apply {
                 MutableShreddedSegment(this).splitAt(slider(-1.0))
