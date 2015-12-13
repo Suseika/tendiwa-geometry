@@ -4,6 +4,7 @@ import org.junit.Test
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.points.segmentTo
 import org.tendiwa.plane.geometry.rectangles.Rectangle
+import org.tendiwa.plane.geometry.trails.Polygon
 import kotlin.test.assertEquals
 import kotlin.test.assertFails
 import kotlin.test.assertFalse
@@ -34,5 +35,33 @@ class PolygonTest {
             40.0,
             Rectangle(0.0, 0.0, 10.0, 10.0).perimeter
         )
+    }
+
+    @Test
+    fun isClockwise() {
+        Polygon(Point(4.0, 5.0), {
+            moveX(10.0)
+            moveY(10.0)
+        })
+            .apply { assert(isClockwise()) }
+        Polygon(Point(4.0, 5.0), {
+            moveX(-10.0)
+            moveY(10.0)
+        })
+            .apply { assertFalse(isClockwise()) }
+    }
+
+    @Test
+    fun findsClockwisenessOfPolygonWithConsecutiveEdges() {
+        Polygon(Point(4.0, 5.0), {
+            moveX(-1.0)
+            moveY(-1.0)
+            moveY(-4.0)
+            moveY(-9.0)
+            moveX(9.0)
+            moveX(1.0)
+            moveX(2.0)
+        })
+            .apply { assert(isClockwise()) }
     }
 }
