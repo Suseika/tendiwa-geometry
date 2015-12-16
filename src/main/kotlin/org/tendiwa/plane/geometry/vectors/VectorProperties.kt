@@ -16,6 +16,7 @@ val Vector.point: Point
 /**
  * Returns vector of the same magnitue pointing in the opposite direction.
  */
+// TODO: Inconsistency: Vector.reversed, but Segment.reverse
 val Vector.reversed: Vector
     get() = Vector(-x, -y)
 /**
