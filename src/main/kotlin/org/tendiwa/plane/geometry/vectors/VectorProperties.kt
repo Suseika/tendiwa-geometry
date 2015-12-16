@@ -29,12 +29,10 @@ val Vector.rotatedQuarterClockwise: Vector
     get() = Vector(-y, x)
 
 val Vector.direction: Double
-    get() =
-    Math.atan2(y, x)
-        .run {
-            if (this < 0) {
-                Math.PI * 2 + this;
-            } else {
-                this
-            }
+    get() {
+        val atan = Math.atan2(y, x)
+        return when {
+            atan < 0 -> Math.PI * 2 + atan
+            else -> atan
         }
+    }
