@@ -26,7 +26,7 @@ class MutableShreddedSegment(
     override val parts : List<Segment>
         get() = segments.toList()
 
-    internal constructor(
+    constructor(
         originalSegment: Segment,
         splitPoints: List<Point>
     ) : this(originalSegment) {
