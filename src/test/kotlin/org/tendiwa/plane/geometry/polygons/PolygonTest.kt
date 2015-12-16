@@ -1,6 +1,7 @@
 package org.tendiwa.plane.geometry.polygons
 
 import org.junit.Test
+import org.tendiwa.plane.geometry.points.AnyPoint
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.points.segmentTo
 import org.tendiwa.plane.geometry.rectangles.Rectangle
@@ -63,5 +64,16 @@ class PolygonTest {
             moveX(2.0)
         })
             .apply { assert(isClockwise()) }
+    }
+    @Test
+    fun counterClockwisePolygonToClockwise() {
+        Polygon(AnyPoint(), {
+            moveY(10.0)
+            moveX(10.0)
+            moveY(-10.0)
+        })
+            .apply { assert(!isClockwise()) }
+            .toClockwise()
+            .apply { assert(Polygon(points).isClockwise()) }
     }
 }

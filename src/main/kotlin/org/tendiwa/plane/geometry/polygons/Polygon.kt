@@ -17,4 +17,15 @@ interface Polygon : SegmentGroup {
      */
     override val segments: List<Segment>
         get() = points.loopedLinks.map { Segment(it.first, it.second) }
+
+    /**
+     * Returns true if the points of this [Polygon] go clockwise, or false
+     * otherwise.
+     */
+    fun isClockwise(): Boolean =
+        segments
+            .map { (it.end.x - it.start.x) / (it.end.y + it.start.y) }
+            .sum()
+            .apply { assert(this != 0.0) }
+            .run { this > 0.0 }
 }
