@@ -1,4 +1,4 @@
-package org.tendiwa.plane.geometry.segments.cut
+package org.tendiwa.plane.geometry.segments.multi
 
 import org.junit.Rule
 import org.junit.Test
@@ -9,22 +9,22 @@ import org.tendiwa.plane.geometry.segments.Segment
 import org.tendiwa.plane.geometry.segments.slider
 import kotlin.test.assertEquals
 
-class MutableShreddedSegmentTest {
+class MutableKebabTest {
     @JvmField @Rule val expectRule = ExpectedException.none()
 
     @Test
     fun splitsMultipleTimes() {
         Segment.ANY
             .run {
-                MutableShreddedSegment(this)
+                MutableMultisegment(this)
                     .apply {
-                        splitAt(slider(0.7))
-                        splitAt(slider(0.4))
-                        splitAt(slider(0.1))
+                        add(slider(0.7))
+                        add(slider(0.4))
+                        add(slider(0.1))
                     }
             }
             .apply {
-                assertEquals(4, parts.size)
+                assertEquals(4, subsegments.size)
                 assertEquals(3, cuts.size)
             }
     }
@@ -35,8 +35,8 @@ class MutableShreddedSegmentTest {
         expectRule.expectMessage("an endpoint of the segment")
         Segment.ANY
             .run {
-                MutableShreddedSegment(this)
-                    .apply { splitAt(start) }
+                MutableMultisegment(this)
+                    .apply { add(start) }
             }
     }
 
@@ -46,10 +46,10 @@ class MutableShreddedSegmentTest {
         expectRule.expectMessage("existing split point")
         Segment.ANY
             .run {
-                MutableShreddedSegment(this)
+                MutableMultisegment(this)
                     .apply {
-                        splitAt(slider(0.2))
-                        splitAt(slider(0.2))
+                        add(slider(0.2))
+                        add(slider(0.2))
                     }
             }
     }
@@ -60,7 +60,7 @@ class MutableShreddedSegmentTest {
         expectRule.expectMessage("not on the original segment")
         Segment.ANY
             .apply {
-                MutableShreddedSegment(this).splitAt(slider(-1.0))
+                MutableMultisegment(this).add(slider(-1.0))
             }
     }
 
@@ -68,7 +68,7 @@ class MutableShreddedSegmentTest {
     fun partsAreOrderedFromStartToEnd() {
         Segment(Point(0.0, 0.0), Point(10.0, 0.0))
             .run {
-                MutableShreddedSegment(
+                MutableMultisegment(
                     this,
                     listOf(
                         slider(0.9),
@@ -80,11 +80,11 @@ class MutableShreddedSegmentTest {
                 )
             }
             .apply {
-                println(parts)
-                assertEquals(parts[0].end, parts[1].start)
-                assertEquals(parts[1].end, parts[2].start)
-                assertEquals(parts[2].end, parts[3].start)
-                assertEquals(parts[3].end, parts[4].start)
+                println(subsegments)
+                assertEquals(subsegments[0].end, subsegments[1].start)
+                assertEquals(subsegments[1].end, subsegments[2].start)
+                assertEquals(subsegments[2].end, subsegments[3].start)
+                assertEquals(subsegments[3].end, subsegments[4].start)
             }
     }
 }

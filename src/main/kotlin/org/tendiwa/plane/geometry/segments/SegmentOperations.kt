@@ -2,7 +2,8 @@ package org.tendiwa.plane.geometry.segments
 
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.points.move
-import org.tendiwa.plane.geometry.segments.cut.ShreddedSegment
+import org.tendiwa.plane.geometry.segments.multi.MultiMultisegment
+import org.tendiwa.plane.geometry.segments.multi.Multisegment
 
 fun Segment.parallel(distance: Double, fromLeft: Boolean): Segment {
     val distanceSigned = if (fromLeft) -distance else distance
@@ -56,18 +57,17 @@ fun Segment.otherEnd(point: Point): Point =
         start
     } else {
         throw IllegalArgumentException(
-            "Argument must be one of the endpoints of segment $this; " +
+            "Argument must be one of the endpoints of $this; " +
                 "argument was $point"
         )
     }
 
 /**
- * Cuts a segment into a [ShreddedSegment] by placing [slider]s on the
- * segment.
- * @param cutPositions [slider] positions to cut this segment at. Each
- * one must be within *(0.0;1.0)* range, and their order doesn't matter.
+ * Transform a segment into a [Multisegment].
+ * @param cutPositions [slider] positions to place points on this segment at.
+ * Each one must be within *(0.0;1.0)* range, and their order doesn't matter.
  */
-fun Segment.cut(vararg cutPositions: Double): ShreddedSegment =
+fun Segment.cut(vararg cutPositions: Double): Multisegment =
     cutPositions
         .apply {
             if (cutPositions.any { it <= 0.0 || it >= 1.0 }) {
@@ -77,4 +77,5 @@ fun Segment.cut(vararg cutPositions: Double): ShreddedSegment =
                 )
             }
         }
-        .run { ShreddedSegment(this@cut, cutPositions.map { slider(it) }) }
+        .map { slider(it) }
+        .let { cuts -> MultiMultisegment(this@cut, cuts) }

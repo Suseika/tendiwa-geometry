@@ -125,10 +125,10 @@ class SegmentTest {
 
     @Test
     fun cutsIntoPieces() {
-        assertEquals(
-            3,
-            Segment.ANY.cut(0.1, 0.5, 0.9).cuts.size
-        )
+        Segment.ANY
+            .cut(0.1, 0.5, 0.9)
+            .cuts
+            .apply { assertEquals(3, size) }
     }
 
     @Test

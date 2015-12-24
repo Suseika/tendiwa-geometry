@@ -1,4 +1,4 @@
-package org.tendiwa.plane.geometry.segments.cut
+package org.tendiwa.plane.geometry.segments.multi
 
 import org.tendiwa.plane.geometry.points.move
 import org.tendiwa.plane.geometry.points.vectorTo
@@ -9,14 +9,14 @@ import org.tendiwa.plane.geometry.vectors.direction
 
 /**
  * Returns a ray that is
- * - normal to the split segment;
- * - starting from the [SplitSegment.middlePoint];
- * - faces left from the split segment.
+ * - normal to the bisegment;
+ * - starting from the [Bisegment.cut];
+ * - faces left from the bisegment.
  */
-fun SplitSegment.leftNormal(): Ray {
-    val cwPoint = originalSegment.end
-    val ccwPoint = originalSegment.start
-    val rayStart = middlePoint
+fun Bisegment.leftNormal(): Ray {
+    val cwPoint = original.end
+    val ccwPoint = original.start
+    val rayStart = cut
     val pointOnRay = rayStart.move(
         VectorSector(
             rayStart.vectorTo(cwPoint),
