@@ -1,6 +1,7 @@
 package org.tendiwa.plane.geometry.polygons
 
 import org.tendiwa.plane.geometry.points.Point
+import org.tendiwa.plane.geometry.segments.Segment
 
 fun Polygon(a: Point, b: Point, c: Point, vararg rest: Point): Polygon =
     DefaultPolygon(listOf(a, b, c, *rest))
@@ -17,5 +18,7 @@ private fun validatePointList(points: List<Point>) {
     }
 }
 
-private data class DefaultPolygon(override val points: List<Point>) : Polygon
-
+private data class DefaultPolygon(override val points: List<Point>) : Polygon {
+    // Store segments in the object instead of computing them anew each time
+    override val segments: List<Segment> = super.segments
+}
