@@ -7,4 +7,4 @@ val Polygon.lastSegment: Segment
     get() = Segment(points.first(), points.last())
 
 val Polygon.perimeter: Double
-    get() = segments.map { it.length }.sum()
+    get() = segments.fold (0.0, { acc, segment -> acc + segment.length })
