@@ -132,6 +132,17 @@ class SegmentTest {
     }
 
     @Test
+    fun orderOfCutsDoesntMatter() {
+        Segment.ANY
+            .run {
+                assertEquals(
+                    cut(0.1, 0.9, 0.3, 0.6).cuts,
+                    listOf(slider(0.1), slider(0.3), slider(0.6), slider(0.9))
+                )
+            }
+    }
+
+    @Test
     fun failsToCutIntoPiecesIfCutPositionIsOutsideAllowedRange() {
         expectRule.expectMessage("All cut positions must be within (0.0..1.0)")
         expectRule.expect(IllegalArgumentException::class.java)
