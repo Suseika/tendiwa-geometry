@@ -4,10 +4,10 @@ import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.segments.Segment
 
 /**
- * [Multisegment] with multiple kebablets.
- * @see Multisegment For the explanation of the metaphor of a kebab.
+ * [Multisegment] with 0 or more cut points.
  */
-class MultiMultisegment(
+// TODO: Replace this class with function Multisegment
+class DefaultMultisegment(
     segment: Segment,
     cuts: List<Point>
 ) : Multisegment by MutableMultisegment(segment, cuts)

@@ -7,7 +7,6 @@ import java.util.*
 
 /**
  * @param original The segment to split.
- * @see Multisegment For the explanation of the metaphor of a kebab.
  */
 class MutableMultisegment(
     override val original: Segment

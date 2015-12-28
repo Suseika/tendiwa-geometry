@@ -5,7 +5,7 @@ import org.tendiwa.plane.geometry.segments.ANY
 import org.tendiwa.plane.geometry.segments.Segment
 import org.tendiwa.plane.geometry.segments.slider
 
-class MonoKebabTest {
+class BisegmentTest {
     @Test
     fun leftNormalFacesLeft() {
         Segment.ANY

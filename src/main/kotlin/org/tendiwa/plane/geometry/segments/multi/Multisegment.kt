@@ -6,8 +6,10 @@ import org.tendiwa.plane.geometry.segments.Segment
 /**
  * Segment divided into smaller consecutive segment by cutting it at
  * particular points.
+ *
  * <pre>O-----*--*----*----*-*--O</pre>
- * Os are segment's ends, and *s are points — kebablets.
+ *
+ * Os are segment's ends, and `*`s are cuts.
  */
 interface Multisegment {
     /**

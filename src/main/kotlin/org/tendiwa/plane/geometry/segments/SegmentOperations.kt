@@ -2,7 +2,7 @@ package org.tendiwa.plane.geometry.segments
 
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.points.move
-import org.tendiwa.plane.geometry.segments.multi.MultiMultisegment
+import org.tendiwa.plane.geometry.segments.multi.DefaultMultisegment
 import org.tendiwa.plane.geometry.segments.multi.Multisegment
 
 fun Segment.parallel(distance: Double, fromLeft: Boolean): Segment {
@@ -78,4 +78,4 @@ fun Segment.cut(vararg cutPositions: Double): Multisegment =
             }
         }
         .map { slider(it) }
-        .let { cuts -> MultiMultisegment(this@cut, cuts) }
+        .let { cuts -> DefaultMultisegment(this@cut, cuts) }

@@ -9,7 +9,7 @@ import org.tendiwa.plane.geometry.segments.Segment
 import org.tendiwa.plane.geometry.segments.slider
 import kotlin.test.assertEquals
 
-class MutableKebabTest {
+class MutableMultisegmentTest {
     @JvmField @Rule val expectRule = ExpectedException.none()
 
     @Test
