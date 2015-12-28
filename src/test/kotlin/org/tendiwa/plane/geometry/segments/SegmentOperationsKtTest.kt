@@ -54,4 +54,11 @@ class SegmentOperationsKtTest {
         val ac = Point(-5.0, -3.0).spanSegment(15.0, 9.0)
         assertFalse(ab intersects ac)
     }
+
+    @Test
+    fun segmentsWithInvertedSlopesSharingAndEndpointDontIntersect() {
+        val ab = Point(0.0, 0.0).spanSegment(1.0, 1.0)
+        val cb = Point(2.0, 2.0).spanSegment(-1.0, -1.0)
+        assertFalse(ab intersects cb)
+    }
 }
