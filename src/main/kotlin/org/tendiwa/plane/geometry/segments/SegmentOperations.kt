@@ -1,5 +1,6 @@
 package org.tendiwa.plane.geometry.segments
 
+import org.tendiwa.math.matrices.determinant
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.points.move
 import org.tendiwa.plane.geometry.segments.multi.DefaultMultisegment
@@ -79,3 +80,52 @@ fun Segment.cut(vararg cutPositions: Double): Multisegment =
         }
         .map { slider(it) }
         .let { cuts -> DefaultMultisegment(this@cut, cuts) }
+
+/**
+ * Check if a segment intersects another segment.
+ *
+ * Segments that lie on the same line or have equal endpoints are considered to
+ * be non-intersecting.
+ */
+infix fun Segment.intersects(other: Segment): Boolean {
+    // Algorithm is described in
+    // https://stackoverflow.com/questions/3838329/how-can-i-check-if-two-segments-intersect/3842157#3842157
+    if (this.slope == other.slope) {
+        return false
+    }
+    val a = this.start
+    val b = this.end
+    val c = other.start
+    val d = other.end
+    val detA1 = determinant(
+        a.x - c.x,
+        b.x - c.x,
+        a.y - c.y,
+        b.y - c.y
+    )
+    val detA2 = determinant(
+        a.x - d.x,
+        b.x - d.x,
+        a.y - d.y,
+        b.y - d.y
+    )
+    if (Math.signum(detA1) != -Math.signum(detA2)) {
+        return false
+    }
+    val detB1 = determinant(
+        c.x - a.x,
+        d.x - a.x,
+        c.y - a.y,
+        d.y - a.y
+    )
+    val detB2 = determinant(
+        c.x - b.x,
+        d.x - b.x,
+        c.y - b.y,
+        d.y - b.y
+    )
+    if (Math.signum(detB1) != -Math.signum(detB2)) {
+        return false
+    }
+    return true
+}
