@@ -18,8 +18,8 @@ interface Multisegment {
     val original: Segment
 
     /**
-     * The points that lie on [original] segment and form [subsegments].
-     *
+     * The points that lie on [original] segment and split it into
+     * [subsegments].
      */
     val cuts: List<Point>
         get() = subsegments.dropLast(1).map { it.end }
