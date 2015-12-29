@@ -38,7 +38,7 @@ class CutPolygon internal constructor(
 
     private val edgeToCutsIndices: Map<Segment, List<Int>> =
         cutEdges
-            .map { Pair(it.segment, it.cutIndices) }
+            .map { Pair(it.segment, it.multisegmentCutIndices) }
             .toMap()
 
     private val cornerToCutIndex: Map<Point, Int> =

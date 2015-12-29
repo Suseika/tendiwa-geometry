@@ -72,7 +72,7 @@ constructor(
             false -> pointsOnSegment
         }
 
-    val cutIndices: List<Int>
+    val multisegmentCutIndices: List<Int>
         get() = IntRange(
             if (atCorner == null) 0 else 1,
             betweenCorners.lastIndex
