@@ -3,7 +3,12 @@ package org.tendiwa.plane.geometry.polygons.cut
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.ExpectedException
+import org.tendiwa.math.constants.EPSILON
+import org.tendiwa.plane.directions.CardinalDirection
+import org.tendiwa.plane.geometry.points.Point
+import org.tendiwa.plane.geometry.points.distanceTo
 import org.tendiwa.plane.geometry.rectangles.Rectangle
+import org.tendiwa.plane.geometry.rectangles.side
 import kotlin.test.assertEquals
 
 class CutPolygonTest {
@@ -63,5 +68,26 @@ class CutPolygonTest {
         expectRule.expect(IllegalArgumentException::class.java)
         expectRule.expectMessage("position must be in [0..1)")
         rectangle.cut(-0.5, 0.1, 0.4, 0.6, 0.66, 1.0)
+    }
+
+    @Test
+    fun cutsOnSubsegmentsAreAtCorrectPositions() {
+        val rectangle = Rectangle(0.0, 0.0, 10.0, 10.0)
+        val cut = rectangle.cut(0.2, 0.5, 0.6, 0.7)
+        CardinalDirection.values()
+            .flatMap { cut.cutsOnSubsegment(rectangle.side(it)) }
+            .zip (
+                listOf(
+                    Point(8.0, 0.0),
+                    Point(6.0, 10.0),
+                    Point(2.0, 10.0)
+                )
+            )
+            .forEach {
+                assert(
+                    it.first distanceTo it.second < EPSILON,
+                    { it }
+                )
+            }
     }
 }

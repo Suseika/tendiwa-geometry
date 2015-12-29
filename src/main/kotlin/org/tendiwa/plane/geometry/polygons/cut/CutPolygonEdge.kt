@@ -33,10 +33,6 @@ constructor(
 ) {
     val segment = sliderEdge.segment
 
-    val cutIndices: List<Int>
-        get() = IntRange(0, betweenCorners.lastIndex)
-            .map { startingCutIndex + it }
-
     val startingCutIndex: Int = previous?.nextStartingCutIndex ?: 0
 
     private val pointsOnSegment: List<Point> =
@@ -75,4 +71,11 @@ constructor(
             true -> pointsOnSegment.drop(1)
             false -> pointsOnSegment
         }
+
+    val cutIndices: List<Int>
+        get() = IntRange(
+            if (atCorner == null) 0 else 1,
+            betweenCorners.lastIndex
+        )
+            .map { startingCutIndex + it }
 }
