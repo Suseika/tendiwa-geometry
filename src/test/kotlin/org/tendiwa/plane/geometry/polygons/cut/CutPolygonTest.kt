@@ -83,6 +83,7 @@ class CutPolygonTest {
                     Point(2.0, 10.0)
                 )
             )
+            .apply { assertEquals(3, size) }
             .forEach {
                 assert(
                     it.first distanceTo it.second < EPSILON,

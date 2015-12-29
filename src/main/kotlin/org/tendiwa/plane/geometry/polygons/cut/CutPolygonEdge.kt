@@ -75,7 +75,7 @@ constructor(
     val multisegmentCutIndices: List<Int>
         get() = IntRange(
             if (atCorner == null) 0 else 1,
-            betweenCorners.lastIndex
+            pointsOnSegment.lastIndex
         )
             .map { startingCutIndex + it }
 }
