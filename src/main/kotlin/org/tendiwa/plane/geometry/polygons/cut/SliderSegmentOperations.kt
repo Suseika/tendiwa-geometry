@@ -1,0 +1,50 @@
+package org.tendiwa.plane.geometry.polygons.cut
+
+import org.tendiwa.collections.nextAfter
+import org.tendiwa.plane.geometry.sliders.CircularSlider
+import org.tendiwa.plane.geometry.sliders.SliderPolygon
+import org.tendiwa.plane.geometry.sliders.SliderPolygonEdge
+import java.util.*
+
+/**
+ * Edges of this polygon in circular slider form, ordered polygonwise.
+ */
+internal val SliderPolygon.edges: List<SliderPolygonEdge>
+    get() =
+    corners
+        .indices
+        .map {
+            SliderPolygonEdge(
+                start = corners[it],
+                end = corners.nextAfter(it),
+                segment = original.segments[it]
+            )
+        }
+
+internal fun SliderPolygon.cutEdges(
+    cutPositions: List<CircularSlider>
+): List<CutPolygonEdge> {
+    if (cutPositions.sortedBy { it.position } != cutPositions) {
+        throw IllegalArgumentException(
+            "cutPositions must be sorted in ascending order; they are " +
+                "$cutPositions"
+        )
+    }
+    return edges
+        .fold(
+            ArrayList<CutPolygonEdge>(
+                cutPositions.size
+            ), // mutable accumulator
+            { lists, sliderEdge ->
+                lists.apply {
+                    add(
+                        CutPolygonEdge(
+                            cutPositions = cutPositions,
+                            previous = lists.lastOrNull(),
+                            sliderEdge = sliderEdge
+                        )
+                    )
+                }
+            }
+        )
+}
