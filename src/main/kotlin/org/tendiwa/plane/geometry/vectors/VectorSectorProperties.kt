@@ -15,3 +15,16 @@ val VectorSector.sumVector: Vector
 // TODO: Replace with (cw.magnitude + ccw.magnitude) / 2
 private fun averageMagnitude(cw: Vector, ccw: Vector): Double =
     cw.magnitude / 2 + ccw.magnitude / 2
+
+val VectorSector.angle: Double
+    get() {
+        val cwDirection = cw.direction
+        var ccwDirection = ccw.direction.let {
+            if (it > cwDirection) {
+                it - Math.PI*2
+            } else {
+                it
+            }
+        }
+        return cwDirection - ccwDirection
+    }
