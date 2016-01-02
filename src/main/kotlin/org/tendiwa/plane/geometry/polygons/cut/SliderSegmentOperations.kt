@@ -11,12 +11,12 @@ import java.util.*
  */
 internal val SliderPolygon.edges: List<SliderPolygonEdge>
     get() =
-    corners
+    sliders
         .indices
         .map {
             SliderPolygonEdge(
-                start = corners[it],
-                end = corners.nextAfter(it),
+                start = sliders[it],
+                end = sliders.nextAfter(it),
                 segment = original.segments[it]
             )
         }

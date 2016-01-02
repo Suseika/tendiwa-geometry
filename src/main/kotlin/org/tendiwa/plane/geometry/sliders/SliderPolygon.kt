@@ -13,15 +13,15 @@ import java.util.*
 class SliderPolygon(val original: Polygon) {
 
     /**
-     * Corners of this polygon in slider form, ordered polygonwise.
+     * Points of this polygon in slider form, ordered polygonwise.
      */
-    val corners: List<CircularSlider> =
+    val sliders: List<CircularSlider> =
         original.segments
             .fold(
                 Accumulator(original),
                 { acc, edge -> acc.apply { addCornerAtBeginningOf(edge) } }
             )
-            .corners
+            .sliders
 
     /**
      * Accumulator bearing mutable state required for constuction of this
@@ -32,10 +32,10 @@ class SliderPolygon(val original: Polygon) {
 
         var lengthSum = 0.0
 
-        val corners = ArrayList<CircularSlider>(polygon.points.size)
+        val sliders = ArrayList<CircularSlider>(polygon.points.size)
 
         fun addCornerAtBeginningOf(edge: Segment) {
-            corners.add(perimeterSlider(lengthSum))
+            sliders.add(perimeterSlider(lengthSum))
             lengthSum += edge.length
         }
 
