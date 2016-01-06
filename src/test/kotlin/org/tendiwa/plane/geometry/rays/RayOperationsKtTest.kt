@@ -30,7 +30,7 @@ class RayOperationsKtTest {
     @Test
     fun intersectionWithRectangle() {
         Ray(Point(10.0, 10.0), Math.PI * 5 / 4)
-            .firstIntersection(Rectangle(0.0, 0.0, 20.0, 20.0))!!
+            .closestIntersection(Rectangle(0.0, 0.0, 20.0, 20.0))!!
             .apply {
                 println(this)
                 Assert.assertEquals(0.0, distanceTo(Point(0.0, 0.0)), EPSILON)
@@ -40,7 +40,7 @@ class RayOperationsKtTest {
     @Test
     fun firstIntersectionWithRectangleIsTheClosestOne() {
         Ray(Point(10.0, 10.0), Math.PI * 5 / 4)
-            .firstIntersection(Rectangle(0.0, 0.0, 20.0, 20.0))!!
+            .closestIntersection(Rectangle(0.0, 0.0, 20.0, 20.0))!!
             .apply {
                 Assert.assertEquals(0.0, distanceTo(Point(0.0, 0.0)), EPSILON)
             }

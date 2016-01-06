@@ -44,7 +44,7 @@ fun Ray.segment(length: Double): Segment =
 /**
  * Returns closest intersection of this ray with a [Rectangle]
  */
-fun Ray.firstIntersection(rectangle: Rectangle): Point? {
+fun Ray.closestIntersection(rectangle: Rectangle): Point? {
     val goodEnoughDistance = rectangle.width
     val pointOnRay = pointOnRay(goodEnoughDistance)
     return CardinalDirection.values()
