@@ -2,6 +2,7 @@ package org.tendiwa.plane.geometry.rays
 
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.points.move
+import org.tendiwa.plane.geometry.segments.Segment
 
 fun Ray.pointOnRay(radius: Double): Point =
     start.move(
@@ -29,3 +30,10 @@ fun Ray.sun(raysNum: Int): List<Ray> {
     return (0 until raysNum)
             .map { i -> this.rotate(i * rayAngle) }
 }
+
+/**
+ * Returns a segment from the beginning of the ray to a point on ray that is
+ * [length] units away from the beginning.
+ */
+fun Ray.segment(length: Double): Segment =
+    Segment(start, pointOnRay(length))
