@@ -1,7 +1,10 @@
 package org.tendiwa.plane.geometry.rays
 
+import org.tendiwa.plane.directions.CardinalDirection
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.points.move
+import org.tendiwa.plane.geometry.rectangles.Rectangle
+import org.tendiwa.plane.geometry.rectangles.side
 import org.tendiwa.plane.geometry.segments.Segment
 
 fun Ray.pointOnRay(radius: Double): Point =
@@ -28,7 +31,7 @@ fun Ray.rotate(angle: Double): Ray =
 fun Ray.sun(raysNum: Int): List<Ray> {
     val rayAngle: Double = (Math.PI * 2 / raysNum)
     return (0 until raysNum)
-            .map { i -> this.rotate(i * rayAngle) }
+        .map { i -> this.rotate(i * rayAngle) }
 }
 
 /**
@@ -37,3 +40,18 @@ fun Ray.sun(raysNum: Int): List<Ray> {
  */
 fun Ray.segment(length: Double): Segment =
     Segment(start, pointOnRay(length))
+
+/**
+ * Returns closest intersection of this ray with a [Rectangle]
+ */
+fun Ray.firstIntersection(rectangle: Rectangle): Point? {
+    val goodEnoughDistance = rectangle.width
+    val pointOnRay = pointOnRay(goodEnoughDistance)
+    return CardinalDirection.values()
+        .map { rectangle.side(it) }
+        .map { RayIntersection(start, pointOnRay, it) }
+        .filter { it.r > 0.0 }
+        .sortedBy { it.r }
+        .map { it.commonPoint() }
+        .first()
+}
