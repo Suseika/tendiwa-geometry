@@ -17,3 +17,15 @@ fun Ray.changeStart(start: Point): Ray =
 
 fun Ray.inverse(): Ray =
     Ray(start, Math.PI * 2 - direction)
+
+fun Ray.rotate(angle: Double): Ray =
+    changeDirection(direction + angle)
+
+/**
+ * Returns rays at regular intervals starting from this ray, clockwise.
+ */
+fun Ray.sun(raysNum: Int): List<Ray> {
+    val rayAngle: Double = (Math.PI * 2 / raysNum)
+    return (0 until raysNum)
+            .map { i -> this.rotate(i * rayAngle) }
+}
