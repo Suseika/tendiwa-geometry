@@ -1,9 +1,9 @@
 package org.tendiwa.plane.geometry.polygons.cut
 
 import org.tendiwa.plane.geometry.points.Point
-import org.tendiwa.plane.geometry.sliders.CircularSlider
-import org.tendiwa.plane.geometry.sliders.SliderPolygonEdge
-import org.tendiwa.plane.geometry.sliders.alternativePosition
+import org.tendiwa.math.sliders.CircularSlider
+import org.tendiwa.plane.geometry.polygons.sliders.SliderPolygonEdge
+import org.tendiwa.math.sliders.alternativePosition
 
 /**
  * Edge of a [CutPolygon].
