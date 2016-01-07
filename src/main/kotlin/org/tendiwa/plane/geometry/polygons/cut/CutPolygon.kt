@@ -1,16 +1,16 @@
 package org.tendiwa.plane.geometry.polygons.cut
 
+import org.tendiwa.math.sliders.CircularSlider
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.polygons.Polygon
+import org.tendiwa.plane.geometry.polygons.sliders.SliderPolygon
 import org.tendiwa.plane.geometry.segments.Segment
-import org.tendiwa.plane.geometry.sliders.CircularSlider
-import org.tendiwa.plane.geometry.sliders.SliderPolygon
-
-fun Polygon.cut(cutPositions: List<Double>): CutPolygon =
-    CutPolygon(this, cutPositions.map { CircularSlider(it) })
 
 fun Polygon.cut(vararg cutPositions: Double): CutPolygon =
-    CutPolygon(this, cutPositions.map { CircularSlider(it) })
+    cut(cutPositions.map { CircularSlider(it) })
+
+fun Polygon.cut(sliders: List<CircularSlider>): CutPolygon =
+    CutPolygon(this, sliders)
 
 fun SliderPolygon.cut(cutPositions: List<Double>): CutPolygon =
     CutPolygon(this, cutPositions.map { CircularSlider(it) })
