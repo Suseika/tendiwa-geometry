@@ -1,6 +1,7 @@
 package org.tendiwa.plane.geometry.vectors
 
 import org.tendiwa.math.doubles.isCloseToZero
+import org.tendiwa.plane.directions.OrdinalDirection
 
 /**
  * Dot product of two vectors.
@@ -115,3 +116,11 @@ infix fun Vector.makesReflexAngle(cw: Vector): Boolean =
  */
 infix fun Vector.perpDotProduct(vector: Vector): Double =
     this.x * vector.y - this.y * vector.x
+
+fun Vector.isInQuarter(quarter: OrdinalDirection): Boolean =
+    when (quarter) {
+        OrdinalDirection.NW -> x < 0 && y < 0
+        OrdinalDirection.NE -> x > 0 && y < 0
+        OrdinalDirection.SE -> x > 0 && y > 0
+        OrdinalDirection.SW -> x < 0 && y > 0
+    }
