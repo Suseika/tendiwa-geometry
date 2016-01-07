@@ -8,6 +8,7 @@ import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.points.distanceTo
 import org.tendiwa.plane.geometry.rectangles.Rectangle
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
 class RayOperationsKtTest {
     @Test
@@ -44,5 +45,13 @@ class RayOperationsKtTest {
             .apply {
                 Assert.assertEquals(0.0, distanceTo(Point(0.0, 0.0)), EPSILON)
             }
+    }
+
+    @Test
+    fun canReturnNoIntersection() {
+        assertNull(
+            Ray(Point(20.0, 10.0), Math.PI / 2)
+                .closestIntersection(Rectangle(0.0, 0.0, 10.0, 10.0))
+        )
     }
 }

@@ -52,6 +52,7 @@ fun Ray.closestIntersection(rectangle: Rectangle): Point? {
         .map { RayIntersection(start, pointOnRay, it) }
         .filter { it.r > 0.0 }
         .sortedBy { it.r }
+        .filter { it.intersects }
         .map { it.commonPoint() }
-        .first()
+        .firstOrNull()
 }
