@@ -1,5 +1,6 @@
-package org.tendiwa.plane.geometry.sliders
+package org.tendiwa.plane.geometry.polygons.sliders
 
+import org.tendiwa.math.sliders.CircularSlider
 import org.tendiwa.plane.geometry.polygons.Polygon
 import org.tendiwa.plane.geometry.polygons.perimeter
 import org.tendiwa.plane.geometry.segments.Segment

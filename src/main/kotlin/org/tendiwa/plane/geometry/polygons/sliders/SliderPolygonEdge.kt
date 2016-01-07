@@ -1,5 +1,8 @@
-package org.tendiwa.plane.geometry.sliders
+package org.tendiwa.plane.geometry.polygons.sliders
 
+import org.tendiwa.math.sliders.CircularSlider
+import org.tendiwa.math.sliders.alternativePosition
+import org.tendiwa.math.sliders.goesBefore
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.points.move
 import org.tendiwa.plane.geometry.segments.Segment

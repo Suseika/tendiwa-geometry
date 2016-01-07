@@ -1,9 +1,9 @@
 package org.tendiwa.plane.geometry.polygons.cut
 
 import org.tendiwa.collections.nextAfter
-import org.tendiwa.plane.geometry.sliders.CircularSlider
-import org.tendiwa.plane.geometry.sliders.SliderPolygon
-import org.tendiwa.plane.geometry.sliders.SliderPolygonEdge
+import org.tendiwa.math.sliders.CircularSlider
+import org.tendiwa.plane.geometry.polygons.sliders.SliderPolygon
+import org.tendiwa.plane.geometry.polygons.sliders.SliderPolygonEdge
 import java.util.*
 
 /**
