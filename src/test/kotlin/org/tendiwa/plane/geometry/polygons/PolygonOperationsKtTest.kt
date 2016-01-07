@@ -10,6 +10,7 @@ import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.rectangles.Rectangle
 import org.tendiwa.plane.geometry.trails.Polygon
 import org.tendiwa.plane.geometry.vectors.*
+import org.tendiwa.tools.expectIllegalArgument
 import java.lang.Math.PI
 import kotlin.test.assertFalse
 
@@ -42,6 +43,27 @@ class PolygonOperationsKtTest {
         )
     }
 
+    @Test
+    fun findsIthSegment() {
+        Rectangle(0.0, 0.0, 10.0, 10.0)
+            .apply { assertEquals(segments[0], segment(0)) }
+    }
+
+    @Test
+    fun segmentFailsWithIndexLT0() {
+        expectRule.expectIllegalArgument(
+            "index must be a valid index of a polygon point"
+        )
+        Rectangle(0.0, 0.0, 10.0, 10.0).segment(-1)
+    }
+
+    @Test
+    fun segmentFailsWithIndexGTSizeOfPoints() {
+        expectRule.expectIllegalArgument(
+            "index must be a valid index of a polygon point"
+        )
+        Rectangle(0.0, 0.0, 10.0, 10.0).segment(5)
+    }
 
     @Test
     fun cornerContainsTheProvidedPoint() {

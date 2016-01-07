@@ -50,10 +50,10 @@ private fun enclosementChanges(
 
 fun Polygon.segment(index: Int): Segment {
     argumentsConstraint(
-        index > 0 && index < points.size,
+        index >= 0 && index < points.size,
         {
-            "index must be a valid index of polygon point; index is $index, " +
-                "points.size is ${points.size}"
+            "index must be a valid index of a polygon point; " +
+                "index is $index, points.size is ${points.size}"
         }
     )
     return Segment(points[index], points.nextAfter(index))
