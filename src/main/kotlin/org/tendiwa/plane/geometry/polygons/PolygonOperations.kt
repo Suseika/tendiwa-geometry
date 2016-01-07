@@ -1,8 +1,12 @@
 package org.tendiwa.plane.geometry.polygons
 
+import org.tendiwa.collections.nextAfter
 import org.tendiwa.collections.prevBefore
+import org.tendiwa.plane.geometry.corners.Corner
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.rectangles.contains
+import org.tendiwa.plane.geometry.segments.Segment
+import org.tendiwa.tools.argumentsConstraint
 
 fun Polygon.toClockwise(): ClockwisePolygon =
     when (isClockwise()) {
@@ -43,3 +47,55 @@ private fun enclosementChanges(
     (current.y > tested.y != previous.y > tested.y) &&
         tested.x < (previous.x - current.x) * (tested.y - current.y) /
             (previous.y - current.y) + current.x
+
+fun Polygon.segment(index: Int): Segment {
+    argumentsConstraint(
+        index > 0 && index < points.size,
+        {
+            "index must be a valid index of polygon point; index is $index, " +
+                "points.size is ${points.size}"
+        }
+    )
+    return Segment(points[index], points.nextAfter(index))
+}
+
+/**
+ * Returns a corner of this polygon.
+ *
+ * @param index Index of a point of this polygon at which the corner is
+ * located.
+ * @param inward Whether the corner faces inside the polygon (the actual
+ * corner of a polygon), or outside of the polygon (PI*2 minus the
+ * actual corner).
+ */
+fun Polygon.corner(index: Int, inward: Boolean = true): Corner {
+    argumentsConstraint(
+        index >= 0 && index < points.size,
+        {
+            "index must be a valid index of polygon point; index is $index, " +
+                "points.size is ${points.size}"
+        }
+    )
+    return Corner(
+        points.prevBefore(index),
+        points[index],
+        points.nextAfter(index),
+        !isClockwise() xor inward
+    )
+}
+
+/**
+ * Retruns all corners at points of this polygon.
+ * @param inward Whether to return actual corners (inward = true) or their
+ * outward counterparts (PI*2 minus the actual corner, inward = false)
+ */
+fun Polygon.corners(inward: Boolean = true): List<Corner> =
+    points.indices.map {
+        index ->
+        Corner(
+            points.prevBefore(index),
+            points[index],
+            points.nextAfter(index),
+            !isClockwise() xor inward
+        )
+    }
