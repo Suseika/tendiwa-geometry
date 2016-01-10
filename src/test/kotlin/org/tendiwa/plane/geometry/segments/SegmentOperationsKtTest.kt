@@ -2,8 +2,11 @@ package org.tendiwa.plane.geometry.segments
 
 import org.junit.Test
 import org.tendiwa.plane.geometry.points.Point
+import org.tendiwa.plane.geometry.points.spanHorizontalSegment
 import org.tendiwa.plane.geometry.points.spanSegment
+import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNull
 
 class SegmentOperationsKtTest {
     @Test
@@ -81,5 +84,24 @@ class SegmentOperationsKtTest {
         val a = Segment(Point(0.0, 0.0), Point(1.0, 1.0))
         val b = Segment(Point(0.0, 0.0), Point(1.0, 1.0))
         assert(a.hasCommonEndpoint(b))
+    }
+
+    @Test
+    fun `point above segment projects on segment`() {
+        assertEquals(
+            Point(2.0, 0.0),
+            Point(0.0, 0.0)
+                .spanHorizontalSegment(5.0)
+                .project(Point(2.0, 2.0))
+        )
+    }
+
+    @Test
+    fun `point not above segment projects outside segment`() {
+        assertNull(
+            Point(0.0, 0.0)
+                .spanHorizontalSegment(5.0)
+                .project(Point(6.0, 2.0))
+        )
     }
 }
