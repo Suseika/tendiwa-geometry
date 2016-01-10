@@ -45,6 +45,9 @@ fun Segment.slider(position: Double): Point =
 fun Segment.isEndpoint(point: Point): Boolean =
     start == point || end == point
 
+fun Segment.hasCommonEndpoint(other: Segment): Boolean =
+    other.isEndpoint(start) || other.isEndpoint(end)
+
 /**
  * Returns [Segment.start] if [point] is [Segment.end], or returns
  * [Segment.end] if [point] is [Segment.start].

@@ -61,4 +61,25 @@ class SegmentOperationsKtTest {
         val cb = Point(2.0, 2.0).spanSegment(-1.0, -1.0)
         assertFalse(ab intersects cb)
     }
+
+    @Test
+    fun segmentsCanHaveCommonEndpoints() {
+        val ab = Segment(Point(0.0, 0.0), Point(1.0, 1.0))
+        val ac = Segment(Point(0.0, 0.0), Point(-1.0, -1.0))
+        assert(ab.hasCommonEndpoint(ac))
+    }
+
+    @Test
+    fun segmentsCanHaveNoCommonEndpoints() {
+        val ab = Segment(Point(0.0, 0.0), Point(1.0, 1.0))
+        val cd = Segment(Point(2.0, 2.0), Point(-1.0, -1.0))
+        assertFalse(ab.hasCommonEndpoint(cd))
+    }
+
+    @Test
+    fun equalSegmentsHaveCommonEndpoints() {
+        val a = Segment(Point(0.0, 0.0), Point(1.0, 1.0))
+        val b = Segment(Point(0.0, 0.0), Point(1.0, 1.0))
+        assert(a.hasCommonEndpoint(b))
+    }
 }
