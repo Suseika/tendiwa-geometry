@@ -1,5 +1,8 @@
 package org.tendiwa.plane.geometry.vectors
 
+import org.tendiwa.math.angles.Angle
+import org.tendiwa.tools.butIf
+
 val VectorSector.bisector: Vector
     get() = if (ccw.makesReflexAngle(cw)) sumVector.reversed else sumVector
 
@@ -16,15 +19,13 @@ val VectorSector.sumVector: Vector
 private fun averageMagnitude(cw: Vector, ccw: Vector): Double =
     cw.magnitude / 2 + ccw.magnitude / 2
 
-val VectorSector.angle: Double
+val VectorSector.angle: Angle
     get() {
         val cwDirection = cw.direction
-        var ccwDirection = ccw.direction.let {
-            if (it > cwDirection) {
-                it - Math.PI*2
-            } else {
-                it
-            }
-        }
-        return cwDirection - ccwDirection
+        var ccwDirection = ccw.direction
+            .butIf(
+                { it > cwDirection },
+                { it - Math.PI * 2 }
+            )
+        return Angle(cwDirection - ccwDirection)
     }

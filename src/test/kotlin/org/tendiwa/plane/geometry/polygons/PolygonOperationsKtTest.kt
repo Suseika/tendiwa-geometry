@@ -4,6 +4,9 @@ import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.ExpectedException
+import org.tendiwa.math.angles.Angle
+import org.tendiwa.math.angles.plus
+import org.tendiwa.math.angles.times
 import org.tendiwa.math.constants.EPSILON
 import org.tendiwa.plane.directions.OrdinalDirection.NE
 import org.tendiwa.plane.geometry.points.Point
@@ -11,7 +14,6 @@ import org.tendiwa.plane.geometry.rectangles.Rectangle
 import org.tendiwa.plane.geometry.trails.Polygon
 import org.tendiwa.plane.geometry.vectors.*
 import org.tendiwa.tools.expectIllegalArgument
-import java.lang.Math.PI
 import kotlin.test.assertFalse
 
 class PolygonOperationsKtTest {
@@ -91,7 +93,11 @@ class PolygonOperationsKtTest {
             .corner(1, inward = false)
             .apply { assertEquals(rectangle.points[1], point) }
             .apply {
-                assertEquals(PI / 2 * 3, sector.angle, EPSILON)
+                assertEquals(
+                    (Angle.RIGHT * 3.0).radians,
+                    sector.angle.radians,
+                    EPSILON
+                )
             }
             .sector
             .bisector
@@ -108,7 +114,7 @@ class PolygonOperationsKtTest {
             .corner(0)
             .sector
             .angle
-            .apply { assertEquals(PI / 2, this, EPSILON) }
+            .apply { assertEquals(Angle.RIGHT.radians, this.radians, EPSILON) }
     }
 
     @Test
@@ -119,8 +125,8 @@ class PolygonOperationsKtTest {
             // https://en.wikipedia.org/wiki/Polygon#Angles
             .apply {
                 assertEquals(
-                    (size - 2) * PI,
-                    sum(),
+                    (Angle.HALF_CIRCLE * (size - 2).toDouble()).radians,
+                    reduce { a, b -> a + b }.radians,
                     EPSILON
                 )
             }
@@ -134,8 +140,8 @@ class PolygonOperationsKtTest {
             // https://en.wikipedia.org/wiki/Polygon#Angles
             .apply {
                 assertEquals(
-                    (size + 2) * PI,
-                    sum(),
+                    (Angle.HALF_CIRCLE * (size + 2).toDouble()).radians,
+                    reduce { a, b -> a + b }.radians,
                     EPSILON
                 )
             }

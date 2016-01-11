@@ -4,6 +4,7 @@ import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.ExpectedException
+import org.tendiwa.math.angles.Angle
 import org.tendiwa.math.constants.EPSILON
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -25,8 +26,10 @@ class VectorTest {
 
     @Test fun angleBetween() {
         Assert.assertEquals(
-            Math.PI / 2,
-            HorizontalVector(1.0).angleBetween(VerticalVector(1.0), true),
+            Angle.RIGHT.radians,
+            HorizontalVector(1.0)
+                .angleBetween(VerticalVector(1.0), true)
+                .radians,
             EPSILON
         )
     }
@@ -39,7 +42,7 @@ class VectorTest {
         HorizontalVector(1.0).apply {
             Assert.assertEquals(
                 0.0,
-                this.angleBetween(this, true),
+                this.angleBetween(this, true).radians,
                 EPSILON
             )
         }

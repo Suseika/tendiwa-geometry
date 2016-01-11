@@ -1,7 +1,9 @@
 package org.tendiwa.plane.geometry.vectors
 
+import org.tendiwa.math.angles.Angle
 import org.tendiwa.math.doubles.isCloseToZero
 import org.tendiwa.plane.directions.OrdinalDirection
+import java.lang.Math.atan2
 
 /**
  * Dot product of two vectors.
@@ -68,14 +70,14 @@ infix fun Vector.isCollinear(other: Vector): Boolean {
     return false
 }
 
-fun Vector.angleBetween(b: Vector, clockwise: Boolean): Double {
+fun Vector.angleBetween(b: Vector, clockwise: Boolean): Angle {
     if (this == b) {
         throw IllegalArgumentException(
             "Can't compute angle between equal vectors $this and $b"
         )
     }
-    val angleA: Double = Math.atan2(this.y, this.x)
-    val angleB: Double = Math.atan2(b.y, b.x)
+    val angleA: Double = atan2(this.y, this.x)
+    val angleB: Double = atan2(b.y, b.x)
     var angle = angleA - angleB
     if (clockwise) {
         angle = -angle
@@ -83,7 +85,7 @@ fun Vector.angleBetween(b: Vector, clockwise: Boolean): Double {
     if (angle < 0) {
         angle += Math.PI * 2
     }
-    return angle
+    return Angle(angle)
 }
 
 /**
@@ -105,6 +107,7 @@ infix fun Vector.makesReflexAngle(cw: Vector): Boolean =
 infix fun Vector.perpDotProduct(vector: Vector): Double =
     this.x * vector.y - this.y * vector.x
 
+// TODO: Implement Vector.quarter
 fun Vector.isInQuarter(quarter: OrdinalDirection): Boolean =
     when (quarter) {
         OrdinalDirection.NW -> x < 0 && y < 0

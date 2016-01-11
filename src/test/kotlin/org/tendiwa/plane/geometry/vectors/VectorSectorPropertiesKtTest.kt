@@ -2,6 +2,7 @@ package org.tendiwa.plane.geometry.vectors
 
 import org.junit.Assert
 import org.junit.Test
+import org.tendiwa.math.angles.Angle
 import org.tendiwa.math.constants.EPSILON
 
 class VectorSectorPropertiesKtTest {
@@ -12,7 +13,13 @@ class VectorSectorPropertiesKtTest {
             ccw = Vector(1.0, 0.0)
         )
             .angle
-            .apply { Assert.assertEquals(Math.PI / 2, this, EPSILON) }
+            .apply {
+                Assert.assertEquals(
+                    Angle.RIGHT.radians,
+                    this.radians,
+                    EPSILON
+                )
+            }
     }
 
     @Test
@@ -22,6 +29,12 @@ class VectorSectorPropertiesKtTest {
             ccw = Vector(1.0, -1.0)
         )
             .angle
-            .apply { Assert.assertEquals(Math.PI / 2, this, EPSILON) }
+            .apply {
+                Assert.assertEquals(
+                    Angle.RIGHT.radians,
+                    this.radians,
+                    EPSILON
+                )
+            }
     }
 }
