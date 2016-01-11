@@ -20,7 +20,7 @@ fun Ray.changeStart(start: Point): Ray =
     Ray(start, direction)
 
 fun Ray.inverse(): Ray =
-    Ray(start, Math.PI * 2 - direction)
+    Ray(start, direction + Math.PI)
 
 fun Ray.rotate(angle: Double): Ray =
     changeDirection(direction + angle)

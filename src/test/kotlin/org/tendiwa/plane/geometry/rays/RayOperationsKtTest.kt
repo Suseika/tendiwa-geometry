@@ -54,4 +54,14 @@ class RayOperationsKtTest {
                 .closestIntersection(Rectangle(0.0, 0.0, 10.0, 10.0))
         )
     }
+
+    @Test
+    fun `ray inverts`() {
+        Ray(Point(0.0, 0.0), 0.0)
+            .inverse()
+            .apply { Assert.assertEquals(Math.PI, direction, EPSILON) }
+        Ray(Point(0.0, 0.0), Math.PI / 2)
+            .inverse()
+            .apply { Assert.assertEquals(Math.PI / 2 * 3, direction, EPSILON) }
+    }
 }
