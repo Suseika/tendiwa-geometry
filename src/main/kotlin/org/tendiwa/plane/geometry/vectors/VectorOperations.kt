@@ -87,18 +87,6 @@ fun Vector.angleBetween(b: Vector, clockwise: Boolean): Double {
 }
 
 /**
- * Checks if a vector is in a sector between two vectors.
- * @param cw Vector on the clockwise end of the sector.
- * @param ccw Vector on the counter-clockwise end of the sector.
- */
-fun Vector.isBetweenVectors(cw: Vector, ccw: Vector): Boolean =
-    if (cw.makesReflexAngle(ccw)) {
-        ccw.perpDotProduct(this) < 0 || this.perpDotProduct(cw) < 0;
-    } else {
-        cw.perpDotProduct(this) > 0 && this.perpDotProduct(ccw) > 0;
-    }
-
-/**
  * Checks if clockwise angle between this vector and another vector is
  * `>Math.PI`. Relative to angle's bisector, this vector is considered * counter-clockwise, and another is considered clockwise. *
  * @param cw Another vector.

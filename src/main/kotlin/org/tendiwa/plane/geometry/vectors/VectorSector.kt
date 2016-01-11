@@ -24,6 +24,15 @@ data class VectorSector(
         }
     }
 
+    /**
+     * Checks if a vector is in a sector between two vectors.
+     * @param cw Vector on the clockwise end of the sector.
+     * @param ccw Vector on the counter-clockwise end of the sector.
+     */
     override fun contains(vector: Vector): Boolean =
-        vector.isBetweenVectors(cw, ccw)
+        if (cw.makesReflexAngle(ccw)) {
+            ccw.perpDotProduct(vector) >= 0 && vector.perpDotProduct(cw) >= 0;
+        } else {
+            cw.perpDotProduct(vector) <= 0 || vector.perpDotProduct(ccw) <= 0;
+        }
 }
