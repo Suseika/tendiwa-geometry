@@ -6,6 +6,7 @@ import org.junit.Test
 import org.junit.rules.ExpectedException
 import org.tendiwa.math.angles.Angle
 import org.tendiwa.math.constants.EPSILON
+import org.tendiwa.plane.directions.OrdinalDirection
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 
@@ -51,11 +52,11 @@ class VectorTest {
     @Test
     fun direction() {
         assertEquals(
-            Math.PI / 4,
+            OrdinalDirection.NE,
             Vector(2.0, 2.0).direction
         )
         assertEquals(
-            Math.PI * 7 / 4,
+            OrdinalDirection.SE,
             Vector(2.0, -2.0).direction
         )
     }

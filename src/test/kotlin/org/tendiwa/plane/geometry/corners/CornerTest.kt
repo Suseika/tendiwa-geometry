@@ -10,7 +10,7 @@ import org.tendiwa.plane.geometry.vectors.angle
 
 class CornerTest {
     @Test
-    fun createsCornerFrom3Points() {
+    fun `creates corner from 3 points`() {
         val corner = fun(right: Boolean) =
             Corner(
                 Point(0.0, 0.0),

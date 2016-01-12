@@ -1,7 +1,9 @@
 package org.tendiwa.plane.geometry.vectors
 
 import org.junit.Test
+import org.tendiwa.plane.directions.CardinalDirection.S
 import org.tendiwa.plane.directions.OrdinalDirection.*
+import kotlin.test.assertEquals
 
 class VectorOperationsKtTest {
     @Test
@@ -26,5 +28,10 @@ class VectorOperationsKtTest {
                 assert(isInQuarter(NW))
                 assert(listOf(NE, SE, SW).all { !isInQuarter(it) })
             }
+    }
+
+    @Test
+    fun direction() {
+        assertEquals(S.radians, VerticalVector(1.0).direction.radians)
     }
 }

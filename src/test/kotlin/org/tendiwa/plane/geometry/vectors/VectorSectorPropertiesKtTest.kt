@@ -9,8 +9,8 @@ class VectorSectorPropertiesKtTest {
     @Test
     fun angle() {
         VectorSector(
-            cw = Vector(0.0, 1.0),
-            ccw = Vector(1.0, 0.0)
+            cw = VerticalVector(1.0),
+            ccw = HorizontalVector(1.0)
         )
             .angle
             .apply {
