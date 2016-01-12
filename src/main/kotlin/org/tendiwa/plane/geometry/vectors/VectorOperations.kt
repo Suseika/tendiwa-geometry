@@ -96,7 +96,7 @@ fun Vector.angleBetween(b: Vector, clockwise: Boolean): Angle {
  * [cw] is reflex, false otherwise.
  */
 infix fun Vector.makesReflexAngle(cw: Vector): Boolean =
-    cw dotPerp this > 0
+    cw dotPerp this <= 0
 
 /**
  * Same as `rotated90ccw dot vector` where `rotated90ccw` is this vector
@@ -110,8 +110,8 @@ infix fun Vector.perpDotProduct(vector: Vector): Double =
 // TODO: Implement Vector.quarter
 fun Vector.isInQuarter(quarter: OrdinalDirection): Boolean =
     when (quarter) {
-        OrdinalDirection.NW -> x < 0 && y < 0
-        OrdinalDirection.NE -> x > 0 && y < 0
-        OrdinalDirection.SE -> x > 0 && y > 0
-        OrdinalDirection.SW -> x < 0 && y > 0
+        OrdinalDirection.NW -> x < 0 && y > 0
+        OrdinalDirection.NE -> x > 0 && y > 0
+        OrdinalDirection.SE -> x > 0 && y < 0
+        OrdinalDirection.SW -> x < 0 && y < 0
     }

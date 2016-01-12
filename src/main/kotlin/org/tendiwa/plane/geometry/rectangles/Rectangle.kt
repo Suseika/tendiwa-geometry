@@ -7,13 +7,21 @@ import org.tendiwa.plane.geometry.ranges2d.Range2D
 /**
  * Axis-parallel rectangle of points in ℝ×ℝ.
  */
-data class Rectangle(
+data class Rectangle
+/**
+ * @param x X coordinate of bottom-left corner.
+ * @param y Y coordinate of bottom-right corner.
+ * @param width Width.
+ * @param height Height.
+ */
+(
     val x: Double,
     val y: Double,
     val width: Double,
     val height: Double
 ) : Polygon, Range2D {
     companion object {}
+
     override val minX: Double
         get() = x
 

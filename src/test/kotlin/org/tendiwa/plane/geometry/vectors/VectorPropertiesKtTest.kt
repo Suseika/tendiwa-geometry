@@ -6,14 +6,16 @@ import org.junit.Test
 import org.junit.rules.ExpectedException
 import org.tendiwa.math.angles.Angle
 import org.tendiwa.math.constants.EPSILON
-import org.tendiwa.plane.directions.OrdinalDirection
+import org.tendiwa.plane.directions.OrdinalDirection.NE
+import org.tendiwa.plane.directions.OrdinalDirection.SE
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 
-class VectorTest {
+class VectorPropertiesKtTest {
     @JvmField @Rule val expectRule = ExpectedException.none()
 
-    @Test fun detectsCollinearVectors() {
+    @Test
+    fun detectsCollinearVectors() {
         val dx = 3.0
         val dy = 4.0
         assert(Vector(dx, dy) isCollinear Vector(-2 * dx, -2 * dy))
@@ -51,13 +53,15 @@ class VectorTest {
 
     @Test
     fun direction() {
+        assertEquals(NE.radians, Vector(2.0, 2.0).direction.radians)
+        assertEquals(SE.radians, Vector(2.0, -2.0).direction.radians)
+    }
+
+    @Test
+    fun `vector can rotate by right angle clockwise`() {
         assertEquals(
-            OrdinalDirection.NE,
-            Vector(2.0, 2.0).direction
-        )
-        assertEquals(
-            OrdinalDirection.SE,
-            Vector(2.0, -2.0).direction
+            Vector(2.0, 1.0).direction + Angle.RIGHT,
+            Vector(2.0, 1.0).rotatedQuarterClockwise.direction
         )
     }
 }

@@ -80,7 +80,6 @@ class MutableMultisegmentTest {
                 )
             }
             .apply {
-                println(subsegments)
                 assertEquals(subsegments[0].end, subsegments[1].start)
                 assertEquals(subsegments[1].end, subsegments[2].start)
                 assertEquals(subsegments[2].end, subsegments[3].start)

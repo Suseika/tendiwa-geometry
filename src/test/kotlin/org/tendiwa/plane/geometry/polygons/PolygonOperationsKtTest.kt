@@ -8,7 +8,7 @@ import org.tendiwa.math.angles.Angle
 import org.tendiwa.math.angles.plus
 import org.tendiwa.math.angles.times
 import org.tendiwa.math.constants.EPSILON
-import org.tendiwa.plane.directions.OrdinalDirection.NE
+import org.tendiwa.plane.directions.OrdinalDirection.SE
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.rectangles.Rectangle
 import org.tendiwa.plane.geometry.trails.Polygon
@@ -80,28 +80,28 @@ class PolygonOperationsKtTest {
             .apply {
                 assertEquals(
                     HorizontalVector(-10.0),
-                    sector.cw.toPositiveZeroVector()
+                    sector.ccw.toPositiveZeroVector()
                 )
             }
-            .apply { assertEquals(VerticalVector(10.0), sector.ccw) }
+            .apply { assertEquals(VerticalVector(10.0), sector.cw) }
     }
 
     @Test
-    fun createsOutwardCorner() {
+    fun `creates outward corner`() {
         val rectangle = Rectangle(0.0, 0.0, 10.0, 10.0)
         rectangle
             .corner(1, inward = false)
             .apply { assertEquals(rectangle.points[1], point) }
+            .sector
             .apply {
                 assertEquals(
                     (Angle.RIGHT * 3.0).radians,
-                    sector.angle.radians,
+                    angle.radians,
                     EPSILON
                 )
             }
-            .sector
             .bisector
-            .apply { assert(isInQuarter(NE)) }
+            .apply { assert(isInQuarter(SE)) }
     }
 
     @Test
@@ -118,11 +118,11 @@ class PolygonOperationsKtTest {
     }
 
     @Test
-    fun sumOfAllInwardCorners() {
+    fun `sum of all inward corners satisfies formula`() {
+        // Formula from https://en.wikipedia.org/wiki/Polygon#Angles
         Rectangle(0.0, 0.0, 10.0, 10.0)
             .corners(inward = true)
             .map { it.sector.angle }
-            // https://en.wikipedia.org/wiki/Polygon#Angles
             .apply {
                 assertEquals(
                     (Angle.HALF_CIRCLE * (size - 2).toDouble()).radians,

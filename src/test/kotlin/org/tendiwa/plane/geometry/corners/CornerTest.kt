@@ -22,7 +22,7 @@ class CornerTest {
             .sector
             .apply {
                 Assert.assertEquals(
-                    Angle.RIGHT.radians,
+                    (Angle.RIGHT * 3).radians,
                     angle.radians,
                     EPSILON
                 )
@@ -31,7 +31,7 @@ class CornerTest {
             .sector
             .apply {
                 Assert.assertEquals(
-                    (Angle.RIGHT * 3.0).radians,
+                    Angle.RIGHT.radians,
                     angle.radians,
                     EPSILON
                 )

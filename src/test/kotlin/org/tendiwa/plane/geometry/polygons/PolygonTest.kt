@@ -53,7 +53,7 @@ class PolygonTest {
     }
 
     @Test
-    fun findsClockwisenessOfPolygonWithConsecutiveEdges() {
+    fun `find clockwiseness of a polygon with consecutive edges`() {
         Polygon(Point(4.0, 5.0), {
             moveX(-1.0)
             moveY(-1.0)
@@ -66,7 +66,7 @@ class PolygonTest {
             .apply { assert(isClockwise()) }
     }
     @Test
-    fun counterClockwisePolygonToClockwise() {
+    fun `counter-clockwise polygon to clockwise`() {
         Polygon(AnyPoint(), {
             moveY(10.0)
             moveX(10.0)

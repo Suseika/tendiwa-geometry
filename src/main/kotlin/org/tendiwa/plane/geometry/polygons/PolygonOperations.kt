@@ -80,9 +80,16 @@ fun Polygon.corner(index: Int, inward: Boolean = true): Corner {
         points.prevBefore(index),
         points[index],
         points.nextAfter(index),
-        !isClockwise() xor inward
+        inwardCornerIsToTheRight(inward)
     )
 }
+
+/**
+ * Checks if inward corners of this polygon are left or right if you move
+ * polygonwise.
+ */
+fun Polygon.inwardCornerIsToTheRight(inward: Boolean): Boolean =
+    isClockwise() xor inward
 
 /**
  * Retruns all corners at points of this polygon.
@@ -96,6 +103,6 @@ fun Polygon.corners(inward: Boolean = true): List<Corner> =
             points.prevBefore(index),
             points[index],
             points.nextAfter(index),
-            !isClockwise() xor inward
+            inwardCornerIsToTheRight(inward)
         )
     }

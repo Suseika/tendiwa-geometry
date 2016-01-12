@@ -2,6 +2,7 @@ package org.tendiwa.plane.geometry.vectors
 
 import org.tendiwa.math.angles.Angle
 
+// TODO: Replace Vector with Ray or Direction. A bisector is not a vector.
 val VectorSector.bisector: Vector
     get() = if (ccw.makesReflexAngle(cw)) sumVector.reversed else sumVector
 

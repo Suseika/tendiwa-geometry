@@ -34,7 +34,6 @@ class RayOperationsKtTest {
         Ray(Point(10.0, 10.0), RadianDirection(Math.PI * 5 / 4))
             .closestIntersection(Rectangle(0.0, 0.0, 20.0, 20.0))!!
             .apply {
-                println(this)
                 assertEquals(0.0, distanceTo(Point(0.0, 0.0)), EPSILON)
             }
     }
