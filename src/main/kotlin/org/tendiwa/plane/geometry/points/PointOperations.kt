@@ -52,7 +52,7 @@ infix fun Point.vectorTo(target: Point): org.tendiwa.plane.geometry.vectors.Vect
 fun Point.spanSegment(dx: Double, dy: Double): Segment =
     Segment(this, this.move(dx, dy))
 
-fun Point.spanSegment(direction: org.tendiwa.plane.directions.Direction, distance: Double): Segment =
+fun Point.spanSegment(direction: org.tendiwa.plane.directions.KingDirection, distance: Double): Segment =
     Segment(this, this.moveKing(direction, distance))
 
 fun Point.spanHorizontalSegment(dx: Double): Segment =

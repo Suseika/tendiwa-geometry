@@ -1,6 +1,6 @@
 package org.tendiwa.plane.geometry.trails
 
-import org.tendiwa.plane.directions.Direction
+import org.tendiwa.plane.directions.KingDirection
 import org.tendiwa.plane.geometry.points.Point
 import java.util.*
 
@@ -33,7 +33,7 @@ class Trail(val start: Point) {
         mutablePoints.add(last)
     }
 
-    fun move(distance: Double, direction: Direction) {
+    fun move(distance: Double, direction: KingDirection) {
         last = Point(
             last.x + direction.dx * distance,
             last.y + direction.dy * distance

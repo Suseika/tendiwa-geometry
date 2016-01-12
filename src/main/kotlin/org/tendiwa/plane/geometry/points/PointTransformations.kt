@@ -1,7 +1,7 @@
 package org.tendiwa.plane.geometry.points
 
 import org.tendiwa.math.doubles.sqrt
-import org.tendiwa.plane.directions.Direction
+import org.tendiwa.plane.directions.KingDirection
 import org.tendiwa.plane.directions.OrdinalDirection
 import org.tendiwa.plane.geometry.vectors.Vector
 
@@ -22,7 +22,7 @@ fun Point.move(vector: Vector): Point =
  * (Chebyshov distance)[https://en.wikipedia.org/wiki/Chebyshev_distance]
  * (otherwise known as King distance)
  */
-fun Point.moveKing(direction: Direction, distance: Double): Point =
+fun Point.moveKing(direction: KingDirection, distance: Double): Point =
     Point(
         x + direction.dx * distance,
         y + direction.dy * distance
@@ -31,7 +31,7 @@ fun Point.moveKing(direction: Direction, distance: Double): Point =
 /**
  * Moves a point in direction in Euclidean distance.
  */
-fun Point.move(direction: Direction, distance: Double): Point =
+fun Point.move(direction: KingDirection, distance: Double): Point =
     if (direction is OrdinalDirection) {
         val position = 2.0.sqrt / 2
         Point(
