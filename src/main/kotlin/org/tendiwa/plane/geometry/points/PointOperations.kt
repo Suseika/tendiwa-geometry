@@ -3,6 +3,8 @@ package org.tendiwa.plane.geometry.points
 import org.tendiwa.math.doubles.isCloseToZero
 import org.tendiwa.plane.geometry.rectangles.Rectangle
 import org.tendiwa.plane.geometry.segments.Segment
+import org.tendiwa.plane.geometry.segments.dx
+import org.tendiwa.plane.geometry.segments.dy
 
 infix fun Point.reallyCloseTo(another: Point): Boolean =
     (this.x - another.x).isCloseToZero && (this.y - another.y).isCloseToZero
@@ -73,3 +75,18 @@ infix fun Point.spanRectangle(other: Point): Rectangle {
         maxY - minY
     )
 }
+/**
+ * @param segment Segment that defines a line.
+ * @return Distance to the line defined by `segment`.
+ */
+fun Point.distanceToLine(segment: Segment): Double {
+    val dx = segment.end.x - segment.start.x;
+    val dy = segment.end.y - segment.start.y;
+    val normalLength = Math.sqrt(dx * dx + dy * dy);
+    return Math.abs(
+        (this.x - segment.start.x) * dy
+            - (this.y - segment.start.y) * dx
+    ) / normalLength;
+}
+fun Point.isLeftOf(segment: Segment): Boolean =
+    segment.dx * (y - segment.start.y) - segment.dy * (x - segment.start.x) < 0
