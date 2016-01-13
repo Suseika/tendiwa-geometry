@@ -8,7 +8,7 @@ import org.tendiwa.math.angles.Angle
 import org.tendiwa.math.angles.plus
 import org.tendiwa.math.angles.times
 import org.tendiwa.math.constants.EPSILON
-import org.tendiwa.plane.directions.OrdinalDirection.SE
+import org.tendiwa.plane.directions.OrdinalDirection.*
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.rectangles.Rectangle
 import org.tendiwa.plane.geometry.trails.Polygon
@@ -101,7 +101,7 @@ class PolygonOperationsKtTest {
                 )
             }
             .bisector
-            .apply { assert(isInQuarter(SE)) }
+            .apply { assertEquals(SE, quarter) }
     }
 
     @Test

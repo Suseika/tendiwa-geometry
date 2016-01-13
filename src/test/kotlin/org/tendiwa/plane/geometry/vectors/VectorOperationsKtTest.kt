@@ -5,30 +5,27 @@ import org.tendiwa.plane.directions.CardinalDirection.N
 import org.tendiwa.plane.directions.OrdinalDirection.*
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNull
 
 class VectorOperationsKtTest {
     @Test
     fun isInQuarter() {
         Vector(1.0, -1.0)
-            .apply {
-                assert(isInQuarter(SE))
-                assert(listOf(NE, SW, NW).all { !isInQuarter(it) })
-            }
+            .apply { assertEquals(SE, quarter) }
         Vector(1.0, 1.0)
-            .apply {
-                assert(isInQuarter(NE))
-                assert(listOf(SE, SW, NW).all { !isInQuarter(it) })
-            }
+            .apply { assertEquals(NE, quarter) }
         Vector(-1.0, 1.0)
-            .apply {
-                assert(isInQuarter(NW))
-                assert(listOf(NE, SE, SW).all { !isInQuarter(it) })
-            }
+            .apply { assertEquals(NW, quarter) }
         Vector(-1.0, -1.0)
-            .apply {
-                assert(isInQuarter(SW))
-                assert(listOf(NE, SE, NW).all { !isInQuarter(it) })
-            }
+            .apply { assertEquals(SW, quarter) }
+    }
+
+    @Test
+    fun `axis parallel vectors are not in any quarter`() {
+        assertNull(Vector(1.0, 0.0).quarter)
+        assertNull(Vector(0.0, 1.0).quarter)
+        assertNull(Vector(0.0, -1.0).quarter)
+        assertNull(Vector(-1.0, 0.0).quarter)
     }
 
     @Test

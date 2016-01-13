@@ -3,6 +3,7 @@ package org.tendiwa.plane.geometry.vectors
 import org.tendiwa.math.angles.Angle
 import org.tendiwa.math.doubles.isCloseToZero
 import org.tendiwa.plane.directions.OrdinalDirection
+import org.tendiwa.plane.directions.OrdinalDirection.*
 import java.lang.Math.atan2
 
 /**
@@ -107,11 +108,15 @@ infix fun Vector.makesReflexAngle(cw: Vector): Boolean =
 infix fun Vector.perpDotProduct(vector: Vector): Double =
     this.x * vector.y - this.y * vector.x
 
-// TODO: Implement Vector.quarter
-fun Vector.isInQuarter(quarter: OrdinalDirection): Boolean =
-    when (quarter) {
-        OrdinalDirection.NW -> x < 0 && y > 0
-        OrdinalDirection.NE -> x > 0 && y > 0
-        OrdinalDirection.SE -> x > 0 && y < 0
-        OrdinalDirection.SW -> x < 0 && y < 0
+val Vector.quarter: OrdinalDirection?
+    get() = if (x < 0 && y > 0) {
+        NW
+    } else if (x > 0 && y > 0) {
+        NE
+    } else if (x > 0 && y < 0) {
+        SE
+    } else if (x < 0 && y < 0) {
+        SW
+    } else {
+        null
     }
