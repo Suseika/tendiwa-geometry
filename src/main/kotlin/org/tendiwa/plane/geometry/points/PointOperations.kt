@@ -1,10 +1,12 @@
 package org.tendiwa.plane.geometry.points
 
 import org.tendiwa.math.doubles.isCloseToZero
+import org.tendiwa.plane.directions.Direction
 import org.tendiwa.plane.geometry.rectangles.Rectangle
 import org.tendiwa.plane.geometry.segments.Segment
 import org.tendiwa.plane.geometry.segments.dx
 import org.tendiwa.plane.geometry.segments.dy
+import org.tendiwa.plane.geometry.vectors.direction
 
 infix fun Point.reallyCloseTo(another: Point): Boolean =
     (this.x - another.x).isCloseToZero && (this.y - another.y).isCloseToZero
@@ -90,3 +92,6 @@ fun Point.distanceToLine(segment: Segment): Double {
 }
 fun Point.isLeftOf(segment: Segment): Boolean =
     segment.dx * (y - segment.start.y) - segment.dy * (x - segment.start.x) < 0
+
+infix fun Point.directionTo(other: Point): Direction =
+    (this vectorTo other).direction

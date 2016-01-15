@@ -8,12 +8,14 @@ import org.tendiwa.math.angles.AngularMeasure
 import org.tendiwa.math.angles.plus
 import org.tendiwa.math.angles.times
 import org.tendiwa.math.constants.EPSILON
-import org.tendiwa.plane.directions.OrdinalDirection.*
+import org.tendiwa.plane.directions.CardinalDirection.N
+import org.tendiwa.plane.directions.CardinalDirection.W
+import org.tendiwa.plane.geometry.angles.measure
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.rectangles.Rectangle
 import org.tendiwa.plane.geometry.trails.Polygon
-import org.tendiwa.plane.geometry.vectors.*
 import org.tendiwa.tools.expectIllegalArgument
+import java.lang.Math.PI
 import kotlin.test.assertFalse
 
 class PolygonOperationsKtTest {
@@ -74,34 +76,47 @@ class PolygonOperationsKtTest {
     }
 
     @Test
-    fun cornerContainsSectorBetweenTwoSides() {
+    fun `corner angle contains vector between two sides`() {
         Rectangle(0.0, 0.0, 10.0, 10.0)
             .corner(1)
             .apply {
                 assertEquals(
-                    HorizontalVector(-10.0),
-                    sector.ccw.toPositiveZeroVector()
-                )
-            }
-            .apply { assertEquals(VerticalVector(10.0), sector.cw) }
-    }
-
-    @Test
-    fun `creates outward corner`() {
-        val rectangle = Rectangle(0.0, 0.0, 10.0, 10.0)
-        rectangle
-            .corner(1, inward = false)
-            .apply { assertEquals(rectangle.points[1], point) }
-            .sector
-            .apply {
-                assertEquals(
-                    (AngularMeasure.RIGHT * 3.0).radians,
-                    angularMeasure.radians,
+                    W.radians,
+                    ccw.radians,
                     EPSILON
                 )
             }
-            .bisector
-            .apply { assertEquals(SE, quarter) }
+            .apply { assertEquals(N.radians, cw.radians, EPSILON) }
+    }
+
+    @Test
+    fun `outward corner`() {
+        val rectangle = Rectangle(0.0, 0.0, 10.0, 10.0)
+        rectangle
+            .corner(1, inward = false)
+            .apply {
+                assertEquals(
+                    W.radians,
+                    cw.radians,
+                    EPSILON
+                )
+                assertEquals(
+                    N.radians,
+                    ccw.radians,
+                    EPSILON
+                )
+            }
+    }
+
+    @Test
+    fun `point of angle is the corner point`() {
+        Rectangle(0.0, 0.0, 10.0, 10.0)
+            .apply {
+                assertEquals(
+                    points[1],
+                    corner(1).point
+                )
+            }
     }
 
     @Test
@@ -112,9 +127,14 @@ class PolygonOperationsKtTest {
             moveX(10.0)
         })
             .corner(0)
-            .sector
-            .angularMeasure
-            .apply { assertEquals(AngularMeasure.RIGHT.radians, this.radians, EPSILON) }
+            .measure
+            .apply {
+                assertEquals(
+                    AngularMeasure.RIGHT.radians,
+                    this.radians,
+                    EPSILON
+                )
+            }
     }
 
     @Test
@@ -122,11 +142,11 @@ class PolygonOperationsKtTest {
         // Formula from https://en.wikipedia.org/wiki/Polygon#Angles
         Rectangle(0.0, 0.0, 10.0, 10.0)
             .corners(inward = true)
-            .map { it.sector.angularMeasure }
+            .map { it.measure.radians }
             .apply {
                 assertEquals(
-                    (AngularMeasure.HALF_CIRCLE * (size - 2).toDouble()).radians,
-                    reduce { a, b -> a + b }.radians,
+                    PI * (size - 2),
+                    sum(),
                     EPSILON
                 )
             }
@@ -136,11 +156,11 @@ class PolygonOperationsKtTest {
     fun sumOfAllOutwardCorners() {
         Rectangle(0.0, 0.0, 10.0, 10.0)
             .corners(inward = false)
-            .map { it.sector.angularMeasure }
+            .map { it.measure }
             // https://en.wikipedia.org/wiki/Polygon#Angles
             .apply {
                 assertEquals(
-                    (AngularMeasure.HALF_CIRCLE * (size + 2).toDouble()).radians,
+                    (AngularMeasure.HALF_CIRCLE * (size + 2)).radians,
                     reduce { a, b -> a + b }.radians,
                     EPSILON
                 )

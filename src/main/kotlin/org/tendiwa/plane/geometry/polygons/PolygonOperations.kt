@@ -2,8 +2,9 @@ package org.tendiwa.plane.geometry.polygons
 
 import org.tendiwa.collections.nextAfter
 import org.tendiwa.collections.prevBefore
-import org.tendiwa.plane.geometry.corners.Corner
+import org.tendiwa.plane.geometry.angles.Angle
 import org.tendiwa.plane.geometry.points.Point
+import org.tendiwa.plane.geometry.points.directionTo
 import org.tendiwa.plane.geometry.rectangles.contains
 import org.tendiwa.plane.geometry.segments.Segment
 import org.tendiwa.tools.argumentsConstraint
@@ -68,21 +69,33 @@ fun Polygon.segment(index: Int): Segment {
  * corner of a polygon), or outside of the polygon (PI*2 minus the
  * actual corner).
  */
-fun Polygon.corner(index: Int, inward: Boolean = true): Corner {
+fun Polygon.corner(index: Int, inward: Boolean = true): Angle {
     argumentsConstraint(
-        index >= 0 && index < points.size,
+        index in 0..points.lastIndex,
         {
             "index must be a valid index of polygon point; index is $index, " +
                 "points.size is ${points.size}"
         }
     )
-    return Corner(
-        points.prevBefore(index),
+    return angleAtCorner(index, inward)
+}
+
+private fun Polygon.angleAtCorner(index: Int, inward: Boolean = true): Angle {
+    val toNext = directionToNextPoint(index)
+    val toPrevious = directionToPreviousPoint(index)
+    val toRight = inwardCornerIsToTheRight(inward)
+    return Angle(
         points[index],
-        points.nextAfter(index),
-        inwardCornerIsToTheRight(inward)
+        if (toRight) toPrevious else toNext,
+        if (toRight) toNext else toPrevious
     )
 }
+
+private fun Polygon.directionToPreviousPoint(index: Int) =
+    points[index] directionTo points.prevBefore(index)
+
+private fun Polygon.directionToNextPoint(index: Int) =
+    points[index] directionTo points.nextAfter(index)
 
 /**
  * Checks if inward corners of this polygon are left or right if you move
@@ -96,13 +109,8 @@ fun Polygon.inwardCornerIsToTheRight(inward: Boolean): Boolean =
  * @param inward Whether to return actual corners (inward = true) or their
  * outward counterparts (PI*2 minus the actual corner, inward = false)
  */
-fun Polygon.corners(inward: Boolean = true): List<Corner> =
+fun Polygon.corners(inward: Boolean = true): List<Angle> =
     points.indices.map {
         index ->
-        Corner(
-            points.prevBefore(index),
-            points[index],
-            points.nextAfter(index),
-            inwardCornerIsToTheRight(inward)
-        )
+        angleAtCorner(index, inward)
     }
