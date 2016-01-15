@@ -2,6 +2,7 @@ package org.tendiwa.plane.geometry.polygons
 
 import org.tendiwa.collections.nextAfter
 import org.tendiwa.collections.prevBefore
+import org.tendiwa.plane.directions.DirectionFan
 import org.tendiwa.plane.geometry.angles.Angle
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.points.directionTo
@@ -86,8 +87,10 @@ private fun Polygon.angleAtCorner(index: Int, inward: Boolean = true): Angle {
     val toRight = inwardCornerIsToTheRight(inward)
     return Angle(
         points[index],
-        if (toRight) toPrevious else toNext,
-        if (toRight) toNext else toPrevious
+        DirectionFan(
+            if (toRight) toPrevious else toNext,
+            if (toRight) toNext else toPrevious
+        )
     )
 }
 

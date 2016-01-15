@@ -1,7 +1,6 @@
 package org.tendiwa.plane.geometry.rays
 
 import org.tendiwa.math.angles.AngularMeasure
-import org.tendiwa.math.angles.times
 import org.tendiwa.plane.directions.CardinalDirection
 import org.tendiwa.plane.directions.Direction
 import org.tendiwa.plane.geometry.points.Point
@@ -36,15 +35,6 @@ fun Ray.inverse(): Ray =
 
 fun Ray.rotate(angularMeasure: AngularMeasure): Ray =
     changeDirection(direction + angularMeasure)
-
-/**
- * Returns rays at regular intervals starting from this ray, clockwise.
- */
-fun Ray.sun(raysNum: Int): List<Ray> {
-    val rayAngle = AngularMeasure(Math.PI * 2 / raysNum)
-    return (0 until raysNum)
-        .map { i -> this.rotate(rayAngle * i) }
-}
 
 /**
  * Returns a segment from the beginning of the ray to a point on ray that is

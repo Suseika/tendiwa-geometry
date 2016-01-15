@@ -1,6 +1,6 @@
 package org.tendiwa.plane.geometry.angles
 
-import org.tendiwa.plane.directions.Direction
+import org.tendiwa.plane.directions.DirectionFan
 import org.tendiwa.plane.geometry.points.Point
 
 /**
@@ -14,6 +14,5 @@ data class Angle
  */
 (
     val point: Point,
-    val cw: Direction,
-    val ccw: Direction
+    val directionFan: DirectionFan
 )

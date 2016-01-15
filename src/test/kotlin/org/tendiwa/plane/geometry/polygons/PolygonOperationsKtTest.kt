@@ -10,7 +10,7 @@ import org.tendiwa.math.angles.times
 import org.tendiwa.math.constants.EPSILON
 import org.tendiwa.plane.directions.CardinalDirection.N
 import org.tendiwa.plane.directions.CardinalDirection.W
-import org.tendiwa.plane.geometry.angles.measure
+import org.tendiwa.plane.directions.measure
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.rectangles.Rectangle
 import org.tendiwa.plane.geometry.trails.Polygon
@@ -79,6 +79,7 @@ class PolygonOperationsKtTest {
     fun `corner angle contains vector between two sides`() {
         Rectangle(0.0, 0.0, 10.0, 10.0)
             .corner(1)
+            .directionFan
             .apply {
                 assertEquals(
                     W.radians,
@@ -94,6 +95,7 @@ class PolygonOperationsKtTest {
         val rectangle = Rectangle(0.0, 0.0, 10.0, 10.0)
         rectangle
             .corner(1, inward = false)
+            .directionFan
             .apply {
                 assertEquals(
                     W.radians,
@@ -127,6 +129,7 @@ class PolygonOperationsKtTest {
             moveX(10.0)
         })
             .corner(0)
+            .directionFan
             .measure
             .apply {
                 assertEquals(
@@ -142,7 +145,7 @@ class PolygonOperationsKtTest {
         // Formula from https://en.wikipedia.org/wiki/Polygon#Angles
         Rectangle(0.0, 0.0, 10.0, 10.0)
             .corners(inward = true)
-            .map { it.measure.radians }
+            .map { it.directionFan.measure.radians }
             .apply {
                 assertEquals(
                     PI * (size - 2),
@@ -156,7 +159,7 @@ class PolygonOperationsKtTest {
     fun sumOfAllOutwardCorners() {
         Rectangle(0.0, 0.0, 10.0, 10.0)
             .corners(inward = false)
-            .map { it.measure }
+            .map { it.directionFan.measure }
             // https://en.wikipedia.org/wiki/Polygon#Angles
             .apply {
                 assertEquals(
