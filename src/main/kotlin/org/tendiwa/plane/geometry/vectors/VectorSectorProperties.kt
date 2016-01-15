@@ -1,6 +1,6 @@
 package org.tendiwa.plane.geometry.vectors
 
-import org.tendiwa.math.angles.Angle
+import org.tendiwa.math.angles.AngularMeasure
 
 // TODO: Replace Vector with Ray or Direction. A bisector is not a vector.
 val VectorSector.bisector: Vector
@@ -19,5 +19,5 @@ val VectorSector.sumVector: Vector
 private fun averageMagnitude(cw: Vector, ccw: Vector): Double =
     cw.magnitude / 2 + ccw.magnitude / 2
 
-val VectorSector.angle: Angle
+val VectorSector.angularMeasure: AngularMeasure
     get() = cw.direction.counterClockwiseAngle(ccw.direction)

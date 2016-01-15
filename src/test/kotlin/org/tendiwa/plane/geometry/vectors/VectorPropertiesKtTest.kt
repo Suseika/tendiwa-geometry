@@ -4,7 +4,7 @@ import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.ExpectedException
-import org.tendiwa.math.angles.Angle
+import org.tendiwa.math.angles.AngularMeasure
 import org.tendiwa.math.constants.EPSILON
 import org.tendiwa.plane.directions.OrdinalDirection.NE
 import org.tendiwa.plane.directions.OrdinalDirection.SE
@@ -29,7 +29,7 @@ class VectorPropertiesKtTest {
 
     @Test fun angleBetween() {
         Assert.assertEquals(
-            Angle.RIGHT.radians,
+            AngularMeasure.RIGHT.radians,
             HorizontalVector(1.0)
                 .angleBetween(VerticalVector(1.0), true)
                 .radians,
@@ -60,7 +60,7 @@ class VectorPropertiesKtTest {
     @Test
     fun `vector can rotate by right angle clockwise`() {
         assertEquals(
-            Vector(2.0, 1.0).direction + Angle.RIGHT,
+            Vector(2.0, 1.0).direction + AngularMeasure.RIGHT,
             Vector(2.0, 1.0).rotatedQuarterClockwise.direction
         )
     }

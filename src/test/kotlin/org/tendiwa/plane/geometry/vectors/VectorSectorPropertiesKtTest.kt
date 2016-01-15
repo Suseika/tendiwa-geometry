@@ -2,7 +2,7 @@ package org.tendiwa.plane.geometry.vectors
 
 import org.junit.Assert
 import org.junit.Test
-import org.tendiwa.math.angles.Angle
+import org.tendiwa.math.angles.AngularMeasure
 import org.tendiwa.math.constants.EPSILON
 import org.tendiwa.plane.directions.OrdinalDirection.SW
 import kotlin.test.assertEquals
@@ -14,10 +14,10 @@ class VectorSectorPropertiesKtTest {
             cw = HorizontalVector(1.0),
             ccw = VerticalVector(1.0)
         )
-            .angle
+            .angularMeasure
             .apply {
                 Assert.assertEquals(
-                    Angle.RIGHT.radians,
+                    AngularMeasure.RIGHT.radians,
                     this.radians,
                     EPSILON
                 )
@@ -30,10 +30,10 @@ class VectorSectorPropertiesKtTest {
             cw = Vector(1.0, -1.0),
             ccw = Vector(1.0, 1.0)
         )
-            .angle
+            .angularMeasure
             .apply {
                 Assert.assertEquals(
-                    Angle.RIGHT.radians,
+                    AngularMeasure.RIGHT.radians,
                     this.radians,
                     EPSILON
                 )

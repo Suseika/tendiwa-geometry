@@ -1,6 +1,6 @@
 package org.tendiwa.plane.geometry.vectors
 
-import org.tendiwa.math.angles.Angle
+import org.tendiwa.math.angles.AngularMeasure
 import org.tendiwa.math.doubles.isCloseToZero
 import org.tendiwa.plane.directions.OrdinalDirection
 import org.tendiwa.plane.directions.OrdinalDirection.*
@@ -71,7 +71,7 @@ infix fun Vector.isCollinear(other: Vector): Boolean {
     return false
 }
 
-fun Vector.angleBetween(b: Vector, clockwise: Boolean): Angle {
+fun Vector.angleBetween(b: Vector, clockwise: Boolean): AngularMeasure {
     if (this == b) {
         throw IllegalArgumentException(
             "Can't compute angle between equal vectors $this and $b"
@@ -86,7 +86,7 @@ fun Vector.angleBetween(b: Vector, clockwise: Boolean): Angle {
     if (angle < 0) {
         angle += Math.PI * 2
     }
-    return Angle(angle)
+    return AngularMeasure(angle)
 }
 
 /**

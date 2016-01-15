@@ -4,7 +4,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.ExpectedException
-import org.tendiwa.math.angles.Angle
+import org.tendiwa.math.angles.AngularMeasure
 import org.tendiwa.math.angles.plus
 import org.tendiwa.math.angles.times
 import org.tendiwa.math.constants.EPSILON
@@ -95,8 +95,8 @@ class PolygonOperationsKtTest {
             .sector
             .apply {
                 assertEquals(
-                    (Angle.RIGHT * 3.0).radians,
-                    angle.radians,
+                    (AngularMeasure.RIGHT * 3.0).radians,
+                    angularMeasure.radians,
                     EPSILON
                 )
             }
@@ -113,8 +113,8 @@ class PolygonOperationsKtTest {
         })
             .corner(0)
             .sector
-            .angle
-            .apply { assertEquals(Angle.RIGHT.radians, this.radians, EPSILON) }
+            .angularMeasure
+            .apply { assertEquals(AngularMeasure.RIGHT.radians, this.radians, EPSILON) }
     }
 
     @Test
@@ -122,10 +122,10 @@ class PolygonOperationsKtTest {
         // Formula from https://en.wikipedia.org/wiki/Polygon#Angles
         Rectangle(0.0, 0.0, 10.0, 10.0)
             .corners(inward = true)
-            .map { it.sector.angle }
+            .map { it.sector.angularMeasure }
             .apply {
                 assertEquals(
-                    (Angle.HALF_CIRCLE * (size - 2).toDouble()).radians,
+                    (AngularMeasure.HALF_CIRCLE * (size - 2).toDouble()).radians,
                     reduce { a, b -> a + b }.radians,
                     EPSILON
                 )
@@ -136,11 +136,11 @@ class PolygonOperationsKtTest {
     fun sumOfAllOutwardCorners() {
         Rectangle(0.0, 0.0, 10.0, 10.0)
             .corners(inward = false)
-            .map { it.sector.angle }
+            .map { it.sector.angularMeasure }
             // https://en.wikipedia.org/wiki/Polygon#Angles
             .apply {
                 assertEquals(
-                    (Angle.HALF_CIRCLE * (size + 2).toDouble()).radians,
+                    (AngularMeasure.HALF_CIRCLE * (size + 2).toDouble()).radians,
                     reduce { a, b -> a + b }.radians,
                     EPSILON
                 )

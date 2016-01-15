@@ -2,11 +2,11 @@ package org.tendiwa.plane.geometry.corners
 
 import org.junit.Assert
 import org.junit.Test
-import org.tendiwa.math.angles.Angle
+import org.tendiwa.math.angles.AngularMeasure
 import org.tendiwa.math.angles.times
 import org.tendiwa.math.constants.EPSILON
 import org.tendiwa.plane.geometry.points.Point
-import org.tendiwa.plane.geometry.vectors.angle
+import org.tendiwa.plane.geometry.vectors.angularMeasure
 
 class CornerTest {
     @Test
@@ -22,8 +22,8 @@ class CornerTest {
             .sector
             .apply {
                 Assert.assertEquals(
-                    (Angle.RIGHT * 3).radians,
-                    angle.radians,
+                    (AngularMeasure.RIGHT * 3).radians,
+                    angularMeasure.radians,
                     EPSILON
                 )
             }
@@ -31,8 +31,8 @@ class CornerTest {
             .sector
             .apply {
                 Assert.assertEquals(
-                    Angle.RIGHT.radians,
-                    angle.radians,
+                    AngularMeasure.RIGHT.radians,
+                    angularMeasure.radians,
                     EPSILON
                 )
             }
