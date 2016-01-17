@@ -35,3 +35,14 @@ interface SegmentGroup {
             );
         }
 }
+
+fun SegmentGroup(vararg segmentGroups: SegmentGroup): SegmentGroup =
+    object : SegmentGroup {
+        override val segments: Collection<Segment>
+            get() = segmentGroups.flatMap { it.segments }
+
+        override val points: Collection<Point>
+            get() = segmentGroups
+                .flatMap { it.points }
+                .distinct()
+    }
