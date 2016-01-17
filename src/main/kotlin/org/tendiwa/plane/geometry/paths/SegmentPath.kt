@@ -3,6 +3,7 @@ package org.tendiwa.plane.geometry.paths
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.segments.Segment
 import org.tendiwa.plane.geometry.shapes.SegmentGroup
+import org.tendiwa.plane.geometry.trails.Trail
 import org.tendiwa.tools.argumentConstraint
 
 /**
@@ -29,3 +30,6 @@ class SegmentPath(override val points: List<Point>) : SegmentGroup {
     fun isOpen(): Boolean =
         !isClosed()
 }
+
+fun SegmentPath(start: Point, operations: Trail.() -> Unit): SegmentPath =
+    SegmentPath(Trail(start).apply(operations).points)
