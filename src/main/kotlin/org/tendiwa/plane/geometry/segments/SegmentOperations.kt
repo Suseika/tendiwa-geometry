@@ -49,6 +49,17 @@ fun Segment.isEndpoint(point: Point): Boolean =
 fun Segment.hasCommonEndpoint(other: Segment): Boolean =
     other.isEndpoint(start) || other.isEndpoint(end)
 
+fun Segment.commonEndpoint(other: Segment): Point =
+    if (start == other.start || start == other.end) {
+        start
+    } else if (end == other.start || end == other.end) {
+        end
+    } else {
+        throw IllegalArgumentException(
+            "Segments $this and $other don't have a common endpoint"
+        )
+    }
+
 /**
  * Returns [Segment.start] if [point] is [Segment.end], or returns
  * [Segment.end] if [point] is [Segment.start].

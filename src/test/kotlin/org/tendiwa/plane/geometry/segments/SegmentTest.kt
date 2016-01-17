@@ -7,9 +7,10 @@ import org.junit.rules.ExpectedException
 import org.tendiwa.math.constants.EPSILON
 import org.tendiwa.math.doubles.sqrt
 import org.tendiwa.plane.directions.CardinalDirection.N
-import org.tendiwa.plane.directions.OrdinalDirection.SE
+import org.tendiwa.plane.directions.OrdinalDirection.*
 import org.tendiwa.plane.geometry.points.*
 import org.tendiwa.plane.geometry.rectangles.contains
+import org.tendiwa.tools.expectIllegalArgument
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 
@@ -147,6 +148,31 @@ class SegmentTest {
         expectRule.expectMessage("All cut positions must be within (0.0..1.0)")
         expectRule.expect(IllegalArgumentException::class.java)
         Segment.ANY.cut(0.5, 0.8, 0.9, 1.3)
+    }
+
+    @Test
+    fun `segments can have common endpoint`() {
+        val a = Point(1.0, 2.0)
+        val b = Point(2.0, 3.0)
+        val c = Point(3.0, 4.0)
+        assertEquals(
+            a,
+            (a segmentTo b).commonEndpoint(a segmentTo c)
+        )
+        assertEquals(
+            b,
+            (a segmentTo b).commonEndpoint(b segmentTo c)
+        )
+    }
+
+    @Test
+    fun `fails if segments dont have a common endpoint`() {
+        expectRule.expectIllegalArgument("don't have a common endpoint")
+        val a = Point(1.0, 2.0)
+        val b = Point(2.0, 3.0)
+        val c = Point(3.0, 4.0)
+        val d = Point(4.0, 5.0)
+        (a segmentTo b).commonEndpoint(c segmentTo d)
     }
 }
 
