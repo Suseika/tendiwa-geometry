@@ -91,7 +91,7 @@ fun Point.distanceToLine(segment: Segment): Double {
     ) / normalLength;
 }
 fun Point.isLeftOf(segment: Segment): Boolean =
-    segment.dx * (y - segment.start.y) - segment.dy * (x - segment.start.x) < 0
+    segment.dx * (y - segment.start.y) - segment.dy * (x - segment.start.x) > 0
 
 infix fun Point.directionTo(other: Point): Direction =
     (this vectorTo other).direction

@@ -2,7 +2,7 @@ package org.tendiwa.plane.geometry.trails
 
 import org.junit.Test
 import org.tendiwa.plane.directions.CardinalDirection.N
-import org.tendiwa.plane.directions.OrdinalDirection.SE
+import org.tendiwa.plane.directions.OrdinalDirection.*
 import org.tendiwa.plane.geometry.points.Point
 import kotlin.test.assertEquals
 
@@ -45,7 +45,7 @@ class TrailTest {
 
     @Test fun moveInDirection() {
         assertEquals(
-            Point(13.0, 14.0),
+            Point(13.0, 8.0),
             Trail(Point(10.0, 11.0)).apply { move(3.0, SE) }.points.last()
         )
     }
