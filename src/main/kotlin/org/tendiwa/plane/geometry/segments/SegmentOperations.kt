@@ -4,7 +4,6 @@ import org.tendiwa.math.doubles.square
 import org.tendiwa.math.matrices.determinant
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.points.move
-import org.tendiwa.plane.geometry.segments.multi.DefaultMultisegment
 import org.tendiwa.plane.geometry.segments.multi.Multisegment
 
 fun Segment.parallel(distance: Double, fromLeft: Boolean): Segment {
@@ -94,7 +93,7 @@ fun Segment.cut(vararg cutPositions: Double): Multisegment =
             }
         }
         .map { slider(it) }
-        .let { cuts -> DefaultMultisegment(this@cut, cuts) }
+        .let { cuts -> Multisegment(this@cut, cuts) }
 
 /**
  * Check if a segment intersects another segment.
