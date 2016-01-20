@@ -117,3 +117,11 @@ fun Polygon.corners(inward: Boolean = true): List<Angle> =
         index ->
         angleAtCorner(index, inward)
     }
+
+/**
+ * Tells if the inside of the polygon is left from its edges or right.
+ * @return true if right, false if left.
+ */
+fun Polygon.insideIsRight(): Boolean =
+    isClockwise()
+
