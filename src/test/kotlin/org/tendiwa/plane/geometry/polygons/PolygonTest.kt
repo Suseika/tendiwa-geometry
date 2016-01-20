@@ -5,7 +5,6 @@ import org.tendiwa.plane.geometry.points.AnyPoint
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.points.segmentTo
 import org.tendiwa.plane.geometry.rectangles.Rectangle
-import org.tendiwa.plane.geometry.trails.Polygon
 import kotlin.test.assertEquals
 import kotlin.test.assertFails
 import kotlin.test.assertFalse

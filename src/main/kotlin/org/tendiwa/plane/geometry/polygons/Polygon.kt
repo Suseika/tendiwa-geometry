@@ -4,6 +4,7 @@ import org.tendiwa.collections.loopedLinks
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.segments.Segment
 import org.tendiwa.plane.geometry.shapes.SegmentGroup
+import org.tendiwa.plane.geometry.trails.Trail
 
 /**
  * A polygon.
@@ -29,3 +30,6 @@ interface Polygon : SegmentGroup {
             .apply { assert(this != 0.0) }
             .run { this > 0.0 }
 }
+
+fun Polygon(point: Point, movements: Trail.() -> Unit): Polygon =
+    Polygon(Trail(point).apply(movements).points)

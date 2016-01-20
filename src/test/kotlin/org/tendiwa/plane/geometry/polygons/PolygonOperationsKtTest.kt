@@ -13,7 +13,6 @@ import org.tendiwa.plane.directions.CardinalDirection.W
 import org.tendiwa.plane.directions.measure
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.rectangles.Rectangle
-import org.tendiwa.plane.geometry.trails.Polygon
 import org.tendiwa.tools.expectIllegalArgument
 import java.lang.Math.PI
 import kotlin.test.assertFalse
