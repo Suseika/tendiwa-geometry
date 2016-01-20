@@ -4,7 +4,10 @@ import org.tendiwa.math.doubles.square
 import org.tendiwa.math.matrices.determinant
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.points.move
+import org.tendiwa.plane.geometry.points.vectorTo
+import org.tendiwa.plane.geometry.rays.Ray
 import org.tendiwa.plane.geometry.segments.multi.Multisegment
+import org.tendiwa.plane.geometry.vectors.*
 
 fun Segment.parallel(distance: Double, fromLeft: Boolean): Segment {
     val distanceSigned = if (fromLeft) -distance else distance
@@ -158,3 +161,20 @@ fun Segment.project(point: Point) : Point? {
         start.y + r * dy
     )
 }
+
+// Algorithm described in
+// https://rootllama.wordpress.com/2014/06/20/ray-line-segment-intersection-test-in-2d/
+fun Segment.intersection(ray: Ray): Point? {
+    val v1 = start vectorTo ray.start
+    val v2 = vector
+    val rayVector = ray.direction.toVector()
+    val v3 = rayVector.rotatedQuarterClockwise
+    val t1 = Math.abs(v2 cross v1) / (v2 dot v3)
+    val t2 = (v1 dot v3) / (v2 dot v3)
+    return if (t1 < 0.0 || t2 <= 0.0 || t2 >= 1.0) {
+        null
+    } else {
+        ray.start.move(rayVector * t1)
+    }
+}
+

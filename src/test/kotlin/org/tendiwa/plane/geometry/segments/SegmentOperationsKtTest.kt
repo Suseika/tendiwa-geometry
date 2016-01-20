@@ -1,9 +1,14 @@
 package org.tendiwa.plane.geometry.segments
 
 import org.junit.Test
+import org.tendiwa.math.constants.EPSILON
+import org.tendiwa.plane.directions.CardinalDirection.N
+import org.tendiwa.plane.directions.CardinalDirection.S
 import org.tendiwa.plane.geometry.points.Point
+import org.tendiwa.plane.geometry.points.distanceTo
 import org.tendiwa.plane.geometry.points.spanHorizontalSegment
 import org.tendiwa.plane.geometry.points.spanSegment
+import org.tendiwa.plane.geometry.rays.Ray
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
@@ -103,5 +108,38 @@ class SegmentOperationsKtTest {
                 .spanHorizontalSegment(5.0)
                 .project(Point(6.0, 2.0))
         )
+    }
+
+    @Test
+    fun `intersection with ray can yield point`() {
+        Point(0.0, 0.0)
+            .spanHorizontalSegment(5.0)
+            .intersection(
+                Ray(Point(2.5, 2.5), S)
+            )!!
+            .apply {
+                assert(distanceTo(Point(2.5, 0.0)) < EPSILON)
+            }
+    }
+
+    @Test
+    fun `intersection with ray can yield no point if line is not intersected`() {
+        Point(0.0, 0.0)
+            .spanHorizontalSegment(5.0)
+            .intersection(
+                Ray(Point(6.0, 2.5), N)
+            )
+            .apply { assertNull(this) }
+
+    }
+
+    @Test
+    fun `intersection with ray can yield no point even if line is intersected`() {
+        Point(0.0, 0.0)
+            .spanHorizontalSegment(5.0)
+            .intersection(
+                Ray(Point(6.0, 2.5), S)
+            )
+            .apply { assertNull(this) }
     }
 }
