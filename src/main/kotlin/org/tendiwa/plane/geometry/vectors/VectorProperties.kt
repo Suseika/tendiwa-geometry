@@ -28,7 +28,7 @@ val Vector.reversed: Vector
 val Vector.normalized: Vector
     get() = this div magnitude
 
-val Vector.rotatedQuarterClockwise: Vector
+val Vector.rotatedQuarterCCW: Vector
     get() = Vector(-y, x)
 
 val Vector.direction: Direction

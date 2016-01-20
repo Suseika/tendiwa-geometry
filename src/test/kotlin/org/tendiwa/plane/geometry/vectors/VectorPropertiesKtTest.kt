@@ -6,8 +6,7 @@ import org.junit.Test
 import org.junit.rules.ExpectedException
 import org.tendiwa.math.angles.AngularMeasure
 import org.tendiwa.math.constants.EPSILON
-import org.tendiwa.plane.directions.OrdinalDirection.NE
-import org.tendiwa.plane.directions.OrdinalDirection.SE
+import org.tendiwa.plane.directions.OrdinalDirection.*
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 
@@ -61,7 +60,7 @@ class VectorPropertiesKtTest {
     fun `vector can rotate by right angle clockwise`() {
         assertEquals(
             Vector(2.0, 1.0).direction + AngularMeasure.RIGHT,
-            Vector(2.0, 1.0).rotatedQuarterClockwise.direction
+            Vector(2.0, 1.0).rotatedQuarterCCW.direction
         )
     }
 }

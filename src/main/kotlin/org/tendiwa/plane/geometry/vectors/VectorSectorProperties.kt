@@ -10,7 +10,7 @@ val VectorSector.sumVector: Vector
     get() {
         var bisectorDirection = cw.normalized + ccw.normalized;
         if (bisectorDirection.isZero) {
-            bisectorDirection = ccw.rotatedQuarterClockwise;
+            bisectorDirection = ccw.rotatedQuarterCCW;
         }
         return bisectorDirection.normalized * averageMagnitude(cw, ccw)
     }
