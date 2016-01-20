@@ -2,6 +2,7 @@ package org.tendiwa.plane.geometry.vectors
 
 import org.tendiwa.math.angles.AngularMeasure
 import org.tendiwa.math.doubles.isCloseToZero
+import org.tendiwa.plane.directions.Direction
 import org.tendiwa.plane.directions.OrdinalDirection
 import org.tendiwa.plane.directions.OrdinalDirection.*
 import java.lang.Math.atan2
@@ -120,3 +121,6 @@ val Vector.quarter: OrdinalDirection?
     } else {
         null
     }
+
+fun Direction.toVector(): Vector =
+    Vector(Math.cos(radians), Math.sin(radians))

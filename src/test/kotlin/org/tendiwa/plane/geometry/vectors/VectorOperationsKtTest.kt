@@ -1,6 +1,9 @@
 package org.tendiwa.plane.geometry.vectors
 
+import org.junit.Assert
 import org.junit.Test
+import org.tendiwa.math.constants.EPSILON
+import org.tendiwa.plane.directions.CardinalDirection.E
 import org.tendiwa.plane.directions.CardinalDirection.N
 import org.tendiwa.plane.directions.OrdinalDirection.*
 import kotlin.test.assertEquals
@@ -40,6 +43,20 @@ class VectorOperationsKtTest {
         )
         assertFalse(
             VerticalVector(1.0).makesReflexAngle(cw = HorizontalVector(1.0))
+        )
+    }
+
+    @Test
+    fun `direction to vector`() {
+        Assert.assertEquals(
+            N.toVector().direction.radians,
+            Vector(0.0, 1.0).direction.radians,
+            EPSILON
+        )
+        Assert.assertEquals(
+            E.toVector().direction.radians,
+            Vector(1.0, 0.0).direction.radians,
+            EPSILON
         )
     }
 }
