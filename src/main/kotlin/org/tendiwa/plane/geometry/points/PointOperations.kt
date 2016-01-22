@@ -2,6 +2,7 @@ package org.tendiwa.plane.geometry.points
 
 import org.tendiwa.math.doubles.isCloseToZero
 import org.tendiwa.plane.directions.Direction
+import org.tendiwa.plane.geometry.rays.Ray
 import org.tendiwa.plane.geometry.rectangles.Rectangle
 import org.tendiwa.plane.geometry.segments.Segment
 import org.tendiwa.plane.geometry.segments.dx
@@ -95,3 +96,9 @@ fun Point.isLeftOf(segment: Segment): Boolean =
 
 infix fun Point.directionTo(other: Point): Direction =
     (this vectorTo other).direction
+
+infix fun Point.rayThrough(other: Point): Ray =
+    Ray(
+        this,
+        this directionTo other
+    )
