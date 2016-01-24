@@ -2,15 +2,12 @@ package org.tendiwa.plane.geometry.segments
 
 import org.junit.Test
 import org.tendiwa.math.constants.EPSILON
-import org.tendiwa.plane.directions.CardinalDirection.N
-import org.tendiwa.plane.directions.CardinalDirection.S
-import org.tendiwa.plane.geometry.points.Point
-import org.tendiwa.plane.geometry.points.distanceTo
-import org.tendiwa.plane.geometry.points.spanHorizontalSegment
-import org.tendiwa.plane.geometry.points.spanSegment
+import org.tendiwa.plane.directions.CardinalDirection.*
+import org.tendiwa.plane.geometry.points.*
 import org.tendiwa.plane.geometry.rays.Ray
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
 class SegmentOperationsKtTest {
@@ -142,4 +139,16 @@ class SegmentOperationsKtTest {
             )
             .apply { assertNull(this) }
     }
+
+    @Test
+    fun `intersection with ray`() {
+        val point = Point(0.0, 10.0)
+        val segment = point
+            .spanVerticalSegment(-10.0)
+        val ray = Ray(point.move(-5.0, -5.0), E)
+        segment
+            .intersection(ray)
+            .apply { assertNotNull(this) }
+    }
+
 }

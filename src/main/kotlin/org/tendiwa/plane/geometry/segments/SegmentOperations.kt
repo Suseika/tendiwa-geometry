@@ -169,7 +169,7 @@ fun Segment.intersection(ray: Ray): Point? {
     val v2 = vector
     val rayVector = ray.direction.toVector()
     val v3 = rayVector.rotatedQuarterCCW
-    val t1 = Math.abs(v2 cross v1) / (v2 dot v3)
+    val t1 = v2 cross v1 / (v2 dot v3)
     val t2 = (v1 dot v3) / (v2 dot v3)
     return if (t1 < 0.0 || t2 <= 0.0 || t2 >= 1.0) {
         null
