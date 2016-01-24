@@ -125,3 +125,10 @@ fun Polygon.corners(inward: Boolean = true): List<Angle> =
 fun Polygon.insideIsRight(): Boolean =
     isClockwise()
 
+val Polygon.area: Double
+    get() =
+    segments
+        .map { (it.end.x - it.start.x) * (it.end.y + it.start.y) }
+        .sum()
+        .let { Math.abs(it / 2) }
+

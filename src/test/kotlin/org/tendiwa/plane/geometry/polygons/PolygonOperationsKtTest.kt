@@ -1,5 +1,6 @@
 package org.tendiwa.plane.geometry.polygons
 
+import org.junit.Assert
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
@@ -11,6 +12,7 @@ import org.tendiwa.math.constants.EPSILON
 import org.tendiwa.plane.directions.CardinalDirection.N
 import org.tendiwa.plane.directions.CardinalDirection.W
 import org.tendiwa.plane.directions.measure
+import org.tendiwa.plane.geometry.points.AnyPoint
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.rectangles.Rectangle
 import org.tendiwa.tools.expectIllegalArgument
@@ -167,5 +169,16 @@ class PolygonOperationsKtTest {
                     EPSILON
                 )
             }
+    }
+
+    @Test
+    fun area() {
+        Rectangle(0.0, 0.0, 10.0, 10.0)
+            .apply { Assert.assertEquals(100.0, area, EPSILON) }
+        Polygon(AnyPoint(), {
+            moveX(10.0)
+            move(-5.0, 5.0)
+        })
+            .apply { Assert.assertEquals(25.0, area, EPSILON) }
     }
 }
