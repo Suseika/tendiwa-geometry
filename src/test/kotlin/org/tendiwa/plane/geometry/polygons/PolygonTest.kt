@@ -40,12 +40,12 @@ class PolygonTest {
     @Test
     fun isClockwise() {
         Polygon(Point(4.0, 5.0), {
-            moveX(10.0)
+            moveX(-10.0)
             moveY(10.0)
         })
             .apply { assert(isClockwise()) }
         Polygon(Point(4.0, 5.0), {
-            moveX(-10.0)
+            moveX(10.0)
             moveY(10.0)
         })
             .apply { assertFalse(isClockwise()) }
@@ -62,13 +62,13 @@ class PolygonTest {
             moveX(1.0)
             moveX(2.0)
         })
-            .apply { assert(isClockwise()) }
+            .apply { assertFalse(isClockwise()) }
     }
     @Test
     fun `counter-clockwise polygon to clockwise`() {
         Polygon(AnyPoint(), {
             moveY(10.0)
-            moveX(10.0)
+            moveX(-10.0)
             moveY(-10.0)
         })
             .apply { assert(!isClockwise()) }

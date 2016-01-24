@@ -105,7 +105,7 @@ private fun Polygon.directionToNextPoint(index: Int) =
  * polygonwise.
  */
 fun Polygon.inwardCornerIsToTheRight(inward: Boolean): Boolean =
-    isClockwise() xor inward
+    !isClockwise() xor inward
 
 /**
  * Retruns all corners at points of this polygon.

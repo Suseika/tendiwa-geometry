@@ -25,10 +25,10 @@ interface Polygon : SegmentGroup {
      */
     fun isClockwise(): Boolean =
         segments
-            .map { (it.end.x - it.start.x) / (it.end.y + it.start.y) }
+            .map { (it.end.x - it.start.x) * (it.end.y + it.start.y) }
             .sum()
             .apply { assert(this != 0.0) }
-            .run { this > 0.0 }
+            .let { it > 0.0 }
 }
 
 fun Polygon(point: Point, movements: Trail.() -> Unit): Polygon =
