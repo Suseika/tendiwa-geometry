@@ -1,9 +1,12 @@
 package org.tendiwa.plane.geometry.rays
 
 import org.tendiwa.math.angles.AngularMeasure
+import org.tendiwa.math.constants.EPSILON
+import org.tendiwa.math.doubles.distance
 import org.tendiwa.plane.directions.CardinalDirection
 import org.tendiwa.plane.directions.Direction
 import org.tendiwa.plane.geometry.points.Point
+import org.tendiwa.plane.geometry.points.directionTo
 import org.tendiwa.plane.geometry.points.move
 import org.tendiwa.plane.geometry.rectangles.Rectangle
 import org.tendiwa.plane.geometry.rectangles.side
@@ -58,3 +61,9 @@ fun Ray.closestIntersection(rectangle: Rectangle): Point? {
         .map { it.commonPoint() }
         .firstOrNull()
 }
+
+/**
+ * Checks if a ray contains a point.
+ */
+fun Ray.contains(point: Point): Boolean =
+    (start directionTo point).radians distance direction.radians < EPSILON
