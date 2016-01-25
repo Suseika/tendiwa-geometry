@@ -81,7 +81,7 @@ fun Vector.angleBetween(b: Vector, clockwise: Boolean): AngularMeasure {
     val angleA: Double = atan2(this.y, this.x)
     val angleB: Double = atan2(b.y, b.x)
     var angle = angleA - angleB
-    if (clockwise) {
+    if (!clockwise) {
         angle = -angle
     }
     if (angle < 0) {

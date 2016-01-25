@@ -30,7 +30,7 @@ class VectorPropertiesKtTest {
         Assert.assertEquals(
             AngularMeasure.RIGHT.radians,
             HorizontalVector(1.0)
-                .angleBetween(VerticalVector(1.0), true)
+                .angleBetween(VerticalVector(1.0), false)
                 .radians,
             EPSILON
         )
@@ -44,7 +44,7 @@ class VectorPropertiesKtTest {
         HorizontalVector(1.0).apply {
             Assert.assertEquals(
                 0.0,
-                this.angleBetween(this, true).radians,
+                this.angleBetween(this, false).radians,
                 EPSILON
             )
         }
