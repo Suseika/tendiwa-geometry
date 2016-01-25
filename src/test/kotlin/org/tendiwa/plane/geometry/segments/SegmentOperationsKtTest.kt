@@ -151,4 +151,29 @@ class SegmentOperationsKtTest {
             .apply { assertNotNull(this) }
     }
 
+    @Test
+    fun `parallel segment can shift to the left`() {
+        Point(0.0, 0.0)
+            .spanHorizontalSegment(10.0)
+            .parallel(1.0, true)
+            .apply {
+                assertEquals(
+                    Segment(Point(0.0, 1.0), Point(10.0, 1.0)),
+                    this
+                )
+            }
+    }
+
+    @Test
+    fun `parallel segment can shift to the right`() {
+        Point(0.0, 0.0)
+            .spanHorizontalSegment(10.0)
+            .parallel(1.0, false)
+            .apply {
+                assertEquals(
+                    Segment(Point(0.0, -1.0), Point(10.0, -1.0)),
+                    this
+                )
+            }
+    }
 }

@@ -10,7 +10,7 @@ import org.tendiwa.plane.geometry.segments.multi.Multisegment
 import org.tendiwa.plane.geometry.vectors.*
 
 fun Segment.parallel(distance: Double, fromLeft: Boolean): Segment {
-    val distanceSigned = if (fromLeft) -distance else distance
+    val distanceSigned = if (fromLeft) distance else -distance
     return this.move(
         -this.dy / this.length * distanceSigned,
         this.dx / this.length * distanceSigned
