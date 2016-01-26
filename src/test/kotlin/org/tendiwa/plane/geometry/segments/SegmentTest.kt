@@ -19,10 +19,10 @@ class SegmentTest {
     @Test fun parallel() {
         val start = Point(3.0, 4.0)
         val original = Segment(start, start.move(4.0, 4.0))
-        val parallel = original.parallel(2.0.sqrt, true)
+        val actualParallel = original.parallel(2.0.sqrt, false)
         var expectedParallel = original.move(1.0, -1.0)
-        assert(expectedParallel.start reallyCloseTo parallel.start)
-        assert(expectedParallel.end reallyCloseTo parallel.end)
+        assert(expectedParallel.start reallyCloseTo actualParallel.start)
+        assert(expectedParallel.end reallyCloseTo actualParallel.end)
     }
 
     @Test fun isParallel() {
