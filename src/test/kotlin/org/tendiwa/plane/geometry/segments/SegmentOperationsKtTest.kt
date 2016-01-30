@@ -176,4 +176,22 @@ class SegmentOperationsKtTest {
                 )
             }
     }
+
+    @Test
+    fun `can intersect horizontal line`() {
+        Segment(
+            Point(0.0, 0.0),
+            Point(3.0, 10.0)
+        )
+            .apply { assert(intersectsHorizontalLine(2.0)) }
+    }
+
+    @Test
+    fun `can be not intersecting horizontal line`() {
+        Segment(
+            Point(0.0, 0.0),
+            Point(3.0, 10.0)
+        )
+            .apply { assertFalse(intersectsHorizontalLine(22.0)) }
+    }
 }

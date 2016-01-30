@@ -151,7 +151,7 @@ infix fun Segment.intersects(other: Segment): Boolean {
  * Returns the projection of [point] onto this segment, or null if the
  * projection of [point] on line of this segment falls outside of the segment.
  */
-fun Segment.project(point: Point) : Point? {
+fun Segment.project(point: Point): Point? {
     val r = ((point.x - start.x) * (end.x - start.x) + (point.y - start.y) * (end.y - start.y)) / (dx.square + dy.square)
     if (r < 0.0 || r > 1.0) {
         return null
@@ -178,3 +178,9 @@ fun Segment.intersection(ray: Ray): Point? {
     }
 }
 
+/**
+ * Checks if a [Segment] intersects a horizontal line.
+ * @param y Y-coordinate of all the points of the horizontal line.
+ */
+fun Segment.intersectsHorizontalLine(y: Double): Boolean =
+    end.y < y && start.y > y || end.y > y && start.y < y
