@@ -21,8 +21,8 @@ infix fun Line.intersectionWith(another: Line): Point? {
     )
 }
 
-fun Line.contains(point: Point): Boolean
-    = this distanceTo point < EPSILON
+fun Line.contains(point: Point): Boolean =
+    this distanceTo point < EPSILON
 
 infix fun Point.distanceTo(line: Line): Double =
     Math.abs(line.a * this.x + line.b * this.y + line.c)
