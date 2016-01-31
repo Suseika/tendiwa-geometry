@@ -2,6 +2,7 @@ package org.tendiwa.plane.geometry.segments
 
 import org.tendiwa.math.doubles.square
 import org.tendiwa.math.matrices.determinant
+import org.tendiwa.plane.geometry.lines.Line
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.points.move
 import org.tendiwa.plane.geometry.points.vectorTo
@@ -184,3 +185,10 @@ fun Segment.intersection(ray: Ray): Point? {
  */
 fun Segment.intersectsHorizontalLine(y: Double): Boolean =
     end.y < y && start.y > y || end.y > y && start.y < y
+
+fun Segment.toLine(): Line =
+    Line(
+        a = dy,
+        b = -dx,
+        c = dy * start.x + dx * start.y
+    )

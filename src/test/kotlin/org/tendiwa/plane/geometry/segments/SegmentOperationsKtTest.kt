@@ -3,6 +3,8 @@ package org.tendiwa.plane.geometry.segments
 import org.junit.Test
 import org.tendiwa.math.constants.EPSILON
 import org.tendiwa.plane.directions.CardinalDirection.*
+import org.tendiwa.plane.geometry.lines.HorizontalLine
+import org.tendiwa.plane.geometry.lines.intersectionWith
 import org.tendiwa.plane.geometry.points.*
 import org.tendiwa.plane.geometry.rays.Ray
 import kotlin.test.assertEquals
@@ -193,5 +195,20 @@ class SegmentOperationsKtTest {
             Point(3.0, 10.0)
         )
             .apply { assertFalse(intersectsHorizontalLine(22.0)) }
+    }
+
+    @Test
+    fun `transforms into line`() {
+        val line = Segment(
+            Point(0.0, 0.0),
+            Point(0.0, 3.0)
+        )
+            .toLine()
+        println(line)
+        line
+            .intersectionWith(HorizontalLine(7.0))!!
+            .apply {
+                assert(reallyCloseTo(Point(0.0, 7.0))) { this }
+            }
     }
 }
