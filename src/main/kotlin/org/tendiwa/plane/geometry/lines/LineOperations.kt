@@ -10,14 +10,14 @@ import org.tendiwa.plane.geometry.points.Point
 /**
  * Computes an intersection of this line with another line.
  */
-infix fun Line.intersectionWith(another: Line): Point? {
-    val zn = determinant(this.a, this.b, another.a, another.b)
+infix fun Line.intersectionWith(other: Line): Point? {
+    val zn = determinant(this.a, this.b, other.a, other.b)
     if (zn.isCloseToZero) {
         return null
     }
     return Point(
-        -determinant(this.c, this.b, another.c, another.b),
-        -determinant(this.a, this.c, another.a, another.c)
+        -determinant(this.c, this.b, other.c, other.b),
+        -determinant(this.a, this.c, other.a, other.c)
     )
 }
 
