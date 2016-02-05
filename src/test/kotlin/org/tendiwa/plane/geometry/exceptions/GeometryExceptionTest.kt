@@ -8,7 +8,7 @@ class GeometryExceptionTest {
         try {
             throw GeometryException("hello")
         } catch (e: RuntimeException) {
-            assertEquals("hello", e.getMessage())
+            assertEquals("hello", e.message)
         }
     }
 }
