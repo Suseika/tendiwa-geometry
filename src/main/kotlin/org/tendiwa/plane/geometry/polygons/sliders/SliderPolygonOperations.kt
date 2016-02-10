@@ -20,6 +20,11 @@ val SliderPolygon.edges: List<SliderPolygonEdge>
             )
         }
 
+/**
+ * Maps edges of the original polygon to [CutPolygonEdge]s.
+ * @param cutPositions Positions of cuts. Must be sorted.
+ * @return Cut edges, in polygonwise order.
+ */
 fun SliderPolygon.cutEdges(
     cutPositions: List<CircularSlider>
 ): List<CutPolygonEdge> {
