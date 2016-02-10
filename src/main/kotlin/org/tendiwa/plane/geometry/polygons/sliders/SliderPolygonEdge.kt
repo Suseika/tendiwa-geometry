@@ -25,7 +25,7 @@ data class SliderPolygonEdge(
         assert(start goesBefore end)
     }
 
-    fun point2D(polygonSlider: CircularSlider): Point =
+    fun point(polygonSlider: CircularSlider): Point =
         segment
             .start
             .move(fromBeginningToPoint(polygonSlider))

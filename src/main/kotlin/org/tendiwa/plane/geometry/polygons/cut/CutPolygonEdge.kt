@@ -41,7 +41,7 @@ constructor(
             .takeWhile {
                 it.position < sliderEdge.end.alternativePosition
             }
-            .map { sliderEdge.point2D(it) }
+            .map { sliderEdge.point(it) }
 
     /**
      * [startingCutIndex] for the next [CutPolygonEdge].
