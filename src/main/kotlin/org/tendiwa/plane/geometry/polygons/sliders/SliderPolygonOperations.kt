@@ -1,15 +1,14 @@
-package org.tendiwa.plane.geometry.polygons.cut
+package org.tendiwa.plane.geometry.polygons.sliders
 
 import org.tendiwa.collections.nextAfter
 import org.tendiwa.math.sliders.CircularSlider
-import org.tendiwa.plane.geometry.polygons.sliders.SliderPolygon
-import org.tendiwa.plane.geometry.polygons.sliders.SliderPolygonEdge
+import org.tendiwa.plane.geometry.polygons.cut.CutPolygonEdge
 import java.util.*
 
 /**
  * Edges of this polygon in circular slider form, ordered polygonwise.
  */
-internal val SliderPolygon.edges: List<SliderPolygonEdge>
+val SliderPolygon.edges: List<SliderPolygonEdge>
     get() =
     sliders
         .indices
@@ -21,7 +20,7 @@ internal val SliderPolygon.edges: List<SliderPolygonEdge>
             )
         }
 
-internal fun SliderPolygon.cutEdges(
+fun SliderPolygon.cutEdges(
     cutPositions: List<CircularSlider>
 ): List<CutPolygonEdge> {
     if (cutPositions.sortedBy { it.position } != cutPositions) {

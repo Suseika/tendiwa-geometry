@@ -4,6 +4,7 @@ import org.tendiwa.math.sliders.CircularSlider
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.polygons.Polygon
 import org.tendiwa.plane.geometry.polygons.sliders.SliderPolygon
+import org.tendiwa.plane.geometry.polygons.sliders.cutEdges
 import org.tendiwa.plane.geometry.segments.Segment
 
 fun Polygon.cut(vararg cutPositions: Double): CutPolygon =
