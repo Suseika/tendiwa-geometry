@@ -3,6 +3,7 @@ package org.tendiwa.plane.geometry.polygons.sliders
 import org.tendiwa.collections.nextAfter
 import org.tendiwa.math.sliders.CircularSlider
 import org.tendiwa.plane.geometry.polygons.cut.CutPolygonEdge
+import org.tendiwa.tools.argumentConstraint
 import java.util.*
 
 /**
@@ -28,12 +29,14 @@ val SliderPolygon.edges: List<SliderPolygonEdge>
 fun SliderPolygon.cutEdges(
     cutPositions: List<CircularSlider>
 ): List<CutPolygonEdge> {
-    if (cutPositions.sortedBy { it.position } != cutPositions) {
-        throw IllegalArgumentException(
+    argumentConstraint(
+        cutPositions,
+        { it.sortedBy { slider -> slider.position } == cutPositions },
+        {
             "cutPositions must be sorted in ascending order; they are " +
                 "$cutPositions"
-        )
-    }
+        }
+    )
     return edges
         .fold(
             ArrayList<CutPolygonEdge>(
