@@ -9,6 +9,7 @@ import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.points.distanceTo
 import org.tendiwa.plane.geometry.rectangles.Rectangle
 import org.tendiwa.plane.geometry.rectangles.side
+import org.tendiwa.tools.expectIllegalArgument
 import kotlin.test.assertEquals
 
 class CutPolygonTest {
@@ -90,5 +91,14 @@ class CutPolygonTest {
                     { it }
                 )
             }
+    }
+
+    @Test
+    fun `fails to be cut at non-distinct cut points`() {
+        expectRule.expectIllegalArgument(
+            "cutPositions must contain only distinct sliders"
+        )
+        Rectangle(0.0, 0.0, 10.0, 10.0)
+            .cut(0.4, 0.4)
     }
 }

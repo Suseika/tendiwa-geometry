@@ -4,8 +4,10 @@ import org.tendiwa.math.sliders.CircularSlider
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.polygons.Polygon
 import org.tendiwa.plane.geometry.polygons.sliders.SliderPolygon
-import org.tendiwa.plane.geometry.polygons.sliders.cutEdges
+import org.tendiwa.plane.geometry.polygons.sliders.edges
 import org.tendiwa.plane.geometry.segments.Segment
+import org.tendiwa.tools.argumentConstraint
+import java.util.*
 
 fun Polygon.cut(vararg cutPositions: Double): CutPolygon =
     cut(cutPositions.map { CircularSlider(it) })
@@ -61,4 +63,41 @@ class CutPolygon internal constructor(
      */
     fun cutsOnSubsegment(edge: Segment): List<Point> =
         edgeToCutsIndices[edge]?.map { cuts[it] } ?: emptyList()
+}
+
+/**
+ * Maps edges of the original polygon to [CutPolygonEdge]s.
+ * @param cutPositions Positions of cuts. Must be sorted.
+ * @return Cut edges, in polygonwise order.
+ */
+private fun SliderPolygon.cutEdges(
+    cutPositions: List<CircularSlider>
+): List<CutPolygonEdge> {
+    argumentConstraint(
+        cutPositions,
+        { it.sortedBy { slider -> slider.position } == cutPositions },
+        { "cutPositions must be sorted in ascending order" }
+    )
+    argumentConstraint(
+        cutPositions,
+        { it.distinct() == it },
+        { "cutPositions must contain only distinct sliders"}
+    )
+    return edges
+        .fold(
+            ArrayList<CutPolygonEdge>(
+                cutPositions.size
+            ), // mutable accumulator
+            { lists, sliderEdge ->
+                lists.apply {
+                    add(
+                        CutPolygonEdge(
+                            cutPositions = cutPositions,
+                            previous = lists.lastOrNull(),
+                            sliderEdge = sliderEdge
+                        )
+                    )
+                }
+            }
+        )
 }
