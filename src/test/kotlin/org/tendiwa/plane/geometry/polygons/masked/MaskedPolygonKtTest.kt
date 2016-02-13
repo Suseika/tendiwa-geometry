@@ -1,4 +1,4 @@
-package org.tendiwa.plane.geometry.scorchedPolygon
+package org.tendiwa.plane.geometry.polygons.masked
 
 import org.junit.Rule
 import org.junit.Test
