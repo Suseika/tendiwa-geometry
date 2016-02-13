@@ -204,7 +204,6 @@ class SegmentOperationsKtTest {
             Point(0.0, 3.0)
         )
             .toLine()
-        println(line)
         line
             .intersectionWith(HorizontalLine(7.0))!!
             .apply {

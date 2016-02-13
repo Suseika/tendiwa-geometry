@@ -18,7 +18,6 @@ class SegmentPathTest {
             }
         )
         .apply {
-            println(points)
             assertEquals(6, points.size)
             assertEquals(5, points.toSet().size)
         }
