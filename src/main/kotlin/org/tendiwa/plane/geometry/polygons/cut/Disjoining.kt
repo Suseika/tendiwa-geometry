@@ -16,17 +16,21 @@ import java.util.*
  */
 fun CutPolygon.disjoin(): List<SegmentPath> {
     argumentsConstraint(
-        !cuts.isEmpty() && cuts.size % 2 == 0,
+        cuts.size % 2 == 0,
         {
-            "CutPolygon should contain an even number of cuts that is > 0;" +
-                "CutPolygon has ${cuts.size} cuts"
+            "CutPolygon should contain an even number of cuts; " +
+                "it has ${cuts.size} cuts"
         }
     )
     val polygon = this.toPolygon()
-    return cutsIndices()
-        .loopedLinks
-        .map { polygon.points.circularSubList(it.first, it.second+1) }
-        .map { Polyline(it) }
+    return if (cuts.isEmpty()) {
+        listOf(polygon)
+    } else {
+        cutsIndices()
+            .loopedLinks
+            .map { polygon.points.circularSubList(it.first, it.second + 1) }
+            .map { Polyline(it) }
+    }
 }
 
 private fun CutPolygon.cutsIndices(): List<Int> {
