@@ -28,29 +28,33 @@ fun Polygon.mask(mask: CircularMask): MaskedPolygon =
     mask
         .borders()
         .let { it.sortedBy { it.position } }
-        .let { this@mask.cut(it).disjoin() }
         .let {
             when {
                 mask.isOmnipresent() ->
                     MaskedPolygon(
-                        masked = it,
+                        masked = listOf(this),
                         unmasked = emptyList()
                     )
                 mask.isEmpty() ->
                     MaskedPolygon(
                         masked = emptyList(),
-                        unmasked = it
+                        unmasked = listOf(this)
                     )
                 else ->
-                    MaskedPolygon(
-                        masked = it.filterIndexed {
-                            i, polyline ->
-                            if (mask.contains0()) i.odd else i.even
-                        },
-                        unmasked = it.filterIndexed {
-                            i, polyline ->
-                            if (mask.contains0()) i.even else i.odd
+                    this@mask
+                        .cut(it)
+                        .disjoin()
+                        .let {
+                            MaskedPolygon(
+                                masked = it.filterIndexed {
+                                    i, polyline ->
+                                    if (mask.contains0()) i.odd else i.even
+                                },
+                                unmasked = it.filterIndexed {
+                                    i, polyline ->
+                                    if (mask.contains0()) i.even else i.odd
+                                }
+                            )
                         }
-                    )
             }
         }

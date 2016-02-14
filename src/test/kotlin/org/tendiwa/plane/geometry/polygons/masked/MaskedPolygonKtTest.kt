@@ -60,10 +60,29 @@ class MaskedPolygonKtTest {
     }
 
     @Test
+    fun `completely masked polygon`() {
+        Rectangle(0.0, 0.0, 10.0, 10.0)
+            .mask(
+                CircularMask(
+                    listOf(
+                        Slider1Sphere(
+                            CircularSlider(0.4),
+                            Size.MAX
+                        )
+                    )
+                )
+            )
+            .apply {
+                assert(masked.single() is Polygon)
+                assert(unmasked.isEmpty())
+            }
+    }
+
+    @Test
     fun `completely unmasked polygon`() {
         Rectangle(0.0, 0.0, 10.0, 10.0)
             .mask(
-                CircularMask( listOf( ) )
+                CircularMask(listOf())
             )
             .apply {
                 assert(masked.isEmpty())
