@@ -2,7 +2,9 @@ package org.tendiwa.plane.geometry.paths
 
 import org.tendiwa.collections.withoutLast
 import org.tendiwa.plane.geometry.points.Point
+import org.tendiwa.plane.geometry.polylines.Polyline
 import org.tendiwa.plane.geometry.segments.Segment
+import org.tendiwa.plane.geometry.segments.length
 import org.tendiwa.plane.geometry.shapes.SegmentGroup
 import org.tendiwa.plane.geometry.trails.Trail
 import org.tendiwa.tools.argumentConstraint
@@ -57,3 +59,7 @@ fun SegmentPath(steps: List<Point>): SegmentPath =
 
 fun SegmentPath(start: Point, operations: Trail.() -> Unit): SegmentPath =
     GenericSegmentPath(Trail(start).apply(operations).points)
+
+val SegmentPath.length: Double
+    get() =
+    segments.map { it.length }.sum()
