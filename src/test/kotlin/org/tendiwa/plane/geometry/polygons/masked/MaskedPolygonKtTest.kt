@@ -7,7 +7,7 @@ import org.tendiwa.math.sliders.CircularMask
 import org.tendiwa.math.sliders.CircularSlider
 import org.tendiwa.math.sliders.Slider1Sphere
 import org.tendiwa.math.sliders.Slider1Sphere.Size
-import org.tendiwa.plane.geometry.polygons.masked.mask
+import org.tendiwa.plane.geometry.polygons.Polygon
 import org.tendiwa.plane.geometry.rectangles.Rectangle
 import kotlin.test.assertEquals
 
@@ -59,4 +59,15 @@ class MaskedPolygonKtTest {
             }
     }
 
+    @Test
+    fun `completely unmasked polygon`() {
+        Rectangle(0.0, 0.0, 10.0, 10.0)
+            .mask(
+                CircularMask( listOf( ) )
+            )
+            .apply {
+                assert(masked.isEmpty())
+                assert(unmasked.single() is Polygon)
+            }
+    }
 }
