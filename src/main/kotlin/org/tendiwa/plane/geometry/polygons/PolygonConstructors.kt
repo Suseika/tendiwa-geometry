@@ -19,6 +19,9 @@ private fun validatePointList(points: List<Point>) {
 }
 
 private data class DefaultPolygon(override val points: List<Point>) : Polygon {
+    override val steps: List<Point>
+        get() = points + points[0]
+
     // Store segments in the object instead of computing them anew each time
     override val segments: List<Segment> = super.segments
 }

@@ -1,15 +1,15 @@
 package org.tendiwa.plane.geometry.polygons
 
 import org.tendiwa.collections.loopedLinks
+import org.tendiwa.plane.geometry.paths.SegmentPath
 import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.segments.Segment
-import org.tendiwa.plane.geometry.shapes.SegmentGroup
 import org.tendiwa.plane.geometry.trails.Trail
 
 /**
  * A polygon.
  */
-interface Polygon : SegmentGroup {
+interface Polygon : SegmentPath {
     override val points: List<Point>
     /**
      * Segments between consecutive points. For each segment, it must be true

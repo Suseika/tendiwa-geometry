@@ -50,4 +50,13 @@ data class Rectangle
             Point(maxX, maxY),
             Point(x, maxY)
         )
+
+    override val steps: List<Point>
+        get() = listOf(
+            Point(x, y),
+            Point(maxX, y),
+            Point(maxX, maxY),
+            Point(x, maxY),
+            Point(x, y)
+        )
 }
