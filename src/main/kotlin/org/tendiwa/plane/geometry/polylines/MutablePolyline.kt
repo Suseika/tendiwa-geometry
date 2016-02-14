@@ -8,6 +8,9 @@ open class MutablePolyline() : Polyline {
 
     override val points: List<Point> = mutablePoints
 
+    override val steps: List<Point>
+        get() = points
+
     fun addInFront(point: Point) {
         mutablePoints.add(point)
     }

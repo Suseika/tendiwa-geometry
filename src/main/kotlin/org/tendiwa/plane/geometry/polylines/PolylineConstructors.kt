@@ -8,4 +8,7 @@ fun Polyline(points: List<Point>): Polyline =
 fun Polyline(vararg points: Point): Polyline =
     Polyline(points.toList())
 
-private data class DefaultPolyline(override val points: List<Point>) : Polyline
+private data class DefaultPolyline(override val points: List<Point>) : Polyline {
+    override val steps: List<Point>
+        get() = points
+}
