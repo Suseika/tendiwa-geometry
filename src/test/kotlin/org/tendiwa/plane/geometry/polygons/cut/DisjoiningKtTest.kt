@@ -3,8 +3,8 @@ package org.tendiwa.plane.geometry.polygons.cut
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.ExpectedException
+import org.tendiwa.plane.geometry.paths.length
 import org.tendiwa.plane.geometry.polygons.perimeter
-import org.tendiwa.plane.geometry.polylines.length
 import org.tendiwa.plane.geometry.rectangles.Rectangle
 import org.tendiwa.tools.assertAlmostEquals
 import org.tendiwa.tools.expectIllegalArgument

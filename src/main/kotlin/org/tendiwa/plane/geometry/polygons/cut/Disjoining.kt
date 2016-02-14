@@ -2,6 +2,7 @@ package org.tendiwa.plane.geometry.polygons.cut
 
 import org.tendiwa.collections.circularSubList
 import org.tendiwa.collections.loopedLinks
+import org.tendiwa.plane.geometry.paths.SegmentPath
 import org.tendiwa.plane.geometry.polylines.Polyline
 import org.tendiwa.tools.argumentsConstraint
 import java.util.*
@@ -13,7 +14,7 @@ import java.util.*
  * polygonwise.
  * @throws IllegalArgumentException If there are 0 or an odd number of cuts.
  */
-fun CutPolygon.disjoin(): List<Polyline> {
+fun CutPolygon.disjoin(): List<SegmentPath> {
     argumentsConstraint(
         !cuts.isEmpty() && cuts.size % 2 == 0,
         {

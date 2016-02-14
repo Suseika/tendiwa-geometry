@@ -5,10 +5,10 @@ import org.tendiwa.math.integers.odd
 import org.tendiwa.math.sliders.CircularMask
 import org.tendiwa.math.sliders.borders
 import org.tendiwa.math.sliders.contains0
+import org.tendiwa.plane.geometry.paths.SegmentPath
 import org.tendiwa.plane.geometry.polygons.Polygon
 import org.tendiwa.plane.geometry.polygons.cut.cut
 import org.tendiwa.plane.geometry.polygons.cut.disjoin
-import org.tendiwa.plane.geometry.polylines.Polyline
 import org.tendiwa.tools.argumentConstraint
 
 /**
@@ -17,8 +17,8 @@ import org.tendiwa.tools.argumentConstraint
  */
 data class MaskedPolygon
 internal constructor(
-    val masked: List<Polyline>,
-    val unmasked: List<Polyline>
+    val masked: List<SegmentPath>,
+    val unmasked: List<SegmentPath>
 )
 
 /**
