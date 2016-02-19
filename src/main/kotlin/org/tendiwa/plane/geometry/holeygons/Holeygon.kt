@@ -18,6 +18,11 @@ data class Holeygon
  * @param holes Holes inside the [enclosing] polygon.
  */
 (val enclosing: Polygon, val holes: Collection<Polygon>) : SegmentGroup {
+    /**
+     * Creates a Holeygon without holes.
+     */
+    constructor(enclosing: Polygon) : this(enclosing, listOf())
+
     override val points: Collection<Point>
         get() = enclosing.points + holes.flatMap { it.points }
 
@@ -27,4 +32,3 @@ data class Holeygon
 
 val Holeygon.polygons: Collection<Polygon>
     get() = listOf(enclosing) + holes
-
