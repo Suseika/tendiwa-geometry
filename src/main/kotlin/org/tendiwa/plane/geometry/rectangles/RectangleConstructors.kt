@@ -21,3 +21,6 @@ fun rectangleFromRanges(
 
 val Rectangle.Companion.ANY : Rectangle
     get() = Rectangle(-40.2, -59.0, 89.1, 41.13)
+
+fun SquareAt0(width: Double): Rectangle =
+    Rectangle(0.0, 0.0, width, width)
