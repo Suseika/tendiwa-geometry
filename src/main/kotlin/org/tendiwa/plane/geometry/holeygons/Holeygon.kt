@@ -25,3 +25,6 @@ data class Holeygon
         get() = enclosing.segments + holes.flatMap { it.segments }
 }
 
+val Holeygon.polygons: Collection<Polygon>
+    get() = listOf(enclosing) + holes
+
