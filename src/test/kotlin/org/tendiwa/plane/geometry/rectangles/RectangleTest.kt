@@ -1,23 +1,27 @@
 package org.tendiwa.plane.geometry.rectangles
 
 import org.junit.Test
-import org.tendiwa.plane.directions.OrdinalDirection.SW
+import org.tendiwa.math.constants.EPSILON
+import org.tendiwa.plane.directions.OrdinalDirection.*
 import org.tendiwa.plane.geometry.dimensions.by
 import org.tendiwa.plane.geometry.points.AnyPoint
 import org.tendiwa.plane.geometry.points.Point
+import org.tendiwa.plane.geometry.points.distanceTo
 import org.tendiwa.plane.geometry.ranges2d.overlaps
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 
 class RectangleTest {
-    @Test fun hull() {
+    @Test
+    fun hull() {
         assertEquals(
             Rectangle(-1.0, -1.0, 0.4, 0.4),
             Rectangle(-1.0, -1.0, 0.4, 0.4).hull
         )
     }
 
-    @Test fun points() {
+    @Test
+    fun points() {
         assertEquals(
             listOf(
                 Point(1.0, 2.0), Point(4.0, 2.0),
@@ -76,5 +80,14 @@ class RectangleTest {
                     this.overlaps(this.moveByX(this.width))
                 )
             }
+    }
+
+    @Test
+    fun pointAtRatio() {
+        assert(
+            Rectangle(0.0, 0.0, 10.0, 10.0)
+                .pointAtRatio(0.5, 1.5)
+                .distanceTo(Point(5.0, 15.0)) < EPSILON
+        )
     }
 }

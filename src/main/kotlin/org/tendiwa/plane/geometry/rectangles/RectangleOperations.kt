@@ -17,3 +17,6 @@ fun Rectangle.side(direction: CardinalDirection): Segment =
         CardinalDirection.S -> segments[2]
         CardinalDirection.W -> segments[3]
     }
+
+fun Rectangle.pointAtRatio(xRatio: Double, yRatio: Double) =
+    Point(x + width * xRatio, y + height * yRatio)
