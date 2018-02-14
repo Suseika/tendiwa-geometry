@@ -7,6 +7,7 @@ import org.tendiwa.plane.geometry.rectangles.Rectangle
 import org.tendiwa.plane.geometry.segments.Segment
 import org.tendiwa.plane.geometry.segments.dx
 import org.tendiwa.plane.geometry.segments.dy
+import org.tendiwa.plane.geometry.vectors.Vector
 import org.tendiwa.plane.geometry.vectors.direction
 
 infix fun Point.reallyCloseTo(another: Point): Boolean =
@@ -56,6 +57,12 @@ infix fun Point.vectorTo(target: Point): org.tendiwa.plane.geometry.vectors.Vect
  */
 fun Point.spanSegment(dx: Double, dy: Double): Segment =
     Segment(this, this.move(dx, dy))
+
+/**
+ * Creates a [Segment] by placing its another end *relative* to this point.
+ */
+fun Point.spanSegment(d: Vector): Segment =
+    Segment(this, this.move(d.x, d.y))
 
 fun Point.spanSegment(direction: org.tendiwa.plane.directions.KingDirection, distance: Double): Segment =
     Segment(this, this.moveKing(direction, distance))
